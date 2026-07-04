@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Krishna Karthikeyan — The Mystical Wild</title>
-<meta name="description" content="A photography portfolio in three chapters — wilderness, street, studio.">
+<meta name="description" content="A photography portfolio in four chapters — wilderness, street, studio.">
 <meta property="og:title" content="Krishna Karthikeyan — The Mystical Wild">
-<meta property="og:description" content="A photography portfolio in three chapters.">
+<meta property="og:description" content="A photography portfolio in four chapters.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
   body{background:var(--forest);color:var(--mist);font-family:var(--sans);font-weight:300;overflow-x:hidden}
   ::selection{background:var(--moss);color:var(--forest)}
 
+  /* ---------- film grain ---------- */
   .grain{
     position:fixed;inset:-100px;pointer-events:none;z-index:60;opacity:.07;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -39,6 +40,7 @@
     80%{transform:translate(35px,25px)}100%{transform:translate(0,0)}
   }
 
+  /* ---------- letterbox bars ---------- */
   .bar{position:fixed;left:0;right:0;height:7vh;background:#000;z-index:50;transition:transform 1.2s cubic-bezier(.77,0,.18,1)}
   .bar.top{top:0}
   .bar.bottom{bottom:0}
@@ -53,6 +55,7 @@
   body.scrolled .brand{top:22px}
   .brand a{color:inherit;text-decoration:none}
 
+  /* ---------- hero ---------- */
   .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
     position:absolute;inset:0;
@@ -89,6 +92,7 @@
   }
   @keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
+  /* ---------- chapters ---------- */
   section.chapter{padding:18vh 0 6vh}
   .ch-head{max-width:1100px;margin:0 auto;padding:0 32px}
   .ch-num{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--moss);display:flex;align-items:center;gap:18px}
@@ -102,11 +106,13 @@
   }
   .ch-gallery-link:hover{color:var(--mist);border-color:var(--moss)}
 
+  /* reveal machinery */
   .reveal{opacity:0;transform:translateY(36px);transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.6,.2,1)}
   .reveal.in{opacity:1;transform:none}
   .frame-reveal{clip-path:inset(12% 6% 12% 6%);transition:clip-path 1.8s cubic-bezier(.77,0,.18,1)}
   .frame-reveal.in{clip-path:inset(0 0 0 0)}
 
+  /* ---------- scenes ---------- */
   .scene{margin:16vh 0}
   .scene-frame{position:relative;height:84vh;overflow:hidden}
   .scene-frame .plate{
@@ -117,6 +123,7 @@
   .scene-frame:hover .plate{filter:saturate(1) brightness(.78) contrast(1.02)}
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
+  /* portrait scenes: pillarboxed like an aspect-ratio shift, blurred self-backdrop */
   .scene-frame.portrait{display:flex;align-items:center;justify-content:center;background:#050807}
   .scene-frame.portrait .plate-blur{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(34px) brightness(.22) saturate(.5)}
   .scene-frame.portrait .plate-img{
@@ -142,6 +149,7 @@
     font-size:3.4em;float:left;line-height:.82;padding-right:.12em;padding-top:.06em;
   }
 
+  /* ---------- placeholder frames ---------- */
   .scene-frame.empty{
     height:62vh;border:1px dashed var(--hair);margin:0 32px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
@@ -156,9 +164,11 @@
   .empty-label{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--mist-faint)}
   .empty-hint{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--mist-faint)}
 
+  /* prologue cue */
   .prologue{min-height:38vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
   .prologue p{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2vw,1.5rem);color:var(--mist-dim);letter-spacing:.06em}
 
+  /* triptych: quick cuts between full-bleed scenes */
   .triptych{margin:14vh auto 4vh;max-width:1500px;padding:0 32px}
   .trip-intro{text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--mist-dim)}
   .trip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:7vh}
@@ -177,10 +187,23 @@
   .trip-caption .t{font-family:var(--serif);font-style:italic;font-size:1.35rem;letter-spacing:.03em}
   .trip-caption .s{margin-top:8px;font-family:var(--serif);font-size:1.02rem;line-height:1.6;color:var(--mist-dim)}
 
+  /* collect (print enquiry) links */
+  .collect{
+    display:inline-block;margin-top:30px;color:var(--mist-dim);text-decoration:none;
+    font-family:var(--sans);font-size:10px;letter-spacing:.42em;text-transform:uppercase;
+    border-bottom:1px solid var(--hair);padding-bottom:7px;
+    transition:color .5s ease,border-color .5s ease;
+  }
+  .collect:hover{color:var(--mist);border-color:var(--moss)}
+  .collect.small{margin-top:14px;font-size:9px;letter-spacing:.36em}
+  .print-note{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--mist-dim);margin:-18px 0 40px}
+
+  /* interstitial whisper */
   .whisper{min-height:64vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
   .whisper p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.5;max-width:22em}
   .whisper em{color:var(--moss);font-style:italic}
 
+  /* ---------- closing ---------- */
   footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--moss)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
@@ -222,25 +245,41 @@
 
 <div class="brand"><a href="#top">Krishna Karthikeyan</a></div>
 
+<!-- ============ TITLE SEQUENCE ============ -->
 <header class="hero" id="top">
   <div class="hero-img" aria-hidden="true"></div>
   <div class="hero-copy">
-    <div class="eyebrow">A portfolio in three chapters</div>
+    <div class="eyebrow">A portfolio in four chapters</div>
     <h1>The Mystical Wild</h1>
   </div>
   <a class="enter" href="#ch1">Enter</a>
 </header>
 
+<!-- Chapters render here from the CHAPTERS config below -->
 <main id="chapters"></main>
 
+<!-- ============ CLOSING ============ -->
 <footer>
   <div class="end-mark reveal">Epilogue</div>
   <h2 class="reveal">The wild is patient.<br>So am I.</h2>
-  <a class="cta reveal" href="mailto:you@example.com">Write to me</a>  <!-- put your real email here -->
+  <p class="print-note reveal">Every frame in this portfolio exists as a signed print — edition of ten.</p>
+  <a class="cta reveal" id="contact-cta" href="#">Write to me</a>
   <div class="fin">Fin · © Krishna Karthikeyan</div>
 </footer>
 
 <script>
+/* =====================================================================
+   YOUR CONTENT LIVES HERE.
+   Each chapter has scenes. Each scene = one image + one story.
+
+   To add a photo:  drop the file into the /images folder next to this
+                    file, then set img: 'images/your-file.jpg'.
+                    (Full https URLs also work, e.g. the two temporary
+                    Adobe CDN links below — swap them once you export.)
+   To leave a slot: keep img: '' and a styled placeholder renders.
+   Story:           write naturally; blank line = new paragraph.
+   ===================================================================== */
+const EMAIL = 'you@example.com';   // <-- SET YOUR EMAIL HERE (enquiries + contact button)
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
 const CHAPTERS = [
@@ -280,7 +319,7 @@ A mother in these woods doesn't fight the odds. She rearranges them.`
             line: 'It shows the forest only its eyes. It has crossed the male\'s path once — never twice.'
           },
           {
-            img: '',
+            img: '',   // elephants still to be uploaded — placeholder renders meanwhile
             title: 'The Celebrants',
             line: 'The rains that test the cats are a festival for the herd.'
           },
@@ -304,13 +343,68 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
   {
     id: 'ch2',
     num: 'Chapter II',
+    title: 'The Reign',
+    line: 'The cold season belongs to one animal. He inspects it daily.',
+    gallery: '',
+    whisperAfter: 'A kingdom is not held by force alone. <em>It is held by presence.</em>',
+    scenes: [
+      /* When the dawn-stretch, river-crossing and fog stills are hosted,
+         uncomment these scenes and paste their URLs — the arc is:
+         First Light -> The Rounds -> court triptych -> The Crossing -> King at Night.
+      { img: '', title: 'First Light', meta: 'Dawn · Winter 2025', story: `...` },
+      */
+      {
+        img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/4dfcf250-2024-42eb-aa1c-329ad584fff5_rw_3840.JPG?h=07792a9faccd764026d4a8744245248b',
+        title: 'The Rounds',
+        meta: 'The king · Winter 2025',
+        story: `Every morning, the same circuit. The same trees, inspected like fence posts. He presses his face to the bark and leaves a message only the forest can read: still mine.
+
+Nothing in these woods signs its name louder — or more quietly.`
+      },
+      {
+        type: 'triptych',
+        intro: 'The court keeps its distance.',
+        items: [
+          {
+            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/5dfe7476-b3c3-46e7-a28e-4619aa006ea0_rw_3840.jpg?h=6a2a8e8307b7550ab0c554fc0428b140',
+            pos: '43% 45%',
+            title: 'The Pretender',
+            line: 'Second to the throne, and it knows it. It keeps to the high branches and lets the moonlight do the hiding.'
+          },
+          {
+            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/3281454d-000e-435a-a13a-1d55bf52bf00_rw_1920.JPG?h=04d67410be74d9608498ee0a7020f204',
+            title: 'The Witness',
+            line: 'The sambar sees him first, and says nothing. Silence, here, is a survival skill.'
+          },
+          {
+            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/14a17bdf-ffb7-491c-b717-613e32df480f_rw_1920.JPG?h=f2406557d686544be378b57c789bed44',
+            pos: '55% 70%',
+            title: 'The Quiet Rival',
+            line: 'It waits for dark to move. Even then, it checks twice.'
+          }
+        ]
+      },
+      {
+        img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/727b066a-da4d-4c9d-a06b-e8f29f3862c6_rw_1920.JPG?h=6bc6ec8b5c1a177b04caa3117f344299',
+        portrait: true,
+        title: 'The King at Night',
+        meta: 'After dark · Winter 2025',
+        story: `When the light leaves, he doesn't. The forest goes quiet in a particular way when he moves through it — not empty, just holding its breath.
+
+Long may he walk.`
+      }
+    ]
+  },
+  {
+    id: 'ch3',
+    num: 'Chapter III',
     title: 'Life As It Is',
     line: 'Unposed. Unrepeated. The street only gives you one take.',
     gallery: '',
     whisperAfter: 'Nothing here was asked to hold still. <em>Nothing did.</em>',
     scenes: [
       {
-        img: '',
+        img: '',   // <-- paste your Life As It Is still here
         title: 'Untitled still',
         meta: 'Place · Year',
         story: `Write the story for this frame here. It will appear the moment you add the image above — the layout is already waiting for it.`
@@ -318,15 +412,15 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     ]
   },
   {
-    id: 'ch3',
-    num: 'Chapter III',
+    id: 'ch4',
+    num: 'Chapter IV',
     title: 'Studio',
     line: 'Controlled light. Uncontrolled subjects.',
     gallery: '',
     whisperAfter: '',
     scenes: [
       {
-        img: '',
+        img: '',   // <-- paste your Studio still here
         title: 'Untitled still',
         meta: 'Studio · Year',
         story: `Story for this studio frame.`
@@ -334,8 +428,11 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     ]
   }
 ];
+/* ===================== end of content config ===================== */
 
+// ---------- render ----------
 const pad = n => String(n).padStart(2, '0');
+const collectHref = (chTitle, n, t) => `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${chTitle} · Scene ${pad(n)} · ${t}`)}`;
 const paragraphs = s => s.trim().split(/\n\s*\n/).map(p => `<p>${p.trim()}</p>`).join('');
 
 const main = document.getElementById('chapters');
@@ -369,6 +466,7 @@ CHAPTERS.forEach(ch => {
                 <div class="scene-mark">Scene ${pad(sceneNo)}</div>
                 <div class="t">${it.title}</div>
                 <div class="s">${it.line}</div>
+                ${it.img ? `<a class="collect small" href="${collectHref(ch.title, sceneNo, it.title)}">Collect</a>` : ''}
               </div>
             </div>`;
           }).join('')}
@@ -377,6 +475,7 @@ CHAPTERS.forEach(ch => {
       return;
     }
     sceneNo++;
+    const i = sceneNo - 1;
     const frame = sc.img
       ? sc.portrait
         ? `<div class="scene-frame portrait frame-reveal">
@@ -398,6 +497,7 @@ CHAPTERS.forEach(ch => {
         <div class="scene-mark reveal">Scene ${pad(sceneNo)} · ${sc.meta}</div>
         <h3 class="scene-title reveal">${sc.title}</h3>
         <div class="scene-text reveal">${paragraphs(sc.story)}</div>
+        ${sc.img ? `<a class="collect reveal" href="${collectHref(ch.title, sceneNo, sc.title)}">Collect this frame</a>` : ''}
       </div>
     </article>`;
   });
@@ -406,7 +506,9 @@ CHAPTERS.forEach(ch => {
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
 });
 main.innerHTML = html;
+document.getElementById('contact-cta').href = 'mailto:' + EMAIL;
 
+// ---------- letterbox retract ----------
 let scrolledOnce = false;
 window.addEventListener('scroll', () => {
   if (!scrolledOnce && window.scrollY > window.innerHeight * 0.25) {
@@ -416,11 +518,13 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+// ---------- reveals ----------
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal, .frame-reveal').forEach(el => io.observe(el));
 
+// ---------- parallax ----------
 const plates = [...document.querySelectorAll('.parallax')];
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reduced && plates.length) {
