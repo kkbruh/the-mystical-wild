@@ -171,7 +171,7 @@
   /* triptych: quick cuts between full-bleed scenes */
   .triptych{margin:14vh auto 4vh;max-width:1500px;padding:0 32px}
   .trip-intro{text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--mist-dim)}
-  .trip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:7vh}
+  .trip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px;margin-top:7vh}
   .trip-cell.reveal:nth-child(2){transition-delay:.18s}
   .trip-cell.reveal:nth-child(3){transition-delay:.36s}
   .trip-frame{position:relative;height:62vh;overflow:hidden}
@@ -348,10 +348,28 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     gallery: '',
     whisperAfter: 'A kingdom is not held by force alone. <em>It is held by presence.</em>',
     scenes: [
-      /* When the dawn-stretch, river-crossing and fog stills are hosted,
-         uncomment these scenes and paste their URLs — the arc is:
-         First Light -> The Rounds -> court triptych -> The Crossing -> King at Night.
-      { img: '', title: 'First Light', meta: 'Dawn · Winter 2025', story: `...` },
+      /* RESERVED SCENES — paste hosted URLs into img and uncomment.
+         Full arc: First Light -> The Rounds -> The Fog -> court -> The Ambush -> King at Night.
+      {
+        img: '',   // dawn stretch on the log (high-key)
+        title: 'First Light',
+        meta: 'Dawn · Winter 2025',
+        story: `The day begins the way every reign begins — with a claim. Spine bowed, claws in the driftwood, the river mist erasing everything that is not him.
+
+The forest can wait. It will anyway.`
+      },
+      {
+        img: '',   // fog walk
+        title: 'The Fog',
+        meta: 'Morning · Winter 2025',
+        story: `The mist takes the forest every morning, and every morning he walks straight through it — the only thing in the whiteness that moves like it knows where it is going.`
+      },
+      {
+        img: '',   // grass ambush, tall crop — add portrait: true
+        title: 'The Ambush',
+        meta: 'The king · Winter 2025',
+        story: `One eye above the grass. That is all the warning the forest ever gets.`
+      },
       */
       {
         img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/4dfcf250-2024-42eb-aa1c-329ad584fff5_rw_3840.JPG?h=07792a9faccd764026d4a8744245248b',
@@ -370,11 +388,6 @@ Nothing in these woods signs its name louder — or more quietly.`
             pos: '43% 45%',
             title: 'The Pretender',
             line: 'Second to the throne, and it knows it. It keeps to the high branches and lets the moonlight do the hiding.'
-          },
-          {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/3281454d-000e-435a-a13a-1d55bf52bf00_rw_1920.JPG?h=04d67410be74d9608498ee0a7020f204',
-            title: 'The Witness',
-            line: 'The sambar sees him first, and says nothing. Silence, here, is a survival skill.'
           },
           {
             img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/14a17bdf-ffb7-491c-b717-613e32df480f_rw_1920.JPG?h=f2406557d686544be378b57c789bed44',
