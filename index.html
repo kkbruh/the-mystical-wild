@@ -8,6 +8,10 @@
 <meta property="og:title" content="Krishna Karthikeyan — The Mystical Wild">
 <meta property="og:description" content="A photography portfolio in three chapters.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://kkbruh.github.io/the-mystical-wild/">
+<meta property="og:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -70,25 +74,35 @@
   body.scrolled .bar.top{transform:translateY(-100%)}
   body.scrolled .bar.bottom{transform:translateY(100%)}
 
-  .brand{
-    position:fixed;top:calc(7vh + 22px);left:32px;z-index:55;
-    font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--text-dim);
-    transition:top 1.2s cubic-bezier(.77,0,.18,1);mix-blend-mode:difference;
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;
+    height:58px;padding:0 32px;
+    background:rgba(4,7,5,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--hair);
+    transition:transform .7s cubic-bezier(.77,0,.18,1);
   }
-  body.scrolled .brand{top:22px}
-  .brand a{color:inherit;text-decoration:none}
-  .site-nav{
-    position:fixed;top:calc(7vh + 56px);left:32px;z-index:55;
-    display:flex;flex-direction:column;gap:11px;
-    transition:top 1.2s cubic-bezier(.77,0,.18,1);mix-blend-mode:difference;
+  body.navhide .topbar{transform:translateY(-100%)}
+  .tb-brand{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:.34em;text-transform:uppercase}
+  .tb-nav{display:flex;gap:36px}
+  .tb-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:color .5s ease}
+  .tb-nav a:hover{color:var(--text)}
+  .tb-menu{display:none;position:relative}
+  .tb-menu summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 10px}
+  .tb-menu summary::-webkit-details-marker{display:none}
+  .tb-menu summary span{display:block;width:20px;height:1px;background:var(--text-dim)}
+  .tb-drop{
+    position:absolute;right:-10px;top:calc(100% + 16px);
+    background:rgba(4,7,5,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--hair);padding:20px 26px;
+    display:flex;flex-direction:column;gap:17px;min-width:236px;
   }
-  body.scrolled .site-nav{top:56px}
-  .site-nav a{
-    color:var(--mist-dim);text-decoration:none;
-    font-size:10px;letter-spacing:.3em;text-transform:uppercase;
-    transition:color .5s ease;
+  .tb-drop a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase}
+  @media (max-width:820px){
+    .tb-nav{display:none}
+    .tb-menu{display:block}
+    .topbar{padding:0 20px;height:54px}
   }
-  .site-nav a:hover{color:var(--text)}
 
   .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
@@ -254,6 +268,9 @@
   .print-card:hover .pc-frame img{filter:saturate(1) brightness(.82);transform:scale(1.03)}
   .pc-title{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:1.3rem;letter-spacing:.03em}
   .pc-ed{margin-top:7px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--mist-dim)}
+  .pc-price{margin-top:10px;font-family:var(--sans);font-size:12px;letter-spacing:.14em;color:var(--text-dim)}
+  .pc-actions{display:flex;gap:26px}
+  .print-terms{margin-top:9vh;text-align:center;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
 
   .about{padding:16vh 32px 20vh}
   .about-inner{max-width:1100px;margin:0 auto}
@@ -295,7 +312,6 @@
     .scene-split .split-story .split-no{font-size:3.4rem;margin-bottom:2.5vh}
   }
   @media (max-width:640px){
-    .brand{left:20px}
     .ch-head{padding:0 20px}
     .scene-frame{height:64vh}
     .scene-story{padding:6vh 20px 0}
@@ -321,12 +337,22 @@
 <div class="bar top" aria-hidden="true"></div>
 <div class="bar bottom" aria-hidden="true"></div>
 
-<div class="brand"><a href="#top">Krishna Karthikeyan</a></div>
-<nav class="site-nav" aria-label="Site">
-  <a href="#ch1">Stories of the Wild</a>
-  <a href="#prints">Recommended Prints</a>
-  <a href="#about">About Krishna</a>
-</nav>
+<header class="topbar">
+  <a class="tb-brand" href="#top">Krishna Karthikeyan</a>
+  <nav class="tb-nav" aria-label="Site">
+    <a href="#ch1">Stories of the Wild</a>
+    <a href="#prints">Recommended Prints</a>
+    <a href="#about">About Krishna</a>
+  </nav>
+  <details class="tb-menu">
+    <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+    <div class="tb-drop">
+      <a href="#ch1">Stories of the Wild</a>
+      <a href="#prints">Recommended Prints</a>
+      <a href="#about">About Krishna</a>
+    </div>
+  </details>
+</header>
 
 <header class="hero" id="top">
   <div class="hero-img" aria-hidden="true"></div>
@@ -343,9 +369,10 @@
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
-    <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. These are the frames I reach for myself.</p>
+    <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
   <div class="prints-grid"></div>
+  <div class="print-terms reveal">Hahnem&uuml;hle archival paper &nbsp;&middot;&nbsp; Hand-signed &amp; numbered &nbsp;&middot;&nbsp; Certificate of authenticity &nbsp;&middot;&nbsp; Free shipping within India &nbsp;&middot;&nbsp; Worldwide at cost</div>
 </section>
 
 <section class="about" id="about">
@@ -378,16 +405,19 @@
 
 <script>
 const EMAIL = 'krishnakarthikeyan5@gmail.com';
+const WHATSAPP = '918618584124';   // digits with country code — WhatsApp buttons appear when set
+const GOATCOUNTER = '';            // your goatcounter.com code, e.g. 'mysticalwild' — analytics activates when set
+const PRICING = { a3: 9500, a2: 16500 };  // base prices in ₹; per-print override: add a3/a2 to any PRINTS entry
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
-  { img: 'print-the-promise.jpg',  title: 'The Promise',  subject: 'Tigress and cub' },
-  { img: 'print-the-vantage.jpg',  title: 'The Vantage',  subject: 'Leopard, blue hour' },
-  { img: 'print-the-warning.jpg',  title: 'The Warning',  subject: 'Tigress' },
-  { img: 'print-the-perch.jpg',    title: 'The Perch',    subject: 'Leopard' },
-  { img: 'print-the-riverbed.jpg', title: 'The Riverbed', subject: 'Tiger, first light' },
-  { img: 'print-the-curious.jpg',  title: 'The Curious',  subject: 'Leopard' },
-  { img: 'print-the-elder.jpg',    title: 'The Elder',    subject: 'Elephant, study in black' }
+  { img: 'print-the-promise.jpg',  title: 'The Promise',  subject: 'Tigress and cub', remaining: 10 },
+  { img: 'print-the-vantage.jpg',  title: 'The Vantage',  subject: 'Leopard, blue hour', remaining: 10 },
+  { img: 'print-the-warning.jpg',  title: 'The Warning',  subject: 'Tigress', remaining: 10 },
+  { img: 'print-the-perch.jpg',    title: 'The Perch',    subject: 'Leopard', remaining: 10 },
+  { img: 'print-the-riverbed.jpg', title: 'The Riverbed', subject: 'Tiger, first light', remaining: 10 },
+  { img: 'print-the-curious.jpg',  title: 'The Curious',  subject: 'Leopard', remaining: 10 },
+  { img: 'print-the-elder.jpg',    title: 'The Elder',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -606,13 +636,27 @@ CHAPTERS.forEach(ch => {
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
 });
 main.innerHTML = html;
-document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => `
+const inr = n => '\u20b9' + n.toLocaleString('en-IN');
+document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => {
+  const a3 = p.a3 || PRICING.a3, a2 = p.a2 || PRICING.a2;
+  const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
+  const msg = encodeURIComponent(`Hi Krishna — I'd like to enquire about the print "${p.title}".`);
+  const wa = WHATSAPP ? `<a class="collect small" href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">WhatsApp</a>` : '';
+  return `
   <div class="print-card reveal">
     <div class="pc-frame"><img src="${p.img}" alt="${p.title} — ${p.subject}" loading="lazy"></div>
     <div class="pc-title">${p.title}</div>
-    <div class="pc-ed">${p.subject} &middot; Edition of ten</div>
-    <a class="collect small" href="mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${p.title}`)}">Enquire</a>
-  </div>`).join('');
+    <div class="pc-ed">${p.subject} &middot; ${scarcity}</div>
+    <div class="pc-price">A3 ${inr(a3)} &middot; A2 ${inr(a2)}</div>
+    <div class="pc-actions">${wa}<a class="collect small" href="mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${p.title}`)}">Email</a></div>
+  </div>`;
+}).join('');
+if (GOATCOUNTER) {
+  const s = document.createElement('script');
+  s.async = true; s.src = '//gc.zgo.at/count.js';
+  s.dataset.goatcounter = `https://${GOATCOUNTER}.goatcounter.com/count`;
+  document.head.appendChild(s);
+}
 document.getElementById('contact-cta').href = 'mailto:' + EMAIL;
 document.querySelectorAll('.js-mailto').forEach(a => a.href = 'mailto:' + EMAIL);
 
@@ -622,14 +666,15 @@ document.addEventListener('contextmenu', e => {
 });
 document.querySelectorAll('img').forEach(i => i.setAttribute('draggable', 'false'));
 
-let scrolledOnce = false;
+let lastY = 0;
 window.addEventListener('scroll', () => {
-  if (!scrolledOnce && window.scrollY > window.innerHeight * 0.25) {
-    document.body.classList.add('scrolled'); scrolledOnce = true;
-  } else if (scrolledOnce && window.scrollY < 40) {
-    document.body.classList.remove('scrolled'); scrolledOnce = false;
-  }
+  const y = window.scrollY;
+  if (y > 140 && y > lastY + 2) document.body.classList.add('navhide');
+  else if (y < lastY - 2 || y < 80) document.body.classList.remove('navhide');
+  lastY = y;
 }, { passive: true });
+document.querySelectorAll('.tb-drop a').forEach(a =>
+  a.addEventListener('click', () => document.querySelector('.tb-menu').removeAttribute('open')));
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
