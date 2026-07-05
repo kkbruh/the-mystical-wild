@@ -142,14 +142,19 @@
   .scene-frame:hover .plate{filter:saturate(1) brightness(.78) contrast(1.02)}
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
-  .scene-frame.portrait{display:flex;align-items:center;justify-content:center;background:#050807}
-  .scene-frame.portrait .plate-blur{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(34px) brightness(.22) saturate(.5)}
-  .scene-frame.portrait .plate-img{
-    position:relative;height:100%;width:auto;max-width:94%;object-fit:cover;
-    filter:saturate(.6) brightness(.7) contrast(1.03);
-    transition:filter 1.6s ease;will-change:transform;
+  .scene-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#050807;min-height:100vh}
+  .scene-split:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+  .scene-split:nth-child(even) .split-frame{order:2}
+  .split-frame{position:relative;display:flex;align-items:flex-start;justify-content:center}
+  .split-frame .plate-img{
+    position:sticky;top:5vh;height:90vh;width:auto;max-width:88%;object-fit:contain;
+    outline:1px solid var(--hair);outline-offset:14px;
+    filter:saturate(.6) brightness(.7) contrast(1.03);transition:filter 1.6s ease;
   }
-  .scene-frame.portrait:hover .plate-img{filter:saturate(1) brightness(.85) contrast(1.01)}
+  .split-frame:hover .plate-img{filter:saturate(1) brightness(.85) contrast(1.01)}
+  .split-story{display:flex;flex-direction:column;justify-content:center;padding:14vh max(40px,5vw)}
+  .split-story .split-no{font-family:var(--serif);font-style:italic;font-size:clamp(4.5rem,7vw,7.5rem);line-height:1;color:var(--text-faint);opacity:.55;margin-bottom:3vh}
+  .split-story .scene-text{max-width:560px}
 
   .scene-story{max-width:600px;padding:8vh 32px 0}
   .scene:nth-child(odd) .scene-story{margin-left:max(32px, 12vw)}
@@ -228,6 +233,15 @@
 
   a:focus-visible{outline:1px solid var(--moss);outline-offset:4px}
 
+  @media (max-width:900px){
+    .scene-split{display:block;min-height:0;padding-top:36px}
+    .scene-split .split-frame .plate-img{
+      position:static;height:auto;width:auto;display:block;margin:0 auto;
+      max-width:calc(100% - 56px);max-height:80vh;outline-offset:10px;
+    }
+    .scene-split .split-story{padding:7vh 20px 9vh}
+    .scene-split .split-story .split-no{font-size:3.4rem;margin-bottom:2.5vh}
+  }
   @media (max-width:640px){
     .brand{left:20px}
     .ch-head{padding:0 20px}
@@ -405,12 +419,47 @@ Long may he walk.`
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
     scenes: [
       {
-        img: '',
+        img: 'the-procession.jpg',
+        portrait: true,
+        title: 'The Procession',
+        meta: 'The tusker · Monsoon 2025',
+        story: `He does not walk alone, exactly. The mynas rise and settle around his tusks like courtiers around a slow king, feeding on whatever his footsteps stir loose.
+
+An arrangement older than either of them.`
+      },
+      {
+        img: 'the-gathering.jpg',
+        portrait: true,
         title: 'The Gathering',
         meta: 'The herd · Monsoon 2025',
         story: `Where the tiger walks its borders alone, the herd draws no lines. It moves as one body — the old leading, the young shielded at the centre, the rain a thing to be walked through, together.
 
 The forest fears the cats. It makes way for the elephants.`
+      },
+      {
+        img: 'the-dust-bath.jpg',
+        portrait: true,
+        title: 'The Dust Bath',
+        meta: 'The ritual · Summer 2025',
+        story: `Trunk to the sky, the earth thrown over his own back like a blessing. The dust is armour, sunscreen, ceremony — the forest dressing its largest resident in itself.`
+      },
+      {
+        img: 'old-gold.jpg',
+        portrait: true,
+        title: 'Old Gold',
+        meta: 'Evening light · Winter 2025',
+        story: `The last hour of light finds him feeding, unhurried, the sun laid across a hide that has carried decades through this forest.
+
+Nothing here is in a rush. Least of all him.`
+      },
+      {
+        img: 'memory.jpg',
+        portrait: true,
+        title: 'Memory',
+        meta: 'Up close · Winter 2025',
+        story: `This close, the skin stops being skin. It becomes terrain — riverbeds and ridgelines pressed around an eye that has watched this forest longer than I have been alive.
+
+They say an elephant forgets nothing. Standing here, you believe it.`
       }
     ]
   }
@@ -448,12 +497,15 @@ CHAPTERS.forEach(ch => {
       return;
     }
     sceneNo++;
+    const storyInner = `<div class="scene-mark reveal">Scene ${pad(sceneNo)} · ${sc.meta}</div><h3 class="scene-title reveal">${sc.title}</h3><div class="scene-text reveal">${paragraphs(sc.story)}</div>${sc.img ? `<a class="collect reveal" href="${collectHref(ch.title, sceneNo, sc.title)}">Collect this frame</a>` : ''}`;
+    if (sc.img && sc.portrait) {
+      html += `<article class="scene scene-split"><div class="split-frame frame-reveal"><img class="plate-img" src="${sc.img}" alt="${sc.title}"></div><div class="split-story"><div class="split-no reveal" aria-hidden="true">${pad(sceneNo)}</div>${storyInner}</div></article>`;
+      return;
+    }
     const frame = sc.img
-      ? sc.portrait
-        ? `<div class="scene-frame portrait frame-reveal"><div class="plate-blur" style="background-image:url('${sc.img}')"></div><img class="plate-img parallax" data-speed="0.07" src="${sc.img}" alt="${sc.title}"></div>`
-        : `<div class="scene-frame frame-reveal"><div class="plate parallax" data-speed="0.12" style="background-image:url('${sc.img}')"></div></div>`
+      ? `<div class="scene-frame frame-reveal"><div class="plate parallax" data-speed="0.12" style="background-image:url('${sc.img}')"></div></div>`
       : `<div class="scene-frame empty reveal"><div class="empty-glyph"><span>${pad(sceneNo)}</span></div><div class="empty-label">Awaiting still</div><div class="empty-hint">Add the image URL in the CHAPTERS config — the scene is ready for it.</div></div>`;
-    html += `<article class="scene">${frame}<div class="scene-story"><div class="scene-mark reveal">Scene ${pad(sceneNo)} · ${sc.meta}</div><h3 class="scene-title reveal">${sc.title}</h3><div class="scene-text reveal">${paragraphs(sc.story)}</div>${sc.img ? `<a class="collect reveal" href="${collectHref(ch.title, sceneNo, sc.title)}">Collect this frame</a>` : ''}</div></article>`;
+    html += `<article class="scene">${frame}<div class="scene-story">${storyInner}</div></article>`;
   });
   html += `</section>`;
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
