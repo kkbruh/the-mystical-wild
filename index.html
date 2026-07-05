@@ -120,6 +120,9 @@
   .ch-num::after{content:'';height:1px;flex:1;background:var(--line)}
   .ch-title{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,4.2rem);margin-top:22px;letter-spacing:.02em}
   .ch-line{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--text-dim);margin-top:14px;max-width:34em;line-height:1.6}
+  .ch-epigraph{margin:8vh 0 0;padding-left:26px;border-left:1px solid var(--hair);max-width:36em}
+  .ch-epigraph p{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.85;color:var(--text-dim)}
+  .ch-epigraph cite{display:block;margin-top:18px;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:var(--mist-dim)}
   .ch-gallery-link{
     display:inline-block;margin-top:26px;color:var(--mist-dim);text-decoration:none;
     font-size:10px;letter-spacing:.4em;text-transform:uppercase;border-bottom:1px solid var(--hair);
@@ -148,7 +151,6 @@
   .split-frame{position:relative;display:flex;align-items:flex-start;justify-content:center}
   .split-frame .plate-img{
     position:sticky;top:5vh;height:90vh;width:auto;max-width:88%;object-fit:contain;
-    outline:1px solid var(--hair);outline-offset:14px;
     filter:saturate(.6) brightness(.7) contrast(1.03);transition:filter 1.6s ease;
   }
   .split-frame:hover .plate-img{filter:saturate(1) brightness(.85) contrast(1.01)}
@@ -203,6 +205,10 @@
   .trip-cell:hover .trip-frame img{filter:saturate(1) brightness(.8);transform:scale(1.04)}
   .trip-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 60%,rgba(4,7,5,.55) 100%);pointer-events:none}
   .trip-frame.empty-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:1px dashed var(--hair);background:radial-gradient(ellipse at center,var(--fern) 0%,var(--forest) 78%)}
+  .trip-cell-full{grid-column:1/-1}
+  .trip-cell-full .trip-frame{height:auto}
+  .trip-cell-full .trip-frame img{height:auto;aspect-ratio:auto;object-fit:unset}
+  .trip-cell-full + .trip-cell:last-child{grid-column:1/-1;width:100%;max-width:760px;justify-self:center}
   .trip-caption{margin-top:20px}
   .trip-caption .t{font-family:var(--serif);font-style:italic;font-size:1.35rem;letter-spacing:.03em}
   .trip-caption .s{margin-top:8px;font-family:var(--serif);font-size:1.02rem;line-height:1.6;color:var(--mist-dim)}
@@ -237,7 +243,7 @@
     .scene-split{display:block;min-height:0;padding-top:36px}
     .scene-split .split-frame .plate-img{
       position:static;height:auto;width:auto;display:block;margin:0 auto;
-      max-width:calc(100% - 56px);max-height:80vh;outline-offset:10px;
+      max-width:calc(100% - 56px);max-height:80vh;
     }
     .scene-split .split-story{padding:7vh 20px 9vh}
     .scene-split .split-story .split-no{font-size:3.4rem;margin-bottom:2.5vh}
@@ -331,11 +337,6 @@ A mother in these woods doesn't fight the odds. She rearranges them.`
             line: 'It shows the forest only its eyes. It has crossed the male\'s path once — never twice.'
           },
           {
-            img: '',
-            title: 'The Celebrants',
-            line: 'The rains that test the cats are a festival for the herd.'
-          },
-          {
             img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/7e572bf9-9ed1-4ab6-9109-c84e9c2179d3_rw_1920.jpg?h=53a67999438845fd4b39e7acc09e4fde',
             title: 'The Sentinel',
             line: 'One alarm call from the old watcher, and everything that hides knows to hide deeper.'
@@ -415,6 +416,8 @@ Long may he walk.`
     num: 'Chapter III',
     title: 'The Herd',
     line: 'The cats rule alone. The herd survives together.',
+    epigraph: '&ldquo;Bow your head. Show them respect. The elephants created this jungle. Where they&rsquo;ve made furrows with their tusks, the rivers ran. Where they blew with their trunks, the leaves fell. They made all that belongs. The mountains. The trees. The birds in the tree. But they did not make you. That is why you must go.&rdquo;',
+    epigraphCite: '&mdash; Bagheera · The Jungle Book',
     gallery: '',
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
     scenes: [
@@ -478,6 +481,7 @@ CHAPTERS.forEach(ch => {
       <h2 class="ch-title reveal">${ch.title}</h2>
       <p class="ch-line reveal">${ch.line}</p>
       ${ch.gallery ? `<a class="ch-gallery-link reveal" href="${ch.gallery}">View the full gallery</a>` : ''}
+      ${ch.epigraph ? `<blockquote class="ch-epigraph reveal"><p>${ch.epigraph}</p><cite>${ch.epigraphCite || ''}</cite></blockquote>` : ''}
     </div>`;
   let sceneNo = 0;
   ch.scenes.forEach(sc => {
@@ -490,7 +494,7 @@ CHAPTERS.forEach(ch => {
             const frame = it.img
               ? `<div class="trip-frame"><img src="${it.img}" alt="${it.title}"${it.pos ? ` style=\"object-position:${it.pos}\"` : ''}></div>`
               : `<div class="trip-frame empty-cell"><div class="empty-glyph"><span>${pad(sceneNo)}</span></div><div class="empty-label">Awaiting still</div></div>`;
-            return `<div class="trip-cell reveal">${frame}<div class="trip-caption"><div class="scene-mark">Scene ${pad(sceneNo)}</div><div class="t">${it.title}</div><div class="s">${it.line}</div>${it.img ? `<a class="collect small" href="${collectHref(ch.title, sceneNo, it.title)}">Collect</a>` : ''}</div></div>`;
+            return `<div class="trip-cell${it.full ? ' trip-cell-full' : ''} reveal">${frame}<div class="trip-caption"><div class="scene-mark">Scene ${pad(sceneNo)}</div><div class="t">${it.title}</div><div class="s">${it.line}</div>${it.img ? `<a class="collect small" href="${collectHref(ch.title, sceneNo, it.title)}">Collect</a>` : ''}</div></div>`;
           }).join('')}
         </div>
       </div>`;
