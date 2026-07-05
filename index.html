@@ -77,6 +77,18 @@
   }
   body.scrolled .brand{top:22px}
   .brand a{color:inherit;text-decoration:none}
+  .site-nav{
+    position:fixed;top:calc(7vh + 56px);left:32px;z-index:55;
+    display:flex;flex-direction:column;gap:11px;
+    transition:top 1.2s cubic-bezier(.77,0,.18,1);mix-blend-mode:difference;
+  }
+  body.scrolled .site-nav{top:56px}
+  .site-nav a{
+    color:var(--mist-dim);text-decoration:none;
+    font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+    transition:color .5s ease;
+  }
+  .site-nav a:hover{color:var(--text)}
 
   .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
@@ -227,6 +239,29 @@
   .whisper p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.5;max-width:22em}
   .whisper em{color:var(--accent);font-style:italic}
 
+  .prints{padding:18vh 32px 6vh;max-width:1500px;margin:0 auto}
+  .prints-head{margin:0 0 8vh}
+  .prints-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);margin-top:22px;letter-spacing:.02em}
+  .prints-line{font-family:var(--serif);font-style:italic;color:var(--text-dim);margin-top:14px;max-width:36em;line-height:1.7}
+  .prints-grid{columns:3 300px;column-gap:26px}
+  .print-card{break-inside:avoid;margin-bottom:44px}
+  .print-card .pc-frame{overflow:hidden;background:#050807}
+  .print-card .pc-frame img{
+    width:100%;height:auto;display:block;
+    filter:saturate(.55) brightness(.65) contrast(1.04);
+    transition:filter 1.3s ease,transform 1.3s ease;
+  }
+  .print-card:hover .pc-frame img{filter:saturate(1) brightness(.82);transform:scale(1.03)}
+  .pc-title{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:1.3rem;letter-spacing:.03em}
+  .pc-ed{margin-top:7px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--mist-dim)}
+
+  .about{padding:16vh 32px 20vh}
+  .about-inner{max-width:1100px;margin:0 auto}
+  .about-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);margin-top:22px;letter-spacing:.02em}
+  .about-text{margin-top:5vh;max-width:44em}
+  .about-text p{font-family:var(--serif);font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.9;color:var(--text-dim)}
+  .about-text p + p{margin-top:1.5em}
+
   footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
@@ -238,6 +273,10 @@
   footer .fin{position:absolute;bottom:30px;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,216,.3)}
 
   a:focus-visible{outline:1px solid var(--moss);outline-offset:4px}
+  img,.plate,.hero-img{
+    -webkit-user-drag:none;user-select:none;-webkit-user-select:none;
+    -webkit-touch-callout:none;
+  }
 
   @media (max-width:900px){
     .scene-split{display:block;min-height:0;padding-top:36px}
@@ -276,6 +315,11 @@
 <div class="bar bottom" aria-hidden="true"></div>
 
 <div class="brand"><a href="#top">Krishna Karthikeyan</a></div>
+<nav class="site-nav" aria-label="Site">
+  <a href="#ch1">Stories of the Wild</a>
+  <a href="#prints">Recommended Prints</a>
+  <a href="#about">About Krishna</a>
+</nav>
 
 <header class="hero" id="top">
   <div class="hero-img" aria-hidden="true"></div>
@@ -288,6 +332,28 @@
 
 <main id="chapters"></main>
 
+<section class="prints" id="prints">
+  <div class="prints-head">
+    <div class="ch-num reveal">Recommended prints</div>
+    <h2 class="prints-title reveal">The ones I would hang first.</h2>
+    <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. These are the frames I reach for myself.</p>
+  </div>
+  <div class="prints-grid"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="ch-num reveal">About Krishna</div>
+    <h2 class="about-title reveal">Made in the forests of southern India.</h2>
+    <div class="about-text reveal">
+      <p>I am Krishna Karthikeyan &mdash; a wildlife photographer working the forests of southern India, where the herds move like weather and the cats let you see them only when they choose.</p>
+      <p>The Mystical Wild is what I bring back: chapters of a forest that owes nobody anything. Every frame here was made in the wild, on its terms &mdash; and exists as a signed print in an edition of ten.</p>
+      <p>If a frame stayed with you, write to me. Every enquiry is answered personally.</p>
+    </div>
+    <a class="cta reveal js-mailto" href="#">Write to me</a>
+  </div>
+</section>
+
 <footer>
   <div class="end-mark reveal">Epilogue</div>
   <h2 class="reveal">The wild is patient.<br>So am I.</h2>
@@ -297,7 +363,18 @@
 </footer>
 
 <script>
-const EMAIL = 'you@example.com';
+const EMAIL = 'krishnakarthikeyan5@gmail.com';
+
+// Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
+const PRINTS = [
+  { img: 'print-the-promise.jpg',  title: 'The Promise',  subject: 'Tigress and cub' },
+  { img: 'print-the-vantage.jpg',  title: 'The Vantage',  subject: 'Leopard, blue hour' },
+  { img: 'print-the-warning.jpg',  title: 'The Warning',  subject: 'Tigress' },
+  { img: 'print-the-perch.jpg',    title: 'The Perch',    subject: 'Leopard' },
+  { img: 'print-the-riverbed.jpg', title: 'The Riverbed', subject: 'Tiger, first light' },
+  { img: 'print-the-curious.jpg',  title: 'The Curious',  subject: 'Leopard' },
+  { img: 'print-the-elder.jpg',    title: 'The Elder',    subject: 'Elephant, study in black' }
+];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
 const CHAPTERS = [
@@ -515,7 +592,21 @@ CHAPTERS.forEach(ch => {
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
 });
 main.innerHTML = html;
+document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => `
+  <div class="print-card reveal">
+    <div class="pc-frame"><img src="${p.img}" alt="${p.title} — ${p.subject}" loading="lazy"></div>
+    <div class="pc-title">${p.title}</div>
+    <div class="pc-ed">${p.subject} &middot; Edition of ten</div>
+    <a class="collect small" href="mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${p.title}`)}">Enquire</a>
+  </div>`).join('');
 document.getElementById('contact-cta').href = 'mailto:' + EMAIL;
+document.querySelectorAll('.js-mailto').forEach(a => a.href = 'mailto:' + EMAIL);
+
+// Deterrent: no right-click-save / drag on imagery (screen res only; originals never leave the archive)
+document.addEventListener('contextmenu', e => {
+  if (e.target.closest('img, .plate, .pc-frame, .split-frame, .trip-frame, .hero-img')) e.preventDefault();
+});
+document.querySelectorAll('img').forEach(i => i.setAttribute('draggable', 'false'));
 
 let scrolledOnce = false;
 window.addEventListener('scroll', () => {
