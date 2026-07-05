@@ -261,6 +261,13 @@
   .about-text{margin-top:5vh;max-width:44em}
   .about-text p{font-family:var(--serif);font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.9;color:var(--text-dim)}
   .about-text p + p{margin-top:1.5em}
+  .about-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:60px;align-items:start;margin-top:6vh}
+  .about-grid .about-text{margin-top:0}
+  .about-photo img{width:100%;height:auto;display:block;filter:saturate(.82) contrast(1.02)}
+  @media (max-width:900px){
+    .about-grid{display:block}
+    .about-photo{max-width:420px;margin-bottom:40px}
+  }
 
   footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
@@ -345,12 +352,19 @@
   <div class="about-inner">
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
-    <div class="about-text reveal">
-      <p>I am Krishna Karthikeyan &mdash; a wildlife photographer working the forests of southern India, where the herds move like weather and the cats let you see them only when they choose.</p>
-      <p>The Mystical Wild is what I bring back: chapters of a forest that owes nobody anything. Every frame here was made in the wild, on its terms &mdash; and exists as a signed print in an edition of ten.</p>
-      <p>If a frame stayed with you, write to me. Every enquiry is answered personally.</p>
+    <div class="about-grid">
+      <div class="about-photo reveal"><img src="about-krishna.jpg" alt="Krishna Karthikeyan in the field"></div>
+      <div class="about-body">
+        <div class="about-text reveal">
+          <p>It started with The Jungle Book &mdash; a kid mesmerised by the woods, half convinced Bagheera and Baloo were out there waiting. That kid eventually bought a camera. He never really put it down.</p>
+          <p>I led the photography club at college, and somewhere between then and now the forests of southern India became the centre of my life &mdash; where the herds move like weather and the cats let you see them only when they choose. The wild has taught me more than anything else I can name. It has shaped the person I am.</p>
+          <p>There is no better feeling than watching the wilderness simply be itself. I count myself blessed for every hour of it &mdash; and grateful to the people who walked this path with me, helped me along it, and inspired me with their own work.</p>
+          <p>The Mystical Wild is what I bring back: chapters of a forest that owes nobody anything. Every frame was made in the wild, on its terms &mdash; and exists as a signed print in an edition of ten.</p>
+          <p>If a frame stayed with you, write to me. Every enquiry is answered personally.</p>
+        </div>
+        <a class="cta reveal js-mailto" href="#">Write to me</a>
+      </div>
     </div>
-    <a class="cta reveal js-mailto" href="#">Write to me</a>
   </div>
 </section>
 
