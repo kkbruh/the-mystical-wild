@@ -11,11 +11,12 @@
 <meta property="og:url" content="https://kkbruh.github.io/the-mystical-wild/">
 <meta property="og:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.jpg">
+<meta name="twitter:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
+  img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
   :root{
     --forest:#0a0f0c;
     --fern:#141d16;
@@ -502,7 +503,7 @@
 <main id="chapters"></main>
 
 <section class="prints" id="prints">
-  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.jpg" alt=""></div>
+  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.webp" alt=""></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
@@ -524,7 +525,7 @@
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
-      <div class="about-photo reveal"><img src="about-krishna.jpg" alt="Krishna Karthikeyan in the field"></div>
+      <div class="about-photo reveal"><img src="about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
       <div class="about-body">
         <div class="about-text reveal">
           <p>It started with The Jungle Book &mdash; a kid mesmerised by the woods, half convinced Bagheera and Baloo were out there waiting. That kid eventually bought a camera. He never really put it down.</p>
@@ -573,19 +574,19 @@ const OPEN_EDITION = { price: 2999, spec: 'A4 &middot; framed &middot; matte' };
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
-  { pos: '40% 52%', img: 'print-the-promise.jpg',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
-  { pos: '42% 55%', img: 'print-the-vantage.jpg',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
-  { img: 'print-the-warning.jpg',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
-  { pos: '38% 46%', img: 'print-the-flame.jpg',
+  { pos: '40% 52%', img: 'print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
+  { pos: '42% 55%', img: 'print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
+  { img: 'print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
+  { pos: '38% 46%', img: 'print-the-flame.webp',
     title: 'The Flame', note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
     subject: 'Hawk-eagle', remaining: 10 },
-  { img: 'print-the-perch.jpg',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
-  { pos: '58% 45%', img: 'print-the-riverbed.jpg', title: 'The Riverbed', note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
-  { pos: '46% 62%', img: 'print-the-blue-hour.jpg',
+  { img: 'print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
+  { pos: '58% 45%', img: 'print-the-riverbed.webp', title: 'The Riverbed', note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { pos: '46% 62%', img: 'print-the-blue-hour.webp',
     title: 'The Blue Hour', note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
     subject: 'Gaur', remaining: 10 },
-  { img: 'print-the-curious.jpg',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
-  { img: 'print-the-elder.jpg',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
+  { img: 'print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
+  { img: 'print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -599,7 +600,7 @@ const CHAPTERS = [
     whisperAfter: "The monsoon doesn't take sides. <em>It only takes.</em>",
     scenes: [
       {
-        img: 'the-dominant.jpg',
+        img: 'the-dominant.webp',
         title: 'The Dominant',
         meta: 'The male · Monsoon 2025',
         story: `He walks like the rain belongs to him. In these woods, it mostly does — every trail marked, every challenger remembered.
@@ -651,7 +652,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     whisperAfter: 'A kingdom is not held by force alone. <em>It is held by presence.</em>',
     scenes: [
       {
-        img: 'first-light.jpg',
+        img: 'first-light.webp',
         title: 'First Light',
         meta: 'Dawn · Winter 2025',
         story: `The day begins the way every reign begins — with a claim. Spine bowed, claws in the driftwood, the river mist erasing everything that is not him.
@@ -659,7 +660,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
 The forest can wait. It will anyway.`
       },
       {
-        img: 'the-fog.jpg',
+        img: 'the-fog.webp',
         title: 'The Fog',
         meta: 'Morning · Winter 2025',
         story: `The mist takes the forest every morning, and every morning he walks straight through it — the only thing in the whiteness that moves like it knows where it is going.`
@@ -669,7 +670,7 @@ The forest can wait. It will anyway.`
         intro: 'The court keeps its distance.',
         items: [
           {
-            img: 'pretender.jpg',
+            img: 'pretender.webp',
             pos: '42% 40%',
             title: 'The Pretender',
             line: 'Second to the throne, and it knows it. It keeps to the high branches and lets the moonlight do the hiding.'
@@ -683,21 +684,21 @@ The forest can wait. It will anyway.`
         ]
       },
       {
-        img: 'the-ambush-v2.jpg',
+        img: 'the-ambush-v2.webp',
         portrait: true,
         title: 'The Ambush',
         meta: 'The king · Winter 2025',
         story: `One eye above the grass. That is all the warning the forest ever gets.`
       },
       {
-        img: 'the-claim.jpg',
+        img: 'the-claim.webp',
         portrait: true,
         title: 'The Claim',
         meta: 'The king · Winter 2025',
         story: `The chase is the story everyone tells. This is the part nobody stays for. She ate without hurry &mdash; and even at her own table, she watched.`
       },
       {
-        img: 'king-at-night.jpg',
+        img: 'king-at-night.webp',
         portrait: true,
         title: 'The King at Night',
         meta: 'After dark · Winter 2025',
@@ -718,7 +719,7 @@ Long may he walk.`
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
     scenes: [
       {
-        img: 'the-procession.jpg',
+        img: 'the-procession.webp',
         portrait: true,
         title: 'The Procession',
         meta: 'The tusker · Monsoon 2025',
@@ -727,7 +728,7 @@ Long may he walk.`
 An arrangement older than either of them.`
       },
       {
-        img: 'the-gathering.jpg',
+        img: 'the-gathering.webp',
         portrait: true,
         title: 'The Gathering',
         meta: 'The herd · Monsoon 2025',
@@ -736,14 +737,14 @@ An arrangement older than either of them.`
 The forest fears the cats. It makes way for the elephants.`
       },
       {
-        img: 'the-dust-bath.jpg',
+        img: 'the-dust-bath.webp',
         portrait: true,
         title: 'The Dust Bath',
         meta: 'The ritual · Summer 2025',
         story: `Trunk to the sky, the earth thrown over his own back like a blessing. The dust is armour, sunscreen, ceremony — the forest dressing its largest resident in itself.`
       },
       {
-        img: 'old-gold.jpg',
+        img: 'old-gold.webp',
         portrait: true,
         title: 'Old Gold',
         meta: 'Evening light · Winter 2025',
@@ -752,7 +753,7 @@ The forest fears the cats. It makes way for the elephants.`
 Nothing here is in a rush. Least of all him.`
       },
       {
-        img: 'memory.jpg',
+        img: 'memory.webp',
         portrait: true,
         title: 'Memory',
         meta: 'Up close · Winter 2025',
@@ -965,6 +966,8 @@ if (!reduced && plates.length) {
   }, { passive: true });
   parallax();
 }
+document.addEventListener('contextmenu',e=>{if(e.target.closest('img,.plate,.prints-hero'))e.preventDefault()});
+document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
 </script>
 </body>
 </html>
