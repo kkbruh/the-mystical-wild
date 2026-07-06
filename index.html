@@ -159,17 +159,15 @@
 
   .reveal{opacity:0;transform:translateY(36px);transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.6,.2,1)}
   .reveal.in{opacity:1;transform:none}
-  .frame-reveal{clip-path:inset(12% 6% 12% 6%);transition:clip-path 1.8s cubic-bezier(.77,0,.18,1)}
-  .frame-reveal.in{clip-path:inset(0 0 0 0)}
+
 
   .scene{margin:16vh 0}
   .scene-frame{position:relative;height:84vh;overflow:hidden}
   .scene-frame .plate{
     position:absolute;inset:-12% 0;background-size:cover;background-position:center;
-    filter:saturate(.55) brightness(.6) contrast(1.04);
-    transition:filter 1.6s ease;will-change:transform;
+    filter:saturate(.95) brightness(.88) contrast(1.03);
+    transition:filter .6s ease;will-change:transform;
   }
-  .scene-frame.frame-reveal.in .plate{filter:saturate(.95) brightness(.88) contrast(1.03)}
   .scene-frame:hover .plate{filter:saturate(1) brightness(.78) contrast(1.02)}
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
@@ -179,9 +177,8 @@
   .split-frame{position:relative;display:flex;align-items:flex-start;justify-content:center}
   .split-frame .plate-img{
     position:sticky;top:5vh;height:90vh;width:auto;max-width:88%;object-fit:contain;
-    filter:saturate(.6) brightness(.7) contrast(1.03);transition:filter 1.6s ease;
+    filter:saturate(.96) brightness(.92) contrast(1.02);transition:filter .6s ease;
   }
-  .split-frame.frame-reveal.in .plate-img{filter:saturate(.96) brightness(.92) contrast(1.02)}
   .split-frame:hover .plate-img{filter:saturate(1.02) brightness(1)}
   .split-story{display:flex;flex-direction:column;justify-content:center;padding:14vh max(40px,5vw)}
   .split-story .split-no{font-family:var(--serif);font-style:italic;font-size:clamp(4.5rem,7vw,7.5rem);line-height:1;color:var(--text-faint);opacity:.55;margin-bottom:3vh}
@@ -514,7 +511,7 @@
 
 <footer>
   <div class="end-mark reveal">Epilogue</div>
-  <h2 class="reveal">The wild is patient.<br>So am I.</h2>
+  <h2 class="reveal">Most days, the forest gives you nothing.<br>These are the other days.</h2>
   <p class="print-note reveal">Every frame in this portfolio exists as a signed print — edition of ten.</p>
   <a class="cta reveal" id="contact-cta" href="#">Write to me</a>
   <div class="fin">Fin · © Krishna Karthikeyan</div>
