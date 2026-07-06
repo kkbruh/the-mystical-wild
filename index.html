@@ -11,11 +11,12 @@
 <meta property="og:url" content="https://kkbruh.github.io/the-mystical-wild/">
 <meta property="og:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.jpg">
+<meta name="twitter:image" content="https://kkbruh.github.io/the-mystical-wild/print-the-promise.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
+  img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
   :root{
     --forest:#0a0f0c;
     --fern:#141d16;
@@ -24,6 +25,9 @@
     --mist-dim:rgba(232,228,216,.55);
     --mist-faint:rgba(232,228,216,.32);
     --hair:rgba(232,228,216,.14);
+    --cta-track:.3em;
+    --cta-size:10.5px;
+    --cta-pad:14px 30px;
     --serif:'Cormorant Garamond','Didot',Georgia,serif;
     --sans:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
     --bg:#0a0f0c;
@@ -85,7 +89,7 @@
   body.navhide .topbar{transform:translateY(-100%)}
   .tb-brand{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:.34em;text-transform:uppercase}
   .tb-nav{display:flex;gap:36px}
-  .tb-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:color .5s ease}
+  .tb-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;transition:color .5s ease}
   .tb-nav a:hover{color:var(--text)}
   .tb-menu{display:none;position:relative}
   .tb-menu summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 10px}
@@ -152,7 +156,7 @@
   .ch-epigraph cite{display:block;margin-top:18px;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:var(--mist-dim)}
   .ch-gallery-link{
     display:inline-block;margin-top:26px;color:var(--mist-dim);text-decoration:none;
-    font-size:10px;letter-spacing:.4em;text-transform:uppercase;border-bottom:1px solid var(--hair);
+    font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;border-bottom:1px solid var(--hair);
     padding-bottom:6px;transition:color .5s ease,border-color .5s ease;
   }
   .ch-gallery-link:hover{color:var(--mist);border-color:var(--moss)}
@@ -185,8 +189,16 @@
   .split-story .scene-text{max-width:560px}
 
   .scene-story{max-width:600px;padding:8vh 32px 0}
-  .scene:nth-child(odd) .scene-story{margin-left:max(32px, 12vw)}
-  .scene:nth-child(even) .scene-story{margin-left:auto;margin-right:max(32px, 12vw)}
+  .scene-story{position:relative}
+  .scene-story::after{
+    content:"";position:absolute;top:8vh;bottom:0;width:1px;
+    background:var(--hair);pointer-events:none;
+  }
+  .scene:nth-child(odd) .scene-story::after{left:calc(100% + clamp(48px, 9vw, 220px))}
+  .scene:nth-child(even) .scene-story::after{right:calc(100% + clamp(48px, 9vw, 220px))}
+  @media (max-width:900px){.scene-story::after{display:none}}
+  .scene:nth-child(odd) .scene-story{margin-left:clamp(32px, 8vw, 160px)}
+  .scene:nth-child(even) .scene-story{margin-left:auto;margin-right:clamp(32px, 8vw, 160px)}
   .scene-mark{font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--accent)}
   .scene-title{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3vw,2.6rem);margin-top:16px;letter-spacing:.03em}
   .scene-text{margin-top:26px}
@@ -196,8 +208,15 @@
   }
   .scene-text p + p{margin-top:1.3em}
   .scene-text p:first-of-type::first-letter{
+    -webkit-initial-letter:2;initial-letter:2;
     font-family:var(--serif);font-style:italic;color:var(--accent);
-    font-size:3.4em;float:left;line-height:.82;padding-right:.12em;padding-top:.06em;
+    margin-right:.06em;
+  }
+  @supports not ((initial-letter: 2) or (-webkit-initial-letter: 2)){
+    .scene-text p:first-of-type::first-letter{
+      font-size:3.4em;float:left;line-height:.82;padding-right:.12em;padding-top:.06em;
+      margin-right:0;
+    }
   }
 
   .scene-frame.empty{
@@ -241,8 +260,8 @@
 
   .collect{
     display:inline-block;margin-top:34px;color:var(--accent);text-decoration:none;
-    font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;
-    border:1px solid var(--accent);padding:13px 24px 12px 28px;
+    font-family:var(--sans);font-size:var(--cta-size);font-weight:600;letter-spacing:var(--cta-track);text-transform:uppercase;
+    border:1px solid var(--accent);padding:var(--cta-pad);
     transition:background .45s ease,color .45s ease;
   }
   .collect:hover{background:var(--accent);color:var(--forest)}
@@ -254,7 +273,7 @@
     transition:background .5s ease,transform .5s ease;
   }
   .fnav-card:hover{background:var(--accent);transform:translateY(-4px)}
-  .fnav-eyebrow{display:block;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);transition:color .5s ease}
+  .fnav-eyebrow{display:block;font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--accent);transition:color .5s ease}
   .fnav-title{display:block;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--text);line-height:1.15;transition:color .5s ease}
   .fnav-sub{display:block;margin-top:13px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-dim);line-height:1.9;transition:color .5s ease}
   .fnav-arrow{position:absolute;top:32px;right:32px;color:var(--accent);font-size:1.5rem;transition:color .5s ease,transform .5s ease}
@@ -268,7 +287,7 @@
   body[data-view="prints"] .fnav,
   body[data-view="about"] .fnav{grid-template-columns:1fr;max-width:620px}
   @media (max-width:760px){.fnav{grid-template-columns:1fr;gap:18px}}
-  .collect.small{margin-top:14px;font-size:9px;letter-spacing:.36em}
+  .collect.small{margin-top:14px;font-size:9px;letter-spacing:var(--cta-track);padding:11px 22px}
   .print-note{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--mist-dim);margin:-18px 0 40px}
 
   .whisper{min-height:64vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px}
@@ -342,19 +361,28 @@
   .pd-size input:checked + span{color:var(--text)}
   .pd-size input:checked + span em{color:var(--accent)}
   .pd-size:hover span{color:var(--text-dim)}
+  .pd-tabs{display:flex;gap:32px;margin-top:5vh;border-bottom:1px solid var(--hair)}
+  .pd-tab{
+    background:none;border:none;cursor:pointer;position:relative;
+    font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;
+    color:var(--text-dim);padding:0 2px 13px;transition:color .4s ease;
+  }
+  .pd-tab[aria-selected="true"]{color:var(--accent)}
+  .pd-tab[aria-selected="true"]::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--accent);
+  }
+  .pd-tab:hover{color:var(--text)}
+  .pd-panel .pd-sizes{margin-top:0;border-top:0}
+  .pd-panel .pd-open-line{margin-top:22px}
   .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
   .pd-terms{margin-top:5vh;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
-  .pd-open{margin-top:7vh;padding-top:5vh;border-top:1px solid var(--hair)}
-  .pd-open-mark{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--mist-dim)}
   .pd-open-line{margin-top:14px;font-family:var(--serif);font-style:italic;color:var(--text-dim);line-height:1.8;max-width:34em;font-size:1rem}
-  .pd-open-actions{margin-top:3vh}
-  .pd-open-actions .collect{font-size:10px;opacity:.85}
 
   .craft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;margin-top:10vh;padding-top:8vh;border-top:1px solid var(--hair)}
   .craft h3{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--mist-dim);font-weight:400}
   .craft p{margin-top:16px;font-family:var(--serif);color:var(--text-dim);line-height:1.85;font-size:.98rem}
   .pc-link{display:block;color:inherit;text-decoration:none}
-  .pc-view{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--hair);padding-bottom:5px;transition:color .5s ease}
+  .pc-view{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--hair);padding-bottom:6px;transition:color .5s ease}
   .pc-link:hover .pc-view{color:var(--text)}
   @media (max-width:900px){
     .pd-grid{display:block}
@@ -369,7 +397,7 @@
   }
   .hero-nav a{
     color:var(--accent);text-decoration:none;
-    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;
     text-shadow:0 1px 14px rgba(0,0,0,.85);
     transition:color .5s ease;
   }
@@ -398,8 +426,8 @@
   .about-links{display:flex;gap:38px;flex-wrap:wrap;align-items:center;margin-top:6vh}
   .about-links a{
     display:inline-block;color:var(--accent);text-decoration:none;
-    font-family:var(--sans);font-size:11px;letter-spacing:.38em;text-transform:uppercase;
-    border-bottom:1px solid var(--hair);padding-bottom:8px;
+    font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;
+    border-bottom:1px solid var(--hair);padding-bottom:6px;
     transition:color .5s ease,border-color .5s ease;
   }
   .about-links a:hover{color:var(--text);border-color:var(--accent)}
@@ -415,8 +443,8 @@
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
   footer a.cta{
-    color:var(--mist);text-decoration:none;font-size:11px;letter-spacing:.45em;text-transform:uppercase;
-    border:1px solid var(--hair);padding:18px 42px;transition:background .6s ease,color .6s ease,border-color .6s ease;
+    color:var(--mist);text-decoration:none;font-family:var(--sans);font-size:var(--cta-size);font-weight:600;letter-spacing:var(--cta-track);text-transform:uppercase;
+    border:1px solid var(--accent);padding:var(--cta-pad);transition:background .6s ease,color .6s ease,border-color .6s ease;
   }
   footer a.cta:hover{background:var(--mist);color:var(--forest);border-color:var(--mist)}
   footer .fin{position:absolute;bottom:30px;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,216,.3)}
@@ -502,7 +530,7 @@
 <main id="chapters"></main>
 
 <section class="prints" id="prints">
-  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.jpg" alt=""></div>
+  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.webp" alt=""></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
@@ -524,7 +552,7 @@
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
-      <div class="about-photo reveal"><img src="about-krishna.jpg" alt="Krishna Karthikeyan in the field"></div>
+      <div class="about-photo reveal"><img src="about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
       <div class="about-body">
         <div class="about-text reveal">
           <p>It started with The Jungle Book &mdash; a kid mesmerised by the woods, half convinced Bagheera and Baloo were out there waiting. That kid eventually bought a camera. He never really put it down.</p>
@@ -573,19 +601,19 @@ const OPEN_EDITION = { price: 2999, spec: 'A4 &middot; framed &middot; matte' };
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
-  { pos: '40% 52%', img: 'print-the-promise.jpg',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
-  { pos: '42% 55%', img: 'print-the-vantage.jpg',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
-  { img: 'print-the-warning.jpg',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
-  { pos: '38% 46%', img: 'print-the-flame.jpg',
+  { pos: '40% 52%', img: 'print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
+  { pos: '42% 55%', img: 'print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
+  { img: 'print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
+  { pos: '38% 46%', img: 'print-the-flame.webp',
     title: 'The Flame', note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
     subject: 'Hawk-eagle', remaining: 10 },
-  { img: 'print-the-perch.jpg',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
-  { pos: '58% 45%', img: 'print-the-riverbed.jpg', title: 'The Riverbed', note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
-  { pos: '46% 62%', img: 'print-the-blue-hour.jpg',
+  { img: 'print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
+  { pos: '58% 45%', img: 'print-the-riverbed.webp', title: 'The Riverbed', note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { pos: '46% 62%', img: 'print-the-blue-hour.webp',
     title: 'The Blue Hour', note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
     subject: 'Gaur', remaining: 10 },
-  { img: 'print-the-curious.jpg',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
-  { img: 'print-the-elder.jpg',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
+  { img: 'print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
+  { img: 'print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -599,7 +627,7 @@ const CHAPTERS = [
     whisperAfter: "The monsoon doesn't take sides. <em>It only takes.</em>",
     scenes: [
       {
-        img: 'the-dominant.jpg',
+        img: 'the-dominant.webp',
         title: 'The Dominant',
         meta: 'The male · Monsoon 2025',
         story: `He walks like the rain belongs to him. In these woods, it mostly does — every trail marked, every challenger remembered.
@@ -651,7 +679,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     whisperAfter: 'A kingdom is not held by force alone. <em>It is held by presence.</em>',
     scenes: [
       {
-        img: 'first-light.jpg',
+        img: 'first-light.webp',
         title: 'First Light',
         meta: 'Dawn · Winter 2025',
         story: `The day begins the way every reign begins — with a claim. Spine bowed, claws in the driftwood, the river mist erasing everything that is not him.
@@ -659,7 +687,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
 The forest can wait. It will anyway.`
       },
       {
-        img: 'the-fog.jpg',
+        img: 'the-fog.webp',
         title: 'The Fog',
         meta: 'Morning · Winter 2025',
         story: `The mist takes the forest every morning, and every morning he walks straight through it — the only thing in the whiteness that moves like it knows where it is going.`
@@ -669,7 +697,7 @@ The forest can wait. It will anyway.`
         intro: 'The court keeps its distance.',
         items: [
           {
-            img: 'pretender.jpg',
+            img: 'pretender.webp',
             pos: '42% 40%',
             title: 'The Pretender',
             line: 'Second to the throne, and it knows it. It keeps to the high branches and lets the moonlight do the hiding.'
@@ -683,21 +711,21 @@ The forest can wait. It will anyway.`
         ]
       },
       {
-        img: 'the-ambush-v2.jpg',
+        img: 'the-ambush-v2.webp',
         portrait: true,
         title: 'The Ambush',
         meta: 'The king · Winter 2025',
         story: `One eye above the grass. That is all the warning the forest ever gets.`
       },
       {
-        img: 'the-claim.jpg',
+        img: 'the-claim.webp',
         portrait: true,
         title: 'The Claim',
         meta: 'The king · Winter 2025',
         story: `The chase is the story everyone tells. This is the part nobody stays for. She ate without hurry &mdash; and even at her own table, she watched.`
       },
       {
-        img: 'king-at-night.jpg',
+        img: 'king-at-night.webp',
         portrait: true,
         title: 'The King at Night',
         meta: 'After dark · Winter 2025',
@@ -718,7 +746,7 @@ Long may he walk.`
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
     scenes: [
       {
-        img: 'the-procession.jpg',
+        img: 'the-procession.webp',
         portrait: true,
         title: 'The Procession',
         meta: 'The tusker · Monsoon 2025',
@@ -727,7 +755,7 @@ Long may he walk.`
 An arrangement older than either of them.`
       },
       {
-        img: 'the-gathering.jpg',
+        img: 'the-gathering.webp',
         portrait: true,
         title: 'The Gathering',
         meta: 'The herd · Monsoon 2025',
@@ -736,14 +764,14 @@ An arrangement older than either of them.`
 The forest fears the cats. It makes way for the elephants.`
       },
       {
-        img: 'the-dust-bath.jpg',
+        img: 'the-dust-bath.webp',
         portrait: true,
         title: 'The Dust Bath',
         meta: 'The ritual · Summer 2025',
         story: `Trunk to the sky, the earth thrown over his own back like a blessing. The dust is armour, sunscreen, ceremony — the forest dressing its largest resident in itself.`
       },
       {
-        img: 'old-gold.jpg',
+        img: 'old-gold.webp',
         portrait: true,
         title: 'Old Gold',
         meta: 'Evening light · Winter 2025',
@@ -752,7 +780,7 @@ The forest fears the cats. It makes way for the elephants.`
 Nothing here is in a rush. Least of all him.`
       },
       {
-        img: 'memory.jpg',
+        img: 'memory.webp',
         portrait: true,
         title: 'Memory',
         meta: 'Up close · Winter 2025',
@@ -816,7 +844,7 @@ const inr = n => '\u20b9' + n.toLocaleString('en-IN');
 document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => {
   const a3 = p.a3 || PRICING.a3;
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
-  const id = p.img.replace(/\.jpg$/, '');
+  const id = p.img.replace(/\.(jpg|webp)$/, '');
   return `
   <div class="print-card reveal">
     <a class="pc-link" href="#${id}">
@@ -867,51 +895,75 @@ function renderPrintDetail(p) {
         <div class="scene-mark">${p.subject} &middot; ${scarcity}</div>
         <h2 class="pd-title">${p.title}</h2>
         <p class="pd-note">${p.note || ''}</p>
-        <div class="pd-sizes">
-          <label class="pd-size"><input type="radio" name="pd-size" value="A3 &mdash; ${inr(a3)}" checked><span>A3 &middot; 16.5 &times; 11.7 in<em>${inr(a3)}</em></span></label>
-          <label class="pd-size"><input type="radio" name="pd-size" value="A2 &mdash; ${inr(a2)}"><span>A2 &middot; 23.4 &times; 16.5 in<em>${inr(a2)}</em></span></label>
-          <label class="pd-size"><input type="radio" name="pd-size" value="a larger format"><span>Larger formats<em>On request</em></span></label>
+        ${OPEN_EDITION ? `
+        <div class="pd-tabs" role="tablist" aria-label="Print options">
+          <button class="pd-tab" role="tab" id="pd-tab-signed" aria-controls="pd-panel-signed" aria-selected="true" tabindex="0">Signed edition</button>
+          <button class="pd-tab" role="tab" id="pd-tab-open" aria-controls="pd-panel-open" aria-selected="false" tabindex="-1">Open print</button>
+        </div>` : ''}
+        <div class="pd-panel" role="${OPEN_EDITION ? 'tabpanel' : 'group'}" id="pd-panel-signed" ${OPEN_EDITION ? 'aria-labelledby="pd-tab-signed"' : ''}>
+          <div class="pd-sizes"${OPEN_EDITION ? '' : ' style="margin-top:5vh;border-top:1px solid var(--hair)"'}>
+            <label class="pd-size"><input type="radio" name="pd-size" value="A3 &mdash; ${inr(a3)}" checked><span>A3 &middot; 16.5 &times; 11.7 in<em>${inr(a3)}</em></span></label>
+            <label class="pd-size"><input type="radio" name="pd-size" value="A2 &mdash; ${inr(a2)}"><span>A2 &middot; 23.4 &times; 16.5 in<em>${inr(a2)}</em></span></label>
+            <label class="pd-size"><input type="radio" name="pd-size" value="a larger format"><span>Larger formats<em>On request</em></span></label>
+          </div>
+          <div class="pd-terms">Hand-signed &amp; numbered &middot; Certificate of authenticity &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>
+        ${OPEN_EDITION ? `
+        <div class="pd-panel" role="tabpanel" id="pd-panel-open" aria-labelledby="pd-tab-open" hidden>
+          <p class="pd-open-line">The same frame without the signature or the number &mdash; ${OPEN_EDITION.spec}, ${inr(OPEN_EDITION.price)}. Unlimited, and made for walls that simply want the wild.</p>
+          <div class="pd-terms">Framed &middot; Matte finish &middot; Free shipping within India &middot; Worldwide at cost</div>
+        </div>` : ''}
         <div class="pd-actions">
           <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="collect" id="pd-mail">Enquire by email</a>
         </div>
-        <div class="pd-terms">Hand-signed &amp; numbered &middot; Certificate of authenticity &middot; Free shipping within India &middot; Worldwide at cost</div>
-        ${OPEN_EDITION ? `
-        <div class="pd-open">
-          <div class="pd-open-mark">The open print</div>
-          <p class="pd-open-line">The same frame without the signature or the number &mdash; ${OPEN_EDITION.spec}, ${inr(OPEN_EDITION.price)}. Unlimited, and made for walls that simply want the wild.</p>
-          <div class="pd-actions pd-open-actions">
-            <a class="collect" id="pd-open-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
-            <a class="collect" id="pd-open-mail">Enquire by email</a>
-          </div>
-        </div>` : ''}
       </div>
     </div>`;
   const tmp = document.createElement('textarea');
+  const tabs = Array.from(el.querySelectorAll('.pd-tab'));
+  const activeTab = () => el.querySelector('.pd-tab[aria-selected="true"]')?.id === 'pd-tab-open' ? 'open' : 'signed';
   const update = () => {
-    tmp.innerHTML = el.querySelector('input[name="pd-size"]:checked').value;
-    const size = tmp.value;
-    const msg = `Hi Krishna — I'd like to enquire about the print "${p.title}", ${size}.`;
+    let msg, subject;
+    if (activeTab() === 'open' && OPEN_EDITION) {
+      msg = `Hi Krishna — I'd like to enquire about the open framed print of "${p.title}".`;
+      subject = `Open print enquiry — ${p.title}`;
+    } else {
+      tmp.innerHTML = el.querySelector('input[name="pd-size"]:checked').value;
+      const size = tmp.value;
+      msg = `Hi Krishna — I'd like to enquire about the print "${p.title}", ${size}.`;
+      subject = `Print enquiry — ${p.title} (${size})`;
+    }
     const wa = el.querySelector('#pd-wa');
     if (WHATSAPP) wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
     else wa.style.display = 'none';
-    el.querySelector('#pd-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${p.title} (${size})`)}&body=${encodeURIComponent(msg)}`;
+    el.querySelector('#pd-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
   };
+  const selectTab = (tab) => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    update();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      selectTab(next);
+    });
+  });
   el.querySelectorAll('input[name="pd-size"]').forEach(r => r.addEventListener('change', update));
   update();
-  if (OPEN_EDITION) {
-    const openMsg = `Hi Krishna — I'd like to enquire about the open framed print of "${p.title}".`;
-    const openWa = el.querySelector('#pd-open-wa');
-    if (WHATSAPP) openWa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(openMsg)}`;
-    else openWa.style.display = 'none';
-    el.querySelector('#pd-open-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Open print enquiry — ${p.title}`)}&body=${encodeURIComponent(openMsg)}`;
-  }
 }
 
 function applyRoute() {
   const h = location.hash;
-  const pd = h.startsWith('#print-the-') ? PRINTS.find(p => p.img.replace(/\.jpg$/, '') === h.slice(1)) : null;
+  const pd = h.startsWith('#print-the-') ? PRINTS.find(p => p.img.replace(/\.(jpg|webp)$/, '') === h.slice(1)) : null;
   if (pd) renderPrintDetail(pd);
   const view = pd ? 'print' : h === '#prints' ? 'prints' : h === '#about' ? 'about' : 'stories';
   const changed = document.body.dataset.view !== view;
@@ -965,6 +1017,8 @@ if (!reduced && plates.length) {
   }, { passive: true });
   parallax();
 }
+document.addEventListener('contextmenu',e=>{if(e.target.closest('img,.plate,.prints-hero'))e.preventDefault()});
+document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
 </script>
 </body>
 </html>
