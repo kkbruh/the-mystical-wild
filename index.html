@@ -355,6 +355,10 @@
     transition:color .5s ease,border-color .5s ease;
   }
   .prints-nudge a:hover{color:var(--text);border-color:var(--mist-dim)}
+  @media (max-width:640px){
+    .hero-nav{flex-direction:column;gap:18px}
+    .hero-nav span{display:none}
+  }
 
   .about{padding:16vh 32px 20vh}
   .about-inner{max-width:1100px;margin:0 auto}
