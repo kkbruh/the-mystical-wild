@@ -68,7 +68,7 @@
     80%{transform:translate(35px,25px)}100%{transform:translate(0,0)}
   }
 
-  .bar{position:fixed;left:0;right:0;height:7vh;background:#000;z-index:50;transition:transform 1.2s cubic-bezier(.77,0,.18,1)}
+  .bar{position:fixed;left:0;right:0;height:7vh;background:#000;z-index:50;pointer-events:none;transition:transform 1.2s cubic-bezier(.77,0,.18,1)}
   .bar.top{top:0}
   .bar.bottom{bottom:0}
   body.scrolled .bar.top{transform:translateY(-100%)}
@@ -295,13 +295,56 @@
   body[data-view="about"] .prints{display:none}
   body[data-view="prints"] .prints,
   body[data-view="about"] .about{min-height:72vh}
+  body[data-view="stories"] .print-detail,
+  body[data-view="prints"] .print-detail,
+  body[data-view="about"] .print-detail{display:none}
+  body[data-view="print"] .hero,
+  body[data-view="print"] main,
+  body[data-view="print"] .prints,
+  body[data-view="print"] .about{display:none}
+
+  .print-detail{max-width:1440px;margin:0 auto;padding:calc(58px + 6vh) 32px 14vh;min-height:78vh}
+  .pd-back{display:inline-block;margin-bottom:5vh;color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.32em;text-transform:uppercase;transition:color .5s ease}
+  .pd-back:hover{color:var(--text)}
+  .pd-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:64px;align-items:start}
+  .pd-frame{background:#050807}
+  .pd-frame img{width:100%;height:auto;max-height:82vh;object-fit:contain;display:block}
+  .pd-title{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(2rem,4vw,3.2rem);margin-top:16px;letter-spacing:.03em}
+  .pd-note{font-family:var(--serif);font-style:italic;color:var(--text-dim);margin-top:22px;line-height:1.8;max-width:34em;font-size:1.08rem}
+  .pd-sizes{margin-top:5vh;border-top:1px solid var(--hair)}
+  .pd-size{display:block;border-bottom:1px solid var(--hair);cursor:pointer}
+  .pd-size input{position:absolute;opacity:0;pointer-events:none}
+  .pd-size span{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 4px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mist-dim);transition:color .4s ease}
+  .pd-size em{font-style:normal;font-family:var(--sans);letter-spacing:.14em;color:var(--text-dim)}
+  .pd-size input:checked + span{color:var(--text)}
+  .pd-size input:checked + span em{color:var(--accent)}
+  .pd-size:hover span{color:var(--text-dim)}
+  .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
+  .pd-terms{margin-top:5vh;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
+
+  .craft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;margin-top:10vh;padding-top:8vh;border-top:1px solid var(--hair)}
+  .craft h3{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--mist-dim);font-weight:400}
+  .craft p{margin-top:16px;font-family:var(--serif);color:var(--text-dim);line-height:1.85;font-size:.98rem}
+  .pc-link{display:block;color:inherit;text-decoration:none}
+  .pc-view{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--hair);padding-bottom:5px;transition:color .5s ease}
+  .pc-link:hover .pc-view{color:var(--text)}
+  @media (max-width:900px){
+    .pd-grid{display:block}
+    .pd-body{margin-top:6vh}
+    .craft{grid-template-columns:1fr;gap:34px}
+  }
 
   .hero-nav{
-    position:absolute;bottom:19vh;left:0;right:0;
-    display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;
+    position:absolute;bottom:calc(11vh + 108px);left:0;right:0;z-index:4;
+    display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;
     padding:0 24px;
   }
-  .hero-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:color .5s ease}
+  .hero-nav a{
+    color:var(--accent);text-decoration:none;
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    text-shadow:0 1px 14px rgba(0,0,0,.85);
+    transition:color .5s ease;
+  }
   .hero-nav a:hover{color:var(--text)}
   .hero-nav span{color:var(--mist-dim);opacity:.5;font-size:10px}
 
@@ -422,8 +465,15 @@
     <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
   <div class="prints-grid"></div>
-  <div class="print-terms reveal">Hahnem&uuml;hle archival paper &nbsp;&middot;&nbsp; Hand-signed &amp; numbered &nbsp;&middot;&nbsp; Certificate of authenticity &nbsp;&middot;&nbsp; Free shipping within India &nbsp;&middot;&nbsp; Worldwide at cost</div>
+  <div class="print-terms reveal">Hand-signed &amp; numbered &nbsp;&middot;&nbsp; Certificate of authenticity &nbsp;&middot;&nbsp; Free shipping within India &nbsp;&middot;&nbsp; Worldwide at cost</div>
+  <div class="craft reveal">
+    <div><h3>The paper</h3><p>Printed on Hahnem&uuml;hle fine-art archival paper &mdash; museum-grade cotton stock with deep blacks and a lifespan measured in generations, not years.</p></div>
+    <div><h3>The edition</h3><p>Ten prints per frame, ever. Each is hand-signed, numbered, and accompanied by a certificate of authenticity. When an edition closes, it never reopens.</p></div>
+    <div><h3>The delivery</h3><p>Shipped rolled in an archival tube, ready for framing. Free within India; worldwide at cost.</p></div>
+  </div>
 </section>
+
+<section class="print-detail" id="print-detail"></section>
 
 <section class="about" id="about">
   <div class="about-inner">
@@ -461,13 +511,13 @@ const PRICING = { a3: 9500, a2: 16500 };  // base prices in ₹; per-print overr
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
-  { img: 'print-the-promise.jpg',  title: 'The Promise',  subject: 'Tigress and cub', remaining: 10 },
-  { img: 'print-the-vantage.jpg',  title: 'The Vantage',  subject: 'Leopard, blue hour', remaining: 10 },
-  { img: 'print-the-warning.jpg',  title: 'The Warning',  subject: 'Tigress', remaining: 10 },
-  { img: 'print-the-perch.jpg',    title: 'The Perch',    subject: 'Leopard', remaining: 10 },
-  { img: 'print-the-riverbed.jpg', title: 'The Riverbed', subject: 'Tiger, first light', remaining: 10 },
-  { img: 'print-the-curious.jpg',  title: 'The Curious',  subject: 'Leopard', remaining: 10 },
-  { img: 'print-the-elder.jpg',    title: 'The Elder',    subject: 'Elephant, study in black', remaining: 10 }
+  { img: 'print-the-promise.jpg',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
+  { img: 'print-the-vantage.jpg',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
+  { img: 'print-the-warning.jpg',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
+  { img: 'print-the-perch.jpg',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
+  { img: 'print-the-riverbed.jpg', title: 'The Riverbed', note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { img: 'print-the-curious.jpg',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
+  { img: 'print-the-elder.jpg',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -689,17 +739,18 @@ CHAPTERS.forEach(ch => {
 main.innerHTML = html;
 const inr = n => '\u20b9' + n.toLocaleString('en-IN');
 document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => {
-  const a3 = p.a3 || PRICING.a3, a2 = p.a2 || PRICING.a2;
+  const a3 = p.a3 || PRICING.a3;
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
-  const msg = encodeURIComponent(`Hi Krishna — I'd like to enquire about the print "${p.title}".`);
-  const wa = WHATSAPP ? `<a class="collect small" href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">WhatsApp</a>` : '';
+  const id = p.img.replace(/\.jpg$/, '');
   return `
   <div class="print-card reveal">
-    <div class="pc-frame"><img src="${p.img}" alt="${p.title} — ${p.subject}" loading="lazy"></div>
-    <div class="pc-title">${p.title}</div>
-    <div class="pc-ed">${p.subject} &middot; ${scarcity}</div>
-    <div class="pc-price">A3 ${inr(a3)} &middot; A2 ${inr(a2)}</div>
-    <div class="pc-actions">${wa}<a class="collect small" href="mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${p.title}`)}">Email</a></div>
+    <a class="pc-link" href="#${id}">
+      <div class="pc-frame"><img src="${p.img}" alt="${p.title} — ${p.subject}" loading="lazy" draggable="false"></div>
+      <div class="pc-title">${p.title}</div>
+      <div class="pc-ed">${p.subject} &middot; ${scarcity}</div>
+      <div class="pc-price">From ${inr(a3)}</div>
+      <span class="pc-view">View print</span>
+    </a>
   </div>`;
 }).join('');
 if (GOATCOUNTER) {
@@ -722,15 +773,56 @@ window.addEventListener('scroll', () => {
   const y = window.scrollY;
   if (y > 140 && y > lastY + 2) document.body.classList.add('navhide');
   else if (y < lastY - 2 || y < 80) document.body.classList.remove('navhide');
+  document.body.classList.toggle('scrolled', y > window.innerHeight * 0.25);
   lastY = y;
 }, { passive: true });
 document.querySelectorAll('.tb-drop a').forEach(a =>
   a.addEventListener('click', () => document.querySelector('.tb-menu').removeAttribute('open')));
 
 // --- hash views: #prints and #about are separate places, everything else is the story flow ---
+function renderPrintDetail(p) {
+  const a3 = p.a3 || PRICING.a3, a2 = p.a2 || PRICING.a2;
+  const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
+  const el = document.getElementById('print-detail');
+  el.innerHTML = `
+    <a class="pd-back" href="#prints">&larr; All prints</a>
+    <div class="pd-grid">
+      <div class="pd-frame"><img src="${p.img}" alt="${p.title}" draggable="false"></div>
+      <div class="pd-body">
+        <div class="scene-mark">${p.subject} &middot; ${scarcity}</div>
+        <h2 class="pd-title">${p.title}</h2>
+        <p class="pd-note">${p.note || ''}</p>
+        <div class="pd-sizes">
+          <label class="pd-size"><input type="radio" name="pd-size" value="A3 &mdash; ${inr(a3)}" checked><span>A3 &middot; 16.5 &times; 11.7 in<em>${inr(a3)}</em></span></label>
+          <label class="pd-size"><input type="radio" name="pd-size" value="A2 &mdash; ${inr(a2)}"><span>A2 &middot; 23.4 &times; 16.5 in<em>${inr(a2)}</em></span></label>
+          <label class="pd-size"><input type="radio" name="pd-size" value="a larger format"><span>Larger formats<em>On request</em></span></label>
+        </div>
+        <div class="pd-actions">
+          <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+          <a class="collect" id="pd-mail">Enquire by email</a>
+        </div>
+        <div class="pd-terms">Hand-signed &amp; numbered &middot; Certificate of authenticity &middot; Free shipping within India &middot; Worldwide at cost</div>
+      </div>
+    </div>`;
+  const tmp = document.createElement('textarea');
+  const update = () => {
+    tmp.innerHTML = el.querySelector('input[name="pd-size"]:checked').value;
+    const size = tmp.value;
+    const msg = `Hi Krishna — I'd like to enquire about the print "${p.title}", ${size}.`;
+    const wa = el.querySelector('#pd-wa');
+    if (WHATSAPP) wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    else wa.style.display = 'none';
+    el.querySelector('#pd-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${p.title} (${size})`)}&body=${encodeURIComponent(msg)}`;
+  };
+  el.querySelectorAll('input[name="pd-size"]').forEach(r => r.addEventListener('change', update));
+  update();
+}
+
 function applyRoute() {
   const h = location.hash;
-  const view = h === '#prints' ? 'prints' : h === '#about' ? 'about' : 'stories';
+  const pd = h.startsWith('#print-the-') ? PRINTS.find(p => p.img.replace(/\.jpg$/, '') === h.slice(1)) : null;
+  if (pd) renderPrintDetail(pd);
+  const view = pd ? 'print' : h === '#prints' ? 'prints' : h === '#about' ? 'about' : 'stories';
   const changed = document.body.dataset.view !== view;
   document.body.dataset.view = view;
   if (view === 'stories') {
@@ -741,6 +833,8 @@ function applyRoute() {
     window.scrollTo(0, 0);
   }
 }
+document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
+  a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
 window.addEventListener('hashchange', applyRoute);
 applyRoute();
 
