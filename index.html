@@ -169,6 +169,7 @@
     filter:saturate(.55) brightness(.6) contrast(1.04);
     transition:filter 1.6s ease;will-change:transform;
   }
+  .scene-frame.frame-reveal.in .plate{filter:saturate(.95) brightness(.88) contrast(1.03)}
   .scene-frame:hover .plate{filter:saturate(1) brightness(.78) contrast(1.02)}
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
@@ -180,7 +181,8 @@
     position:sticky;top:5vh;height:90vh;width:auto;max-width:88%;object-fit:contain;
     filter:saturate(.6) brightness(.7) contrast(1.03);transition:filter 1.6s ease;
   }
-  .split-frame:hover .plate-img{filter:saturate(1) brightness(.85) contrast(1.01)}
+  .split-frame.frame-reveal.in .plate-img{filter:saturate(.96) brightness(.92) contrast(1.02)}
+  .split-frame:hover .plate-img{filter:saturate(1.02) brightness(1)}
   .split-story{display:flex;flex-direction:column;justify-content:center;padding:14vh max(40px,5vw)}
   .split-story .split-no{font-family:var(--serif);font-style:italic;font-size:clamp(4.5rem,7vw,7.5rem);line-height:1;color:var(--text-faint);opacity:.55;margin-bottom:3vh}
   .split-story .scene-text{max-width:560px}
@@ -226,10 +228,10 @@
   .trip-frame{position:relative;height:62vh;overflow:hidden}
   .trip-frame img{
     width:100%;height:100%;object-fit:cover;display:block;
-    filter:saturate(.55) brightness(.62) contrast(1.04);
+    filter:saturate(.95) brightness(.9) contrast(1.03);
     transition:filter 1.4s ease,transform 1.4s ease;
   }
-  .trip-cell:hover .trip-frame img{filter:saturate(1) brightness(.8);transform:scale(1.04)}
+  .trip-cell:hover .trip-frame img{filter:saturate(1.03) brightness(1);transform:scale(1.04)}
   .trip-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 60%,rgba(4,7,5,.55) 100%);pointer-events:none}
   .trip-frame.empty-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:1px dashed var(--hair);background:radial-gradient(ellipse at center,var(--fern) 0%,var(--forest) 78%)}
   .trip-cell-full{grid-column:1/-1}
@@ -396,13 +398,17 @@
   }
 
   @media (max-width:900px){
-    .scene-split{display:block;min-height:0;padding-top:36px}
+    .scene{margin:6vh 0}
+    .scene-split{display:block;min-height:0;padding-top:0}
     .scene-split .split-frame .plate-img{
       position:static;height:auto;width:auto;display:block;margin:0 auto;
       max-width:calc(100% - 56px);max-height:80vh;
     }
-    .scene-split .split-story{padding:7vh 20px 9vh}
-    .scene-split .split-story .split-no{font-size:3.4rem;margin-bottom:2.5vh}
+    .scene-split .split-story{padding:4vh 20px 4vh}
+    .scene-split .split-story .split-no{font-size:3.4rem;margin-bottom:2vh}
+    .whisper{min-height:32vh}
+    .prints-nudge{margin:5vh 0 2vh}
+    .scene-story{padding:4vh 20px 0}
   }
   @media (max-width:640px){
     .ch-head{padding:0 20px}
