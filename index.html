@@ -374,7 +374,13 @@
   .about-text p{font-family:var(--serif);font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.9;color:var(--text-dim)}
   .about-text p + p{margin-top:1.5em}
   .about-links{display:flex;gap:38px;flex-wrap:wrap;align-items:center;margin-top:6vh}
-  .about-links .cta{margin-top:0}
+  .about-links a{
+    display:inline-block;color:var(--accent);text-decoration:none;
+    font-family:var(--sans);font-size:11px;letter-spacing:.38em;text-transform:uppercase;
+    border-bottom:1px solid var(--hair);padding-bottom:8px;
+    transition:color .5s ease,border-color .5s ease;
+  }
+  .about-links a:hover{color:var(--text);border-color:var(--accent)}
   .about-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:60px;align-items:start;margin-top:6vh}
   .about-grid .about-text{margin-top:0}
   .about-photo img{width:100%;height:auto;display:block;filter:saturate(.82) contrast(1.02)}
