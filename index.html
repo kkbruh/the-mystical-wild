@@ -111,7 +111,7 @@
   .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
     position:absolute;inset:0;
-    background:url('https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/c4c695d9-37cf-4fa4-b0e3-c19c3a215900_rw_1920.JPG?h=54ab4b0b1e4704052636dc08137c283f') center 35%/cover no-repeat;
+    background:url('the-question-v3.webp') center 35%/cover no-repeat;
     opacity:0;filter:saturate(.75) brightness(.62) contrast(1.05);
     animation:heroIn 3.5s ease .9s forwards, creep 38s linear .9s infinite alternate;
   }
@@ -185,7 +185,6 @@
   }
   .split-frame:hover .plate-img{filter:saturate(1.02) brightness(1)}
   .split-story{display:flex;flex-direction:column;justify-content:center;padding:14vh max(40px,5vw)}
-  .split-story .split-no{font-family:var(--serif);font-style:italic;font-size:clamp(4.5rem,7vw,7.5rem);line-height:1;color:var(--text-faint);opacity:.55;margin-bottom:3vh}
   .split-story .scene-text{max-width:560px}
 
   .scene-story{max-width:600px;padding:8vh 32px 0}
@@ -207,17 +206,6 @@
     color:rgba(232,228,216,.82);letter-spacing:.01em;
   }
   .scene-text p + p{margin-top:1.3em}
-  .scene-text p:first-of-type::first-letter{
-    -webkit-initial-letter:2;initial-letter:2;
-    font-family:var(--serif);font-style:italic;color:var(--accent);
-    margin-right:.06em;
-  }
-  @supports not ((initial-letter: 2) or (-webkit-initial-letter: 2)){
-    .scene-text p:first-of-type::first-letter{
-      font-size:3.4em;float:left;line-height:.82;padding-right:.12em;padding-top:.06em;
-      margin-right:0;
-    }
-  }
 
   .scene-frame.empty{
     height:62vh;border:1px dashed var(--hair);margin:0 32px;
@@ -373,6 +361,9 @@
   }
   .pd-tab:hover{color:var(--text)}
   .pd-panel .pd-sizes{margin-top:0;border-top:0}
+  .pd-mat + .pd-mat{margin-top:34px;padding-top:26px;border-top:1px solid var(--hair)}
+  .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+  .pd-mat-note{font-family:var(--sans);font-size:11px;color:var(--text-dim);margin-top:12px;letter-spacing:.02em}
   .pd-panel .pd-open-line{margin-top:22px}
   .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
   .pd-terms{margin-top:5vh;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
@@ -439,7 +430,7 @@
     .about-photo{max-width:420px;margin-bottom:40px}
   }
 
-  footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative}
+  footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
   footer a.cta{
@@ -447,7 +438,7 @@
     border:1px solid var(--accent);padding:var(--cta-pad);transition:background .6s ease,color .6s ease,border-color .6s ease;
   }
   footer a.cta:hover{background:var(--mist);color:var(--forest);border-color:var(--mist)}
-  footer .fin{position:absolute;bottom:30px;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,216,.3)}
+  footer .fin{margin-top:11vh;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,216,.3)}
 
   a:focus-visible{outline:1px solid var(--moss);outline-offset:4px}
   img,.plate,.hero-img{
@@ -463,7 +454,6 @@
       max-width:calc(100% - 56px);max-height:80vh;
     }
     .scene-split .split-story{padding:4vh 20px 4vh}
-    .scene-split .split-story .split-no{font-size:3.4rem;margin-bottom:2vh}
     .whisper{min-height:32vh}
     .prints-nudge{margin:5vh 0 2vh}
     .scene-story{padding:4vh 20px 0}
@@ -539,7 +529,7 @@
   <div class="prints-grid"></div>
   <div class="print-terms reveal">Hand-signed &amp; numbered &nbsp;&middot;&nbsp; Certificate of authenticity &nbsp;&middot;&nbsp; Free shipping within India &nbsp;&middot;&nbsp; Worldwide at cost</div>
   <div class="craft reveal">
-    <div><h3>The paper</h3><p>Printed on Hahnem&uuml;hle fine-art archival paper &mdash; museum-grade cotton stock with deep blacks and a lifespan measured in generations, not years.</p></div>
+    <div><h3>The materials</h3><p>Printed on Hahnem&uuml;hle fine-art archival stock &mdash; museum-grade matte paper with deep, quiet blacks, or Daguerre canvas for a gallery presence. A lifespan measured in generations, not years.</p></div>
     <div><h3>The edition</h3><p>Ten prints per frame, ever. Each is hand-signed, numbered, and accompanied by a certificate of authenticity. When an edition closes, it never reopens.</p></div>
     <div><h3>The delivery</h3><p>Shipped rolled in an archival tube, ready for framing. Free within India; worldwide at cost.</p></div>
   </div>
@@ -596,7 +586,10 @@
 const EMAIL = 'krishnakarthikeyan5@gmail.com';
 const WHATSAPP = '918618584124';   // digits with country code — WhatsApp buttons appear when set
 const GOATCOUNTER = '';            // your goatcounter.com code, e.g. 'mysticalwild' — analytics activates when set
-const PRICING = { a3: 9500, a2: 16500 };  // signed edition prices in ₹; per-print override: add a3/a2 to any PRINTS entry
+const PRICING = {  // signed edition — sizes are [long edge in inches, ₹]; actual dims derive from each print's aspect ratio (p.ar, default 3:2). Matte = accessible tier; canvas carries the ₹19,050 (£150) 20×30 anchor. Custom sizes (e.g. 20×30) quoted on request: canvas ≈ ₹2,500 + ₹27.6/in², matte ≈ ₹1,300 + ₹14.9/in².
+  matte:  { label: 'Hahnem&uuml;hle archival matte', sizes: [[18, 4500], [24, 7000]] },
+  canvas: { label: 'Hahnem&uuml;hle Daguerre canvas', note: 'Gallery wrap not included &mdash; available at extra cost', sizes: [[18, 8500], [24, 13500], [36, 26500]] },
+};
 const OPEN_EDITION = { price: 2999, spec: 'A4 &middot; framed &middot; matte' };  // open framed print — set price to what your framer math supports; set to null to hide everywhere
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
@@ -605,12 +598,12 @@ const PRINTS = [
   { pos: '42% 55%', img: 'print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
   { img: 'print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
   { pos: '38% 46%', img: 'print-the-flame.webp',
-    title: 'The Flame', note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
+    title: 'The Flame', noLarge: true, note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
     subject: 'Hawk-eagle', remaining: 10 },
   { img: 'print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
-  { pos: '58% 45%', img: 'print-the-riverbed.webp', title: 'The Riverbed', note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { pos: '58% 45%', img: 'print-the-riverbed.webp', title: 'The Riverbed', noLarge: true, note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
   { pos: '46% 62%', img: 'print-the-blue-hour.webp',
-    title: 'The Blue Hour', note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
+    title: 'The Blue Hour', ar: 4/3, note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
     subject: 'Gaur', remaining: 10 },
   { img: 'print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
   { img: 'print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
@@ -661,7 +654,7 @@ A mother in these woods doesn't fight the odds. She rearranges them.`
         ]
       },
       {
-        img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/c4c695d9-37cf-4fa4-b0e3-c19c3a215900_rw_1920.JPG?h=54ab4b0b1e4704052636dc08137c283f',
+        img: 'the-question-v3.webp',
         title: 'The Question',
         meta: 'Mother and cub · Monsoon 2025',
         story: `The rains will end. The male will keep searching. She will keep moving him — four seconds at a time.
@@ -818,7 +811,7 @@ CHAPTERS.forEach(ch => {
     sceneNo++;
     const storyInner = `<div class="scene-mark reveal">Scene ${pad(sceneNo)} · ${sc.meta}</div><h3 class="scene-title reveal">${sc.title}</h3><div class="scene-text reveal">${paragraphs(sc.story)}</div>${sc.img ? `<a class="collect reveal" href="${collectHref(ch.title, sceneNo, sc.title)}">Collect this frame</a>` : ''}`;
     if (sc.img && sc.portrait) {
-      html += `<article class="scene scene-split"><div class="split-frame frame-reveal"><img class="plate-img" src="${sc.img}" alt="${sc.title}"></div><div class="split-story"><div class="split-no reveal" aria-hidden="true">${pad(sceneNo)}</div>${storyInner}</div></article>`;
+      html += `<article class="scene scene-split"><div class="split-frame frame-reveal"><img class="plate-img" src="${sc.img}" alt="${sc.title}"></div><div class="split-story">${storyInner}</div></article>`;
       return;
     }
     const frame = sc.img
@@ -833,7 +826,7 @@ CHAPTERS.forEach(ch => {
 main.innerHTML = html;
 const inr = n => '\u20b9' + n.toLocaleString('en-IN');
 document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => {
-  const a3 = p.a3 || PRICING.a3;
+  const startPrice = PRICING.matte.sizes[0][1];
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
   const id = p.img.replace(/\.(jpg|webp)$/, '');
   return `
@@ -842,7 +835,7 @@ document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => {
       <div class="pc-frame"><img src="${p.img}" alt="${p.title} — ${p.subject}" loading="lazy" draggable="false"${p.pos ? ` style="object-position:${p.pos}"` : ''}></div>
       <div class="pc-title">${p.title}</div>
       <div class="pc-ed">${p.subject} &middot; ${scarcity}</div>
-      <div class="pc-price">From ${inr(a3)}</div>
+      <div class="pc-price">From ${inr(startPrice)}</div>
       <span class="pc-view">View print</span>
     </a>
   </div>`;
@@ -875,7 +868,11 @@ document.querySelectorAll('.tb-drop a').forEach(a =>
 
 // --- hash views: #prints and #about are separate places, everything else is the story flow ---
 function renderPrintDetail(p) {
-  const a3 = p.a3 || PRICING.a3, a2 = p.a2 || PRICING.a2;
+  const ar = p.ar || 1.5;
+  const dims = L => `${Math.round(L / ar * 2) / 2} &times; ${L} in`;
+  const sizeRows = (mat, m) => m.sizes
+    .filter(([L]) => !(p.noLarge && L === 36))
+    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}"${mat==='matte'&&i===0?' checked':''}><span>${dims(L)}<em>${inr(pr)}</em></span></label>`).join('');
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
   const el = document.getElementById('print-detail');
   el.innerHTML = `
@@ -893,9 +890,15 @@ function renderPrintDetail(p) {
         </div>` : ''}
         <div class="pd-panel" role="${OPEN_EDITION ? 'tabpanel' : 'group'}" id="pd-panel-signed" ${OPEN_EDITION ? 'aria-labelledby="pd-tab-signed"' : ''}>
           <div class="pd-sizes"${OPEN_EDITION ? '' : ' style="margin-top:5vh;border-top:1px solid var(--hair)"'}>
-            <label class="pd-size"><input type="radio" name="pd-size" value="A3 &mdash; ${inr(a3)}" checked><span>A3 &middot; 16.5 &times; 11.7 in<em>${inr(a3)}</em></span></label>
-            <label class="pd-size"><input type="radio" name="pd-size" value="A2 &mdash; ${inr(a2)}"><span>A2 &middot; 23.4 &times; 16.5 in<em>${inr(a2)}</em></span></label>
-            <label class="pd-size"><input type="radio" name="pd-size" value="a larger format"><span>Larger formats<em>On request</em></span></label>
+            <div class="pd-mat">
+              <div class="pd-mat-label">${PRICING.matte.label}</div>
+              ${sizeRows('matte', PRICING.matte)}
+            </div>
+            <div class="pd-mat">
+              <div class="pd-mat-label">${PRICING.canvas.label}</div>
+              ${sizeRows('canvas', PRICING.canvas)}
+              <div class="pd-mat-note">${PRICING.canvas.note}</div>
+            </div>
           </div>
           <div class="pd-terms">Hand-signed &amp; numbered &middot; Certificate of authenticity &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>
