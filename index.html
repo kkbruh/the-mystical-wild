@@ -322,6 +322,11 @@
   .pd-size:hover span{color:var(--text-dim)}
   .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
   .pd-terms{margin-top:5vh;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
+  .pd-open{margin-top:7vh;padding-top:5vh;border-top:1px solid var(--hair)}
+  .pd-open-mark{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--mist-dim)}
+  .pd-open-line{margin-top:14px;font-family:var(--serif);font-style:italic;color:var(--text-dim);line-height:1.8;max-width:34em;font-size:1rem}
+  .pd-open-actions{margin-top:3vh}
+  .pd-open-actions .collect{font-size:10px;opacity:.85}
 
   .craft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;margin-top:10vh;padding-top:8vh;border-top:1px solid var(--hair)}
   .craft h3{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--mist-dim);font-weight:400}
@@ -473,7 +478,7 @@
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
-    <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
+    <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself. Every frame is also available as an open print &mdash; framed in matte, unsigned, for walls that simply want the wild.</p>
   </div>
   <div class="prints-grid"></div>
   <div class="print-terms reveal">Hand-signed &amp; numbered &nbsp;&middot;&nbsp; Certificate of authenticity &nbsp;&middot;&nbsp; Free shipping within India &nbsp;&middot;&nbsp; Worldwide at cost</div>
@@ -521,7 +526,8 @@
 const EMAIL = 'krishnakarthikeyan5@gmail.com';
 const WHATSAPP = '918618584124';   // digits with country code — WhatsApp buttons appear when set
 const GOATCOUNTER = '';            // your goatcounter.com code, e.g. 'mysticalwild' — analytics activates when set
-const PRICING = { a3: 9500, a2: 16500 };  // base prices in ₹; per-print override: add a3/a2 to any PRINTS entry
+const PRICING = { a3: 9500, a2: 16500 };  // signed edition prices in ₹; per-print override: add a3/a2 to any PRINTS entry
+const OPEN_EDITION = { price: 2999, spec: 'A4 &middot; framed &middot; matte' };  // open framed print — set price to what your framer math supports; set to null to hide everywhere
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
@@ -829,6 +835,15 @@ function renderPrintDetail(p) {
           <a class="collect" id="pd-mail">Enquire by email</a>
         </div>
         <div class="pd-terms">Hand-signed &amp; numbered &middot; Certificate of authenticity &middot; Free shipping within India &middot; Worldwide at cost</div>
+        ${OPEN_EDITION ? `
+        <div class="pd-open">
+          <div class="pd-open-mark">The open print</div>
+          <p class="pd-open-line">The same frame without the signature or the number &mdash; ${OPEN_EDITION.spec}, ${inr(OPEN_EDITION.price)}. Unlimited, and made for walls that simply want the wild.</p>
+          <div class="pd-actions pd-open-actions">
+            <a class="collect" id="pd-open-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+            <a class="collect" id="pd-open-mail">Enquire by email</a>
+          </div>
+        </div>` : ''}
       </div>
     </div>`;
   const tmp = document.createElement('textarea');
@@ -843,6 +858,13 @@ function renderPrintDetail(p) {
   };
   el.querySelectorAll('input[name="pd-size"]').forEach(r => r.addEventListener('change', update));
   update();
+  if (OPEN_EDITION) {
+    const openMsg = `Hi Krishna — I'd like to enquire about the open framed print of "${p.title}".`;
+    const openWa = el.querySelector('#pd-open-wa');
+    if (WHATSAPP) openWa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(openMsg)}`;
+    else openWa.style.display = 'none';
+    el.querySelector('#pd-open-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Open print enquiry — ${p.title}`)}&body=${encodeURIComponent(openMsg)}`;
+  }
 }
 
 function applyRoute() {
