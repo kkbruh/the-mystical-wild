@@ -253,7 +253,19 @@
   .whisper p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.5;max-width:22em}
   .whisper em{color:var(--accent);font-style:italic}
 
-  .prints{padding:18vh 32px 6vh;max-width:1500px;margin:0 auto}
+  .prints{padding:18vh 32px 6vh;max-width:1500px;margin:0 auto;overflow-x:clip}
+  .prints-hero{
+    margin:-18vh calc(50% - 50vw) 10vh;
+    height:clamp(320px,56vh,640px);overflow:hidden;position:relative;background:#050807;
+  }
+  .prints-hero img{
+    width:100%;height:100%;object-fit:cover;object-position:50% 28%;display:block;
+    filter:saturate(.72) brightness(.62) contrast(1.05);
+  }
+  .prints-hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom,rgba(4,7,5,.3),rgba(4,7,5,0) 42%,rgba(4,7,5,.82));
+  }
   .prints-head{margin:0 0 8vh}
   .prints-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);margin-top:22px;letter-spacing:.02em}
   .prints-line{font-family:var(--serif);font-style:italic;color:var(--text-dim);margin-top:14px;max-width:36em;line-height:1.7}
@@ -271,6 +283,36 @@
   .pc-price{margin-top:10px;font-family:var(--sans);font-size:12px;letter-spacing:.14em;color:var(--text-dim)}
   .pc-actions{display:flex;gap:26px}
   .print-terms{margin-top:9vh;text-align:center;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
+
+  /* --- hash views: stories / prints / about are separate places --- */
+  body[data-view="stories"] .prints,
+  body[data-view="stories"] .about{display:none}
+  body[data-view="prints"] .hero,
+  body[data-view="prints"] main,
+  body[data-view="prints"] .about{display:none}
+  body[data-view="about"] .hero,
+  body[data-view="about"] main,
+  body[data-view="about"] .prints{display:none}
+  body[data-view="prints"] .prints,
+  body[data-view="about"] .about{min-height:72vh}
+
+  .hero-nav{
+    position:absolute;bottom:19vh;left:0;right:0;
+    display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;
+    padding:0 24px;
+  }
+  .hero-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:color .5s ease}
+  .hero-nav a:hover{color:var(--text)}
+  .hero-nav span{color:var(--mist-dim);opacity:.5;font-size:10px}
+
+  .prints-nudge{text-align:center;margin:11vh 0 3vh}
+  .prints-nudge a{
+    color:var(--mist-dim);text-decoration:none;
+    font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+    border-bottom:1px solid var(--hair);padding-bottom:7px;
+    transition:color .5s ease,border-color .5s ease;
+  }
+  .prints-nudge a:hover{color:var(--text);border-color:var(--mist-dim)}
 
   .about{padding:16vh 32px 20vh}
   .about-inner{max-width:1100px;margin:0 auto}
@@ -331,7 +373,7 @@
   }
 </style>
 </head>
-<body>
+<body data-view="stories">
 
 <div class="grain" aria-hidden="true"></div>
 <div class="bar top" aria-hidden="true"></div>
@@ -360,12 +402,20 @@
     <div class="eyebrow">A portfolio in three chapters</div>
     <h1>The Mystical Wild</h1>
   </div>
+  <nav class="hero-nav" aria-label="Sections">
+    <a href="#ch1">Stories of the Wild</a>
+    <span aria-hidden="true">&middot;</span>
+    <a href="#prints">Recommended Prints</a>
+    <span aria-hidden="true">&middot;</span>
+    <a href="#about">About Krishna</a>
+  </nav>
   <a class="enter" href="#ch1">Enter</a>
 </header>
 
 <main id="chapters"></main>
 
 <section class="prints" id="prints">
+  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.jpg" alt=""></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
@@ -634,6 +684,7 @@ CHAPTERS.forEach(ch => {
   });
   html += `</section>`;
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
+  html += `<div class="prints-nudge reveal"><a href="#prints">If a frame stayed with you &mdash; view the recommended prints</a></div>`;
 });
 main.innerHTML = html;
 const inr = n => '\u20b9' + n.toLocaleString('en-IN');
@@ -675,6 +726,23 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 document.querySelectorAll('.tb-drop a').forEach(a =>
   a.addEventListener('click', () => document.querySelector('.tb-menu').removeAttribute('open')));
+
+// --- hash views: #prints and #about are separate places, everything else is the story flow ---
+function applyRoute() {
+  const h = location.hash;
+  const view = h === '#prints' ? 'prints' : h === '#about' ? 'about' : 'stories';
+  const changed = document.body.dataset.view !== view;
+  document.body.dataset.view = view;
+  if (view === 'stories') {
+    const target = h && h !== '#top' ? document.querySelector(h) : null;
+    if (target) requestAnimationFrame(() => target.scrollIntoView());
+    else if (changed) window.scrollTo(0, 0);
+  } else {
+    window.scrollTo(0, 0);
+  }
+}
+window.addEventListener('hashchange', applyRoute);
+applyRoute();
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
