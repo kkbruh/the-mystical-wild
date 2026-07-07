@@ -65,10 +65,14 @@ Items 6 and 7 below were fixed and verified in headless Chrome at 390px (radio d
 
 ### 3. Repo hygiene
 
-- **`the-mystical-wild-index.html` is a stale near-copy of `index.html`** (1025 vs 1046 lines) — a drift hazard: one edit to the wrong file and the live site diverges. Delete it.
-- **Working files committed:** `polish.diff`, `reign images 2.zip`, raw `_DSC4490.JPG` (2.8 MB). The zip and raw bloat every clone and are publicly downloadable on Pages.
-- **Every image ships as both `.jpg` and `.webp`** but the HTML references only `.webp` (plus one `.jpg` for `og:image`). The rest of the JPGs (~500–700 KB each) are dead weight.
-- **README is a stub; every commit is "Add files via upload"** — no usable history. Even one-line commit messages ("localize CDN images") make the repo maintainable.
+✅ *Fixed 2026-07-08.* All four bullets below addressed in one cleanup commit:
+
+- **`the-mystical-wild-index.html` is a stale near-copy of `index.html`** (1025 vs 1046 lines) — a drift hazard: one edit to the wrong file and the live site diverges. Delete it. **Fix applied:** deleted. It still pointed at the old `kkbruh.github.io` Pages URL in its `og:url`/`og:image`/`twitter:image` meta tags and predated the favicon, `100svh`, and theme fixes already merged into `index.html` — confirming it was drifting, not a maintained mirror.
+- **Working files committed:** `polish.diff`, `reign images 2.zip`, raw `_DSC4490.JPG` (2.8 MB). The zip and raw bloat every clone and are publicly downloadable on Pages. **Fix applied:** all three deleted.
+- **Every image ships as both `.jpg` and `.webp`** but the HTML references only `.webp` (plus one `.jpg` for `og:image`). The rest of the JPGs (~500–700 KB each) are dead weight. **Fix applied:** deleted the 22 `.jpg` files whose `.webp` counterpart is what `index.html` actually references, plus 4 superseded `.webp` files (`the-ambush-v2.webp`, `the-dominant.webp`, `the-dominant-v2.webp`, `the-question-v2.webp` — each has a `-v3` file that's the one in use) and `old-gold.jpg`/`old-gold.webp`, which weren't referenced by any filename in `index.html` at all. `print-the-promise.jpg` was kept — it's the live `og:image` target, and some social-media crawlers don't render WebP link previews.
+- **README is a stub; every commit is "Add files via upload"** — no usable history. Even one-line commit messages ("localize CDN images") make the repo maintainable. **Fix applied:** replaced the one-line `README.md` with real documentation (site structure, the `CHAPTERS`/`PRINTS`/`PRICING` config pattern, local dev, deployment). The commit-message half of this is already improving — recent commits on `ui-improvemnts` use real descriptive messages instead of "Add files via upload".
+
+Verified in headless Chrome (`puppeteer-core` against system Chrome) serving the repo over a local static server: zero console errors, zero failed or 4xx/5xx requests, and every `<img>` element across the stories/prints/about/print-detail views loads successfully (`naturalWidth > 0`) once its view is navigated to — the only images reporting as not-yet-loaded on first paint were the lazy-loaded prints-grid thumbnails outside the initial viewport, which resolved as soon as `#prints` was visited.
 
 ### 4. Missing basics
 
@@ -120,7 +124,7 @@ Notes:
 
 ## Suggested order of attack
 
-1. Delete the stale HTML copy, zip, diff, and unused JPGs; write a real README.
+1. ~~Delete the stale HTML copy, zip, diff, and unused JPGs; write a real README.~~ **Done 2026-07-08** (see repo hygiene §3).
 2. ~~Localize the four portfolio-CDN images.~~ **Done 2026-07-08** (see issue §1 above).
 3. ~~Add a favicon~~ **(done 2026-07-08, see "Missing basics" §4)**, `width`/`height` on images, hero preload, and ~~`100svh` for the hero~~ **(svh done 2026-07-08, see mobile findings §1)**.
 4. ~~Fix the real-device mobile findings: scene-mark orphan wrapping, mobile line-height, and the size-picker affordance/double-hairline on the print page.~~ **Done 2026-07-08** (see mobile findings §6–7).
