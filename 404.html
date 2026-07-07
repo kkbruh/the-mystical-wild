@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — The Mystical Wild</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0a0f0c;
+    --moss:#7a8b6f;
+    --mist:#e8e4d8;
+    --mist-dim:rgba(232,228,216,.55);
+    --mist-faint:rgba(232,228,216,.32);
+    --hair:rgba(232,228,216,.14);
+    --serif:'Cormorant Garamond','Didot',Georgia,serif;
+    --sans:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--forest);color:var(--mist);font-family:var(--sans);font-weight:300;
+    min-height:100svh;min-height:100dvh;
+    display:flex;flex-direction:column;
+  }
+  ::selection{background:var(--moss);color:var(--forest)}
+
+  .frame{
+    position:relative;flex:1;display:flex;align-items:flex-end;
+    min-height:56vh;min-height:56svh;
+    background:#000;overflow:hidden;
+  }
+  .frame img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;
+    filter:saturate(.92) contrast(1.03);
+  }
+  .frame::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to top,var(--forest) 2%,rgba(10,15,12,.35) 42%,rgba(10,15,12,.05) 70%);
+  }
+  .frame-tag{
+    position:relative;z-index:1;padding:0 32px 26px;
+    font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--mist-faint);
+  }
+
+  main{
+    padding:44px 32px 64px;max-width:640px;margin:0 auto;text-align:center;
+  }
+  .code{
+    font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--moss);
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;font-style:italic;
+    font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.25;margin-top:20px;letter-spacing:.01em;
+  }
+  .sub{
+    font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2vw,1.25rem);
+    color:var(--mist-dim);margin-top:16px;line-height:1.7;
+  }
+  .actions{
+    margin-top:40px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;
+  }
+  a.cta{
+    color:var(--moss);text-decoration:none;
+    font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+    border:1px solid var(--moss);padding:14px 30px;transition:background .35s ease,color .35s ease;
+  }
+  a.cta:hover,a.cta:focus-visible{background:var(--moss);color:var(--forest)}
+  a.cta.ghost{color:var(--mist-dim);border-color:var(--hair)}
+  a.cta.ghost:hover,a.cta.ghost:focus-visible{background:var(--hair);color:var(--mist)}
+  a:focus-visible{outline:1px solid var(--moss);outline-offset:4px}
+
+  footer{padding:0 32px 40px;text-align:center}
+  .fin{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--mist-dim)}
+
+  @media (prefers-reduced-motion:no-preference){
+    main,.frame{animation:fadeUp 1s ease both}
+    .frame{animation-delay:0s}
+    main{animation-delay:.15s}
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <img src="images/lost-trail.webp" alt="A tiger mid-stride at dusk near a waterhole, tongue out mid-lick, looking unimpressed." width="1066" height="1600" style="object-position:56% 40%">
+  <div class="frame-tag">No sighting logged at this waterhole</div>
+</div>
+
+<main>
+  <div class="code">404 &middot; Not Even a Pugmark</div>
+  <h1>Our tracker checked the ground here. Nothing.</h1>
+  <p class="sub">No trail, no scat, no scratch marks on the tree &mdash; whatever you were after moved on before we got here. Happens on safari too.</p>
+  <div class="actions">
+    <a class="cta" href="/">Back to camp</a>
+    <a class="cta ghost" href="/#prints">See the prints</a>
+  </div>
+</main>
+
+<footer>
+  <div class="fin">Fin &middot; &copy; Krishna Karthikeyan</div>
+</footer>
+
+</body>
+</html>
