@@ -90,11 +90,13 @@
   .tb-brand{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:.34em;text-transform:uppercase}
   .tb-nav{display:flex;gap:36px}
   .tb-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;transition:color .5s ease}
-  .tb-nav a.nav-prints,.hero-nav a.nav-prints{
+  .tb-nav a.nav-prints{color:var(--accent)}
+  .tb-nav a.nav-prints:hover{color:var(--text)}
+  .hero-nav a.nav-prints{
     color:var(--accent);border:1px solid var(--accent);padding:9px 16px;
     transition:background .45s ease,color .45s ease;
   }
-  .tb-nav a.nav-prints:hover,.hero-nav a.nav-prints:hover{background:var(--accent);color:var(--forest)}
+  .hero-nav a.nav-prints:hover{background:var(--accent);color:var(--forest)}
   .tb-nav a:hover{color:var(--text)}
   .tb-menu{display:none;position:relative}
   .tb-menu summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 10px}
@@ -354,7 +356,7 @@
   .pd-size{display:block;border-bottom:1px solid var(--hair);cursor:pointer}
   .pd-size input{position:absolute;opacity:0;pointer-events:none}
   .pd-size span{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 4px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mist-dim);transition:color .4s ease}
-  .pd-size em{font-style:normal;font-family:var(--sans);letter-spacing:.14em;color:var(--text-dim)}
+  .pd-size em{font-style:normal;font-family:var(--sans);letter-spacing:.14em;color:var(--mist);display:inline-flex;align-items:baseline;gap:7px;white-space:nowrap}
   .pd-size input:checked + span{color:var(--text)}
   .pd-size input:checked + span em{color:var(--accent)}
   .pd-size:hover span{color:var(--text-dim)}
@@ -370,7 +372,7 @@
   }
   .pd-tab:hover{color:var(--text)}
   .pd-panel .pd-sizes{margin-top:0;border-top:0}
-  .pd-size .fx{font-size:.76em;color:var(--text-dim);margin-left:10px;letter-spacing:.03em;white-space:nowrap}
+  .pd-size .fx{color:var(--mist-dim);letter-spacing:.08em;white-space:nowrap}
   .pd-mat + .pd-mat{margin-top:34px;padding-top:26px;border-top:1px solid var(--hair)}
   .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
   .pd-mat-desc{font-family:var(--serif);font-style:italic;font-size:.92rem;line-height:1.75;color:var(--text-dim);max-width:56ch;margin-bottom:16px}
@@ -604,10 +606,10 @@ const WHATSAPP = '918618584124';   // digits with country code — WhatsApp butt
 const GOATCOUNTER = '';            // your goatcounter.com code, e.g. 'mysticalwild' — analytics activates when set
 const FX = { usd: 95.4, gbp: 127.1 };  // ₹ per unit, mid-market Jul 2026 — nudge these when rates drift
 const r10 = n => Math.round(n / 10) * 10;
-const fx = n => `<span class="fx">&asymp; $${r10(n / FX.usd)} &middot; &pound;${r10(n / FX.gbp)}</span>`;
+const fx = n => `<span class="fx">/ $${r10(n / FX.usd)} / &pound;${r10(n / FX.gbp)}</span>`;
 const PRICING = {  // signed edition — sizes are [long edge in inches, ₹]; actual dims derive from each print's aspect ratio (p.ar, default 3:2). Matte = accessible tier; canvas carries the ₹19,050 (£150) 20×30 anchor. Custom sizes (e.g. 20×30) quoted on request: canvas ≈ ₹2,500 + ₹27.6/in², matte ≈ ₹1,300 + ₹14.9/in².
   matte:  { label: 'Archival matte paper', desc: 'Smooth fine-art paper with deep, quiet blacks and no glare. Frame it under glass &mdash; made for the study, the hallway, the first frame you ever collect.', sizes: [[18, 4500], [24, 7000]] },
-  canvas: { label: 'Hahnem&uuml;hle Daguerre canvas', desc: 'A heavyweight fine-art weave with painterly depth &mdash; no glass between you and the animal. Stretched, it hangs like a gallery piece: made for the wall the room is built around.', note: 'Gallery wrap not included &mdash; available at extra cost', sizes: [[18, 8500], [24, 13500], [36, 26500]] },
+  canvas: { label: 'Hahnem&uuml;hle Daguerre canvas', desc: 'Hahnem&uuml;hle has made fine-art paper in Germany since 1584 &mdash; the archival standard in galleries worldwide. Daguerre is their heavyweight canvas: painterly depth, no glass between you and the animal. Stretched, it hangs like a gallery piece &mdash; made for the wall the room is built around.', note: 'Gallery wrap not included &mdash; available at extra cost', sizes: [[18, 8500], [24, 13500], [36, 26500]] },
 };
 const OPEN_EDITION = null;  // open framed print retired Jul 2026 — signed editions only. To bring back: { price: 2999, spec: 'A4 &middot; framed &middot; matte' }
 
