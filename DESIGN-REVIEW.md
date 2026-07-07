@@ -72,7 +72,7 @@ Items 6 and 7 below were fixed and verified in headless Chrome at 390px (radio d
 
 ### 4. Missing basics
 
-- **No favicon / apple-touch-icon** — a noticeable gap for a brand this polished (also affects home-screen bookmarks on mobile).
+- **No favicon / apple-touch-icon** — a noticeable gap for a brand this polished (also affects home-screen bookmarks on mobile). ✅ *Fixed 2026-07-08.* Added `favicon.svg` (an italic serif "K" monogram, moss-on-forest, matching the header's typeface style and palette), `favicon.png` (512×512 raster fallback for browsers without SVG-favicon support), and `apple-touch-icon.png` (180×180, opaque square per Apple's spec — no baked-in rounding/transparency, since iOS applies its own mask). Wired up via three `<link>` tags in `index.html`'s `<head>` (`index.html:12-14`). **Correction:** the first version embedded the actual Cormorant Garamond webfont in the SVG as a base64 `@font-face`, which rendered correctly in an `<img>`/headless-Chrome screenshot but showed as a blank dark square in a real browser tab — tab-icon rasterization appears not to execute custom `@font-face` in the favicon's own document context. Switched to a system serif (`Georgia,'Times New Roman',serif`, italic) with no font-loading dependency, confirmed against a real device screenshot showing only a plain square where the glyph should be. Verified in headless Chrome: all three assets resolve `200` with correct MIME types (`image/svg+xml`, `image/png`, `image/png`) served from a local static server, the `<link>` tags appear correctly in the rendered DOM, and the monogram is legible at 180px down to 16px, with zero console errors.
 - No `404.html` (hash routing mostly avoids it, but any bad path gets the GitHub default).
 - No structured data — `Product` / `VisualArtwork` JSON-LD on the prints would be a cheap SEO win.
 
@@ -122,7 +122,7 @@ Notes:
 
 1. Delete the stale HTML copy, zip, diff, and unused JPGs; write a real README.
 2. ~~Localize the four portfolio-CDN images.~~ **Done 2026-07-08** (see issue §1 above).
-3. Add a favicon, `width`/`height` on images, hero preload, and ~~`100svh` for the hero~~ **(svh done 2026-07-08, see mobile findings §1)**.
+3. ~~Add a favicon~~ **(done 2026-07-08, see "Missing basics" §4)**, `width`/`height` on images, hero preload, and ~~`100svh` for the hero~~ **(svh done 2026-07-08, see mobile findings §1)**.
 4. ~~Fix the real-device mobile findings: scene-mark orphan wrapping, mobile line-height, and the size-picker affordance/double-hairline on the print page.~~ **Done 2026-07-08** (see mobile findings §6–7).
 5. ~~Fold in the small code fixes: duplicate listeners, focus on view switch, `nth-child` alternation, faint-text contrast.~~ **Done 2026-07-08** (all four items).
 6. (Later, if worth it) `srcset` for mobile, pre-rendered HTML, JSON-LD for prints.
