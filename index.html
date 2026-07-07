@@ -183,8 +183,8 @@
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
   .scene-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#050807;min-height:100vh}
-  .scene-split:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
-  .scene-split:nth-child(even) .split-frame{order:2}
+  .scene-split:nth-of-type(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+  .scene-split:nth-of-type(even) .split-frame{order:2}
   .split-frame{position:relative;display:flex;align-items:flex-start;justify-content:center}
   .split-frame .plate-img{
     position:sticky;top:5vh;height:90vh;width:auto;max-width:88%;object-fit:contain;
@@ -200,11 +200,11 @@
     content:"";position:absolute;top:8vh;bottom:0;width:1px;
     background:var(--hair);pointer-events:none;
   }
-  .scene:nth-child(odd) .scene-story::after{left:calc(100% + clamp(48px, 9vw, 220px))}
-  .scene:nth-child(even) .scene-story::after{right:calc(100% + clamp(48px, 9vw, 220px))}
+  .scene:nth-of-type(odd) .scene-story::after{left:calc(100% + clamp(48px, 9vw, 220px))}
+  .scene:nth-of-type(even) .scene-story::after{right:calc(100% + clamp(48px, 9vw, 220px))}
   @media (max-width:900px){.scene-story::after{display:none}}
-  .scene:nth-child(odd) .scene-story{margin-left:clamp(32px, 8vw, 160px)}
-  .scene:nth-child(even) .scene-story{margin-left:auto;margin-right:clamp(32px, 8vw, 160px)}
+  .scene:nth-of-type(odd) .scene-story{margin-left:clamp(32px, 8vw, 160px)}
+  .scene:nth-of-type(even) .scene-story{margin-left:auto;margin-right:clamp(32px, 8vw, 160px)}
   .scene-mark{font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--accent)}
   .nw{white-space:nowrap}
   .scene-title{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3vw,2.6rem);margin-top:16px;letter-spacing:.03em}
@@ -487,8 +487,8 @@
     .ch-head{padding:0 20px}
     .scene-frame{height:64vh}
     .scene-story{padding:6vh 20px 0}
-    .scene:nth-child(odd) .scene-story,
-    .scene:nth-child(even) .scene-story{margin-left:0;margin-right:0}
+    .scene:nth-of-type(odd) .scene-story,
+    .scene:nth-of-type(even) .scene-story{margin-left:0;margin-right:0}
     .scene-text p{font-size:1.15rem;line-height:1.7}
     .scene-frame.empty{margin:0 20px}
     .triptych{padding:0 20px}
