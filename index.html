@@ -133,7 +133,7 @@
                linear-gradient(to bottom,rgba(4,7,5,.55),transparent 30%,transparent 65%,rgba(4,7,5,.75));
   }
   .hero-copy{position:relative;z-index:2;text-align:center;padding:0 24px}
-  .eyebrow{font-size:11px;letter-spacing:.6em;text-transform:uppercase;color:var(--mist-dim);opacity:0;animation:fadeUp 1.6s ease .4s forwards}
+  .eyebrow{font-size:11px;letter-spacing:.6em;padding-left:.6em;text-transform:uppercase;color:var(--mist-dim);opacity:0;animation:fadeUp 1.6s ease .4s forwards}
   .hero h1{
     font-family:var(--serif);font-weight:400;font-style:italic;
     font-size:clamp(3rem,9vw,7.5rem);line-height:1.02;margin-top:26px;letter-spacing:.14em;
@@ -437,6 +437,9 @@
   @media (max-width:640px){
     .hero-nav{display:flex;flex-direction:column;gap:18px}
     .hero-nav span{display:none}
+  }
+  @media (max-width:480px){
+    .eyebrow{font-size:10px;letter-spacing:.3em;padding-left:.3em}
   }
 
   .about{padding:16vh 32px 20vh}
