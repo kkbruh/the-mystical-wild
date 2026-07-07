@@ -379,6 +379,10 @@
   .pd-tab:hover{color:var(--text)}
   .pd-panel .pd-sizes{margin-top:0;border-top:0}
   .pd-size .fx{color:var(--mist-dim);letter-spacing:.08em;white-space:nowrap}
+  @media (max-width:360px){
+    .pd-size em{flex-wrap:wrap;justify-content:flex-end;row-gap:4px}
+    .pd-size .fx{flex:0 0 100%;text-align:right}
+  }
   .pd-mat + .pd-mat{margin-top:34px;padding-top:26px;border-top:1px solid var(--hair)}
   .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
   .pd-mat-desc{font-family:var(--serif);font-style:italic;font-size:.92rem;line-height:1.75;color:var(--text-dim);max-width:56ch;margin-bottom:16px}
@@ -911,7 +915,7 @@ function renderPrintDetail(p) {
   const dims = L => `${Math.round(L / ar * 2) / 2} &times; ${L} in`;
   const sizeRows = (mat, m) => m.sizes
     .filter(([L]) => !(p.noLarge && L === 36))
-    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}"${mat==='matte'&&i===0?' checked':''}><span>${dims(L)}<em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
+    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}"${mat==='matte'&&i===0?' checked':''}><span><span class="nw">${dims(L)}</span><em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
   const el = document.getElementById('print-detail');
   el.innerHTML = `
