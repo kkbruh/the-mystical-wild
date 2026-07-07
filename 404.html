@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#182417;
+    --bg:#141d16;
     --moss:#7a8b6f;
     --mist:#e8e4d8;
     --mist-dim:rgba(232,228,216,.6);
@@ -36,8 +36,6 @@
   .card{
     position:relative;flex:0 0 auto;
     width:clamp(200px,26vw,320px);aspect-ratio:2/3;
-    transform:rotate(-3deg);
-    box-shadow:0 26px 60px rgba(0,0,0,.5);
     border:1px solid rgba(232,228,216,.18);
     overflow:hidden;background:#000;
   }
@@ -62,7 +60,6 @@
 
   @media (max-width:720px){
     .stage{flex-direction:column;gap:40px;padding:64px 32px}
-    .card{transform:rotate(-2deg)}
     .copy{text-align:center}
   }
 
@@ -71,10 +68,6 @@
     .copy{animation:fadeUp 1s ease .15s both}
   }
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-  @media (prefers-reduced-motion:no-preference){
-    .card{animation-name:fadeUpRotate}
-  }
-  @keyframes fadeUpRotate{from{opacity:0;transform:translateY(10px) rotate(-3deg)}to{opacity:1;transform:translateY(0) rotate(-3deg)}}
 </style>
 </head>
 <body>
