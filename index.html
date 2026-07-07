@@ -368,7 +368,8 @@
   .pd-tab:hover{color:var(--text)}
   .pd-panel .pd-sizes{margin-top:0;border-top:0}
   .pd-mat + .pd-mat{margin-top:34px;padding-top:26px;border-top:1px solid var(--hair)}
-  .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+  .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+  .pd-mat-desc{font-family:var(--serif);font-style:italic;font-size:.92rem;line-height:1.75;color:var(--text-dim);max-width:56ch;margin-bottom:16px}
   .pd-mat-note{font-family:var(--sans);font-size:11px;color:var(--text-dim);margin-top:12px;letter-spacing:.02em}
   .pd-panel .pd-open-line{margin-top:22px}
   .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
@@ -594,8 +595,8 @@ const EMAIL = 'krishnakarthikeyan5@gmail.com';
 const WHATSAPP = '918618584124';   // digits with country code — WhatsApp buttons appear when set
 const GOATCOUNTER = '';            // your goatcounter.com code, e.g. 'mysticalwild' — analytics activates when set
 const PRICING = {  // signed edition — sizes are [long edge in inches, ₹]; actual dims derive from each print's aspect ratio (p.ar, default 3:2). Matte = accessible tier; canvas carries the ₹19,050 (£150) 20×30 anchor. Custom sizes (e.g. 20×30) quoted on request: canvas ≈ ₹2,500 + ₹27.6/in², matte ≈ ₹1,300 + ₹14.9/in².
-  matte:  { label: 'Archival matte paper', sizes: [[18, 4500], [24, 7000]] },
-  canvas: { label: 'Hahnem&uuml;hle Daguerre canvas', note: 'Gallery wrap not included &mdash; available at extra cost', sizes: [[18, 8500], [24, 13500], [36, 26500]] },
+  matte:  { label: 'Archival matte paper', desc: 'Smooth fine-art paper with deep, quiet blacks and no glare. Frame it under glass &mdash; made for the study, the hallway, the first frame you ever collect.', sizes: [[18, 4500], [24, 7000]] },
+  canvas: { label: 'Hahnem&uuml;hle Daguerre canvas', desc: 'A heavyweight fine-art weave with painterly depth &mdash; no glass between you and the animal. Stretched, it hangs like a gallery piece: made for the wall the room is built around.', note: 'Gallery wrap not included &mdash; available at extra cost', sizes: [[18, 8500], [24, 13500], [36, 26500]] },
 };
 const OPEN_EDITION = null;  // open framed print retired Jul 2026 — signed editions only. To bring back: { price: 2999, spec: 'A4 &middot; framed &middot; matte' }
 
@@ -899,10 +900,12 @@ function renderPrintDetail(p) {
           <div class="pd-sizes"${OPEN_EDITION ? '' : ' style="margin-top:5vh;border-top:1px solid var(--hair)"'}>
             <div class="pd-mat">
               <div class="pd-mat-label">${PRICING.matte.label}</div>
+              <p class="pd-mat-desc">${PRICING.matte.desc}</p>
               ${sizeRows('matte', PRICING.matte)}
             </div>
             <div class="pd-mat">
               <div class="pd-mat-label">${PRICING.canvas.label}</div>
+              <p class="pd-mat-desc">${PRICING.canvas.desc}</p>
               ${sizeRows('canvas', PRICING.canvas)}
               <div class="pd-mat-note">${PRICING.canvas.note}</div>
             </div>
