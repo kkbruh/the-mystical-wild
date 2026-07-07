@@ -886,7 +886,10 @@ document.querySelectorAll('.js-mailto').forEach(a => a.href = 'mailto:' + EMAIL)
 
 // Deterrent: no right-click-save / drag on imagery (screen res only; originals never leave the archive)
 document.addEventListener('contextmenu', e => {
-  if (e.target.closest('img, .plate, .pc-frame, .split-frame, .trip-frame, .hero-img')) e.preventDefault();
+  if (e.target.closest('img, .plate, .pc-frame, .split-frame, .trip-frame, .hero-img, .prints-hero')) e.preventDefault();
+});
+document.addEventListener('dragstart', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
 });
 document.querySelectorAll('img').forEach(i => i.setAttribute('draggable', 'false'));
 
@@ -1053,8 +1056,6 @@ if (!reduced && plates.length) {
   }, { passive: true });
   parallax();
 }
-document.addEventListener('contextmenu',e=>{if(e.target.closest('img,.plate,.prints-hero'))e.preventDefault()});
-document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
 </script>
 </body>
 </html>
