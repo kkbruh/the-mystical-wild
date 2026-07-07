@@ -55,7 +55,7 @@ Items 6 and 7 below were fixed and verified in headless Chrome at 390px (radio d
 
 ### 1. Four story images hotlink `cdn.myportfolio.com`
 
-`index.html:652, 665, 671, 720` — "The Watchful", both Chapter I triptych frames, and "The Quiet Rival" load from Adobe Portfolio's CDN with cache-busting query params. If that account lapses or the URLs rotate, those scenes silently break. Local WebP files exist for everything else; bring these four in-repo.
+`index.html:652, 665, 671, 720` — "The Watchful", both Chapter I triptych frames, and "The Quiet Rival" load from Adobe Portfolio's CDN with cache-busting query params. If that account lapses or the URLs rotate, those scenes silently break. Local WebP files exist for everything else; bring these four in-repo. ✅ *Fixed 2026-07-08.* Downloaded the four full-res JPEGs from the CDN, re-encoded to WebP (`cwebp -q 82`, matching the site's existing quality/size range) as `the-watchful.webp`, `the-cautious.webp`, `the-sentinel.webp`, and `the-quiet-rival.webp`, and swapped the four `img:` values in the `CHAPTERS` config from CDN URLs to these local filenames. No JPG duplicate was added, since the review already flags the existing JPG-but-unused-duplicates (§3) as dead weight to remove, not a pattern to extend. Verified in headless Chrome (`puppeteer-core` against system Chrome) serving the repo over a local static server: all four scenes render their images locally (`naturalWidth: 1920`, `complete: true`), zero network requests to `myportfolio.com` are made, no `cdn.myportfolio.com` string remains anywhere in the rendered DOM, and there are no new console errors (the page's one pre-existing `favicon.ico` 404 — tracked separately under "Missing basics" — is unrelated and unchanged by this fix).
 
 ### 2. Image delivery is unoptimized where it matters most
 
@@ -121,7 +121,7 @@ Notes:
 ## Suggested order of attack
 
 1. Delete the stale HTML copy, zip, diff, and unused JPGs; write a real README.
-2. Localize the four portfolio-CDN images.
+2. ~~Localize the four portfolio-CDN images.~~ **Done 2026-07-08** (see issue §1 above).
 3. Add a favicon, `width`/`height` on images, hero preload, and ~~`100svh` for the hero~~ **(svh done 2026-07-08, see mobile findings §1)**.
 4. ~~Fix the real-device mobile findings: scene-mark orphan wrapping, mobile line-height, and the size-picker affordance/double-hairline on the print page.~~ **Done 2026-07-08** (see mobile findings §6–7).
 5. ~~Fold in the small code fixes: duplicate listeners, focus on view switch, `nth-child` alternation, faint-text contrast.~~ **Done 2026-07-08** (all four items).
