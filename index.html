@@ -408,9 +408,12 @@
 
   .hero-nav{
     position:absolute;bottom:calc(11vh + 108px);left:0;right:0;z-index:4;
-    display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;
+    display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;
     padding:0 24px;
   }
+  .hero-nav-side{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .hero-nav-left{justify-content:flex-end}
+  .hero-nav-right{justify-content:flex-start}
   .hero-nav a{
     color:var(--accent);text-decoration:none;
     font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;
@@ -429,7 +432,7 @@
   }
   .prints-nudge a:hover{color:var(--text);border-color:var(--mist-dim)}
   @media (max-width:640px){
-    .hero-nav{flex-direction:column;gap:18px}
+    .hero-nav{display:flex;flex-direction:column;gap:18px}
     .hero-nav span{display:none}
   }
 
@@ -537,11 +540,15 @@
     <h1>The Mystical Wild</h1>
   </div>
   <nav class="hero-nav" aria-label="Sections">
-    <a href="#ch1">Stories of the Wild</a>
-    <span aria-hidden="true">&middot;</span>
+    <div class="hero-nav-side hero-nav-left">
+      <a href="#ch1">Stories of the Wild</a>
+      <span aria-hidden="true">&middot;</span>
+    </div>
     <a class="nav-prints" href="#prints">Recommended Prints</a>
-    <span aria-hidden="true">&middot;</span>
-    <a href="#about">About Krishna</a>
+    <div class="hero-nav-side hero-nav-right">
+      <span aria-hidden="true">&middot;</span>
+      <a href="#about">About Krishna</a>
+    </div>
   </nav>
   <a class="enter" href="#ch1">Enter</a>
 </header>
