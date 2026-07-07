@@ -115,7 +115,7 @@
     .topbar{padding:0 20px;height:54px}
   }
 
-  .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .hero{position:relative;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
     position:absolute;inset:0;
     background:url('the-question-v3.webp') center 35%/cover no-repeat;
@@ -141,7 +141,7 @@
   @keyframes track{from{letter-spacing:.3em}to{letter-spacing:.06em}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .enter{
-    position:absolute;bottom:11vh;left:0;right:0;width:max-content;margin:0 auto;z-index:2;
+    position:absolute;bottom:11vh;bottom:11svh;left:0;right:0;width:max-content;margin:0 auto;z-index:2;
     text-align:center;padding-left:.5em;
     font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--mist-dim);
     text-decoration:none;opacity:0;animation:fadeUp 1.6s ease 3.4s forwards;
@@ -182,7 +182,7 @@
   .scene-frame:hover .plate{filter:saturate(1) brightness(.78) contrast(1.02)}
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
-  .scene-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#050807;min-height:100vh}
+  .scene-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#050807;min-height:100vh;min-height:100svh}
   .scene-split:nth-of-type(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
   .scene-split:nth-of-type(even) .split-frame{order:2}
   .split-frame{position:relative;display:flex;align-items:flex-start;justify-content:center}
@@ -455,7 +455,7 @@
     .about-photo{max-width:420px;margin-bottom:40px}
   }
 
-  footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
+  footer{min-height:92vh;min-height:92svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
   footer a.cta{

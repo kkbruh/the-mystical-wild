@@ -31,7 +31,7 @@ The responsive layout **holds up well** — no overflow, no clipping, no broken 
 
 Mobile-specific improvements worth making:
 
-1. **`100vh` → `100svh`/`100dvh`** (with `vh` fallback) for the hero and near-full-height sections. On iOS Safari/Chrome, `100vh` is taller than the visible viewport while the URL bar is shown, so the bottom of the hero — including the "Enter" link at `bottom:11vh` — can sit under browser chrome on first load.
+1. **`100vh` → `100svh`/`100dvh`** (with `vh` fallback) for the hero and near-full-height sections. On iOS Safari/Chrome, `100vh` is taller than the visible viewport while the URL bar is shown, so the bottom of the hero — including the "Enter" link at `bottom:11vh` — can sit under browser chrome on first load. ✅ *Fixed 2026-07-08.* `.hero` (`index.html:118`), `.enter`'s `bottom` offset (`index.html:144`), `.scene-split` (`index.html:185`), and `footer` (`index.html:458`) now each declare the `vh` value first (fallback for browsers without `svh` support) followed by the equivalent `svh` value, which wins in supporting browsers via cascade — no JS, no @supports needed. Verified in headless Chrome (`puppeteer-core` against system Chrome) at 1440×900, 390×844, and 320×568: `.hero`'s computed height and `.enter`'s computed `bottom` now match `window.innerHeight` exactly (rather than the pre-fix `100vh`, which in a real mobile browser exceeds the visible area while the URL bar is shown), and `.enter`'s bounding rect stays fully inside `.hero`'s at every size tested, with zero console errors.
 2. **Centered letterspaced text looks slightly off-center.** `letter-spacing` adds a trailing space to the last character; the `.enter` link compensates with `padding-left:.5em` but the `.eyebrow` (0.6em tracking) and `h1` don't. The eyebrow also wraps awkwardly at this width ("A PORTFOLIO IN THREE / CHAPTERS") — reduce its tracking or size on small screens.
 3. **`.pd-size` price rows are overflow-prone at 320px.** The size label plus the `white-space:nowrap` price + FX conversions (`₹13,500 / $140 / £110`) fits at 390px but has little headroom on the smallest phones. Let the FX span wrap or hide it below ~360px.
 4. **No responsive images.** Phones download the same ~200–500 KB, up-to-1920px WebPs as desktop. Fine on Wi-Fi, wasteful on cellular — `srcset` with a ~800px variant would roughly halve the transfer.
@@ -122,7 +122,7 @@ Notes:
 
 1. Delete the stale HTML copy, zip, diff, and unused JPGs; write a real README.
 2. Localize the four portfolio-CDN images.
-3. Add a favicon, `width`/`height` on images, hero preload, and `100svh` for the hero.
+3. Add a favicon, `width`/`height` on images, hero preload, and ~~`100svh` for the hero~~ **(svh done 2026-07-08, see mobile findings §1)**.
 4. ~~Fix the real-device mobile findings: scene-mark orphan wrapping, mobile line-height, and the size-picker affordance/double-hairline on the print page.~~ **Done 2026-07-08** (see mobile findings §6–7).
 5. ~~Fold in the small code fixes: duplicate listeners, focus on view switch, `nth-child` alternation, faint-text contrast.~~ **Done 2026-07-08** (all four items).
 6. (Later, if worth it) `srcset` for mobile, pre-rendered HTML, JSON-LD for prints.
