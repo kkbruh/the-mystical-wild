@@ -87,7 +87,7 @@ The chapters and prints grid exist only as JS objects injected into an empty `<m
 - **`.scene:nth-child(odd/even)` is fragile** (`index.html:203–207`): it counts *all* siblings inside the chapter, so the `.ch-head`, triptychs, and whispers shift the parity. The left/right story alternation isn't deterministic per scene — it happens to look fine now but will surprise you when scenes are reordered. Alternate with a class or `:nth-of-type` on articles instead.
 - **Contrast:** the faintest text tier (`--text-faint`, 0.32 alpha) at 9–10px letterspaced caps (the `Fin` line, some terms text) is below WCAG AA. The 0.55 "dim" tier is fine; keep the faint tier decorative-only.
 - **Artwork invisible to screen readers in classic scenes:** full-bleed plates are CSS backgrounds with no accessible name, while split/portrait scenes use real `<img alt>`. Real `<img>` everywhere fixes accessibility *and* enables lazy-loading (see §2).
-- **Hash-view switches don't manage focus** — a keyboard or screen-reader user who activates "Recommended Prints" is left focused inside a now-`display:none` section with no announcement. Move focus to the view's heading on switch.
+- **Hash-view switches don't manage focus.** ✅ *Fixed 2026-07-08.* A keyboard or screen-reader user who activated "Recommended Prints" was left focused inside a now-`display:none` section with no announcement. **Fix applied:** `.prints-title`, `.about-title`, and `.pd-title` got `tabindex="-1"` plus a moss-colored `:focus` outline; `applyRoute()` now focuses the relevant heading whenever the hash actually changes (tracked via `lastRouteHash`, so navigating print → print re-focuses the new print's title even though the `data-view` stays `"print"`). The `stories` view is unchanged (no single heading to focus; existing scroll behavior stands). Verified in headless Chrome: dispatching real navigation through prints/about/print-detail/print-detail/stories moves `document.activeElement` to the correct `<h2>` each time (with the right text), with zero console errors.
 - **Anti-save measures** (blocked right-click/drag, `user-select:none`) are trivially bypassed via devtools and break legitimate actions like mobile long-press sharing. Since only screen-res files are served anyway (per the code comment), consider whether the UX cost buys anything.
 
 ---
@@ -123,5 +123,5 @@ Notes:
 2. Localize the four portfolio-CDN images.
 3. Add a favicon, `width`/`height` on images, hero preload, and `100svh` for the hero.
 4. ~~Fix the real-device mobile findings: scene-mark orphan wrapping, mobile line-height, and the size-picker affordance/double-hairline on the print page.~~ **Done 2026-07-08** (see mobile findings §6–7).
-5. Fold in the small code fixes: ~~duplicate listeners~~ (done 2026-07-08), `nth-child` alternation, faint-text contrast, focus on view switch.
+5. Fold in the small code fixes: ~~duplicate listeners~~ (done 2026-07-08), ~~focus on view switch~~ (done 2026-07-08), `nth-child` alternation, faint-text contrast.
 6. (Later, if worth it) `srcset` for mobile, pre-rendered HTML, JSON-LD for prints.
