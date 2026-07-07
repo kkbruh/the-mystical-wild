@@ -13,9 +13,12 @@ portfolio. Single-page site: `index.html` (inline CSS/JS), deployed on GitHub Pa
   - `PRICING` — shared pricing constants (edition strategy, FX rates) referenced by `PRINTS`.
   Editing these objects is enough to retitle, reorder, or reprice content — no markup changes
   needed.
-- Images are flat in the repo root, WebP only (each `CHAPTERS`/`PRINTS` entry references a
-  `.webp` file directly). The exception is `print-the-promise.jpg`, kept for the `og:image`
-  meta tag since some social-media crawlers don't render WebP previews.
+- `images/` — all content photos, WebP only (each `CHAPTERS`/`PRINTS` entry references a
+  `.webp` file there). The exception is `images/print-the-promise.jpg`, kept for the
+  `og:image` meta tag since some social-media crawlers don't render WebP previews.
+  Note: a `PRINTS` entry's `img` filename (minus extension) doubles as its URL slug —
+  `images/print-the-promise.webp` routes to `#print-the-promise` — so the slug is derived
+  from the basename only, decoupled from the `images/` path.
 - `favicon.svg` / `favicon.png` / `apple-touch-icon.png` — site icons, referenced via
   `<link>` tags in `<head>`.
 
