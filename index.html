@@ -309,6 +309,7 @@
   }
   .prints-head{margin:0 0 8vh}
   .prints-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);margin-top:22px;letter-spacing:.02em}
+  .prints-title:focus,.about-title:focus,.pd-title:focus{outline:1px solid var(--moss);outline-offset:6px}
   .prints-line{font-family:var(--serif);font-style:italic;color:var(--text-dim);margin-top:14px;max-width:36em;line-height:1.7}
   .prints-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:44px 28px}
   .print-card .pc-frame{aspect-ratio:4/5;overflow:hidden;background:#050807}
@@ -547,7 +548,7 @@
   <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.webp" alt=""></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
-    <h2 class="prints-title reveal">The ones I would hang first.</h2>
+    <h2 class="prints-title reveal" tabindex="-1">The ones I would hang first.</h2>
     <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
   <div class="prints-grid"></div>
@@ -564,7 +565,7 @@
 <section class="about" id="about">
   <div class="about-inner">
     <div class="ch-num reveal">About Krishna</div>
-    <h2 class="about-title reveal">Made in the forests of southern India.</h2>
+    <h2 class="about-title reveal" tabindex="-1">Made in the forests of southern India.</h2>
     <div class="about-grid">
       <div class="about-photo reveal"><img src="about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
       <div class="about-body">
@@ -919,7 +920,7 @@ function renderPrintDetail(p) {
       <div class="pd-frame"><img src="${p.img}" alt="${p.title}" draggable="false"></div>
       <div class="pd-body">
         <div class="scene-mark">${p.subject} &middot; ${scarcity}</div>
-        <h2 class="pd-title">${p.title}</h2>
+        <h2 class="pd-title" tabindex="-1">${p.title}</h2>
         <p class="pd-note">${glue(p.note || '')}</p>
         ${OPEN_EDITION ? `
         <div class="pd-tabs" role="tablist" aria-label="Print options">
@@ -1000,6 +1001,7 @@ function renderPrintDetail(p) {
   update();
 }
 
+let lastRouteHash = null;
 function applyRoute() {
   const h = location.hash;
   const pd = h.startsWith('#print-the-') ? PRINTS.find(p => p.img.replace(/\.(jpg|webp)$/, '') === h.slice(1)) : null;
@@ -1014,6 +1016,13 @@ function applyRoute() {
   } else {
     window.scrollTo(0, 0);
   }
+  if (view !== 'stories' && h !== lastRouteHash) {
+    const heading = view === 'prints' ? document.querySelector('.prints-title')
+      : view === 'about' ? document.querySelector('.about-title')
+      : document.querySelector('.pd-title');
+    if (heading) requestAnimationFrame(() => heading.focus());
+  }
+  lastRouteHash = h;
 }
 document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
   a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
