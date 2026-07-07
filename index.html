@@ -360,7 +360,7 @@
   .pd-sizes{margin-top:5vh;border-top:1px solid var(--hair)}
   .pd-size{display:block;border-bottom:1px solid var(--hair);cursor:pointer}
   .pd-size input{position:absolute;opacity:0;pointer-events:none}
-  .pd-size span{display:flex;align-items:baseline;gap:14px;padding:16px 4px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mist-dim);transition:color .4s ease}
+  .pd-size > span{display:flex;align-items:baseline;gap:14px;padding:16px 4px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mist-dim);transition:color .4s ease}
   .pd-size > span::before{content:'';flex:none;align-self:center;width:9px;height:9px;border:1px solid var(--mist-faint);border-radius:50%;transition:border-color .4s ease,background .4s ease}
   .pd-size input:checked + span::before{background:var(--accent);border-color:var(--accent)}
   .pd-size input:focus-visible + span::before{outline:1px solid var(--moss);outline-offset:3px}
