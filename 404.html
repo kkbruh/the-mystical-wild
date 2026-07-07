@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — The Mystical Wild</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141d16;
+    --moss:#7a8b6f;
+    --mist:#e8e4d8;
+    --mist-dim:rgba(232,228,216,.6);
+    --serif:'Cormorant Garamond','Didot',Georgia,serif;
+    --sans:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--bg);color:var(--mist);font-family:var(--sans);font-weight:300;
+    min-height:100vh;min-height:100svh;min-height:100dvh;
+  }
+  ::selection{background:var(--moss);color:var(--bg)}
+
+  .stage{
+    min-height:100vh;min-height:100svh;min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;gap:clamp(40px,8vw,110px);
+    padding:80px 32px;
+  }
+  .card{
+    position:relative;flex:0 0 auto;
+    width:clamp(260px,36vw,460px);aspect-ratio:2/3;
+    border:1px solid rgba(232,228,216,.18);
+    overflow:hidden;background:#000;
+  }
+  .card img{width:100%;height:100%;object-fit:cover;object-position:48% 42%;filter:saturate(.92) contrast(1.03)}
+
+  .copy{max-width:420px}
+  .code{
+    font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--mist-dim);
+  }
+  h1{
+    font-family:var(--serif);font-weight:400;font-style:italic;
+    font-size:clamp(2rem,4.4vw,3rem);line-height:1.2;margin-top:16px;letter-spacing:.01em;
+  }
+  a.cta{
+    display:inline-block;margin-top:34px;
+    color:var(--moss);text-decoration:none;
+    font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+    border:1px solid var(--moss);padding:14px 30px;transition:background .35s ease,color .35s ease;
+  }
+  a.cta:hover,a.cta:focus-visible{background:var(--moss);color:var(--bg)}
+  a:focus-visible{outline:1px solid var(--moss);outline-offset:4px}
+
+  @media (max-width:720px){
+    .stage{flex-direction:column;gap:40px;padding:64px 32px}
+    .copy{text-align:center}
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .card{animation:fadeUp 1s ease both}
+    .copy{animation:fadeUp 1s ease .15s both}
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="card">
+    <img src="images/lost-trail.webp" alt="A tiger mid-stride at dusk near a waterhole, tongue out mid-lick, looking unimpressed." width="1066" height="1600">
+  </div>
+  <div class="copy">
+    <div class="code">404 &middot; NOT FOUND</div>
+    <h1>Nothing.<br>Not Even a Pugmark.</h1>
+    <a class="cta" href="/">Return</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -9,9 +9,12 @@
 <meta property="og:description" content="Wildlife photography from southern India. Signed fine-art prints, editions of ten.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://krishnaswild.com/">
-<meta property="og:image" content="https://krishnaswild.com/print-the-promise.jpg">
+<meta property="og:image" content="https://krishnaswild.com/images/print-the-promise.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://krishnaswild.com/print-the-promise.webp">
+<meta name="twitter:image" content="https://krishnaswild.com/images/print-the-promise.webp">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -115,10 +118,10 @@
     .topbar{padding:0 20px;height:54px}
   }
 
-  .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .hero{position:relative;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
     position:absolute;inset:0;
-    background:url('the-question-v3.webp') center 35%/cover no-repeat;
+    background:url('images/the-question-v3.webp') center 35%/cover no-repeat;
     opacity:0;filter:saturate(.75) brightness(.62) contrast(1.05);
     animation:heroIn 3.5s ease .9s forwards, creep 38s linear .9s infinite alternate;
   }
@@ -130,7 +133,7 @@
                linear-gradient(to bottom,rgba(4,7,5,.55),transparent 30%,transparent 65%,rgba(4,7,5,.75));
   }
   .hero-copy{position:relative;z-index:2;text-align:center;padding:0 24px}
-  .eyebrow{font-size:11px;letter-spacing:.6em;text-transform:uppercase;color:var(--mist-dim);opacity:0;animation:fadeUp 1.6s ease .4s forwards}
+  .eyebrow{font-size:11px;letter-spacing:.6em;padding-left:.6em;text-transform:uppercase;color:var(--mist-dim);opacity:0;animation:fadeUp 1.6s ease .4s forwards}
   .hero h1{
     font-family:var(--serif);font-weight:400;font-style:italic;
     font-size:clamp(3rem,9vw,7.5rem);line-height:1.02;margin-top:26px;letter-spacing:.14em;
@@ -141,7 +144,7 @@
   @keyframes track{from{letter-spacing:.3em}to{letter-spacing:.06em}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .enter{
-    position:absolute;bottom:11vh;left:0;right:0;width:max-content;margin:0 auto;z-index:2;
+    position:absolute;bottom:11vh;bottom:11svh;left:0;right:0;width:max-content;margin:0 auto;z-index:2;
     text-align:center;padding-left:.5em;
     font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--mist-dim);
     text-decoration:none;opacity:0;animation:fadeUp 1.6s ease 3.4s forwards;
@@ -182,9 +185,9 @@
   .scene-frame:hover .plate{filter:saturate(1) brightness(.78) contrast(1.02)}
   .scene-frame::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(4,7,5,.6) 100%);pointer-events:none}
 
-  .scene-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#050807;min-height:100vh}
-  .scene-split:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
-  .scene-split:nth-child(even) .split-frame{order:2}
+  .scene-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#050807;min-height:100vh;min-height:100svh}
+  .scene-split:nth-of-type(even){grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+  .scene-split:nth-of-type(even) .split-frame{order:2}
   .split-frame{position:relative;display:flex;align-items:flex-start;justify-content:center}
   .split-frame .plate-img{
     position:sticky;top:5vh;height:90vh;width:auto;max-width:88%;object-fit:contain;
@@ -200,12 +203,13 @@
     content:"";position:absolute;top:8vh;bottom:0;width:1px;
     background:var(--hair);pointer-events:none;
   }
-  .scene:nth-child(odd) .scene-story::after{left:calc(100% + clamp(48px, 9vw, 220px))}
-  .scene:nth-child(even) .scene-story::after{right:calc(100% + clamp(48px, 9vw, 220px))}
+  .scene:nth-of-type(odd) .scene-story::after{left:calc(100% + clamp(48px, 9vw, 220px))}
+  .scene:nth-of-type(even) .scene-story::after{right:calc(100% + clamp(48px, 9vw, 220px))}
   @media (max-width:900px){.scene-story::after{display:none}}
-  .scene:nth-child(odd) .scene-story{margin-left:clamp(32px, 8vw, 160px)}
-  .scene:nth-child(even) .scene-story{margin-left:auto;margin-right:clamp(32px, 8vw, 160px)}
+  .scene:nth-of-type(odd) .scene-story{margin-left:clamp(32px, 8vw, 160px)}
+  .scene:nth-of-type(even) .scene-story{margin-left:auto;margin-right:clamp(32px, 8vw, 160px)}
   .scene-mark{font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--accent)}
+  .nw{white-space:nowrap}
   .scene-title{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.7rem,3vw,2.6rem);margin-top:16px;letter-spacing:.03em}
   .scene-text{margin-top:26px}
   .scene-text p{
@@ -308,6 +312,7 @@
   }
   .prints-head{margin:0 0 8vh}
   .prints-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);margin-top:22px;letter-spacing:.02em}
+  .prints-title:focus-visible,.about-title:focus-visible,.pd-title:focus-visible{outline:1px solid var(--moss);outline-offset:6px}
   .prints-line{font-family:var(--serif);font-style:italic;color:var(--text-dim);margin-top:14px;max-width:36em;line-height:1.7}
   .prints-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:44px 28px}
   .print-card .pc-frame{aspect-ratio:4/5;overflow:hidden;background:#050807}
@@ -348,15 +353,19 @@
   .pd-back{display:inline-block;margin-bottom:5vh;color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:.32em;text-transform:uppercase;transition:color .5s ease}
   .pd-back:hover{color:var(--text)}
   .pd-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:64px;align-items:start}
-  .pd-frame{background:#050807}
-  .pd-frame img{width:100%;height:auto;max-height:82vh;object-fit:contain;display:block}
+  .pd-frame{justify-self:center;max-width:100%}
+  .pd-frame img{width:auto;height:auto;max-width:100%;max-height:82vh;object-fit:contain;display:block}
   .pd-title{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(2rem,4vw,3.2rem);margin-top:16px;letter-spacing:.03em}
   .pd-note{font-family:var(--serif);font-style:italic;color:var(--text-dim);margin-top:22px;line-height:1.8;max-width:34em;font-size:1.08rem}
-  .pd-sizes{margin-top:5vh;border-top:1px solid var(--hair)}
+  .pd-sizes{margin-top:5vh;border-top:1px solid var(--hair);padding-top:26px}
   .pd-size{display:block;border-bottom:1px solid var(--hair);cursor:pointer}
   .pd-size input{position:absolute;opacity:0;pointer-events:none}
-  .pd-size span{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 4px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mist-dim);transition:color .4s ease}
-  .pd-size em{font-style:normal;font-family:var(--sans);letter-spacing:.14em;color:var(--mist);display:inline-flex;align-items:baseline;gap:7px;white-space:nowrap}
+  .pd-size > span{display:flex;align-items:baseline;gap:14px;padding:16px 4px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mist-dim);transition:color .4s ease}
+  .pd-size > span::before{content:'';flex:none;align-self:center;width:9px;height:9px;border:1px solid var(--mist-faint);border-radius:50%;transition:border-color .4s ease,background .4s ease}
+  .pd-size input:checked + span::before{background:var(--accent);border-color:var(--accent)}
+  .pd-size input:focus-visible + span::before{outline:1px solid var(--moss);outline-offset:3px}
+  .pd-mat:not(:last-child) .pd-size:last-of-type{border-bottom:0}
+  .pd-size em{font-style:normal;font-family:var(--sans);letter-spacing:.14em;color:var(--mist);display:inline-flex;align-items:baseline;gap:7px;white-space:nowrap;margin-left:auto;text-align:right}
   .pd-size input:checked + span{color:var(--text)}
   .pd-size input:checked + span em{color:var(--accent)}
   .pd-size:hover span{color:var(--text-dim)}
@@ -373,12 +382,18 @@
   .pd-tab:hover{color:var(--text)}
   .pd-panel .pd-sizes{margin-top:0;border-top:0}
   .pd-size .fx{color:var(--mist-dim);letter-spacing:.08em;white-space:nowrap}
+  @media (max-width:360px){
+    .pd-size em{flex-wrap:wrap;justify-content:flex-end;row-gap:4px}
+    .pd-size .fx{flex:0 0 100%;text-align:right}
+  }
   .pd-mat + .pd-mat{margin-top:34px;padding-top:26px;border-top:1px solid var(--hair)}
-  .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
-  .pd-mat-desc{font-family:var(--serif);font-style:italic;font-size:.92rem;line-height:1.75;color:var(--text-dim);max-width:56ch;margin-bottom:16px}
+  .pd-mat-label{font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;color:var(--text);margin-bottom:10px}
+  .pd-mat-desc{font-family:var(--serif);font-style:italic;font-size:.98rem;line-height:1.75;color:var(--text-dim);max-width:56ch;margin-bottom:16px}
   .pd-mat-note{font-family:var(--sans);font-size:11px;color:var(--text-dim);margin-top:12px;letter-spacing:.02em}
   .pd-panel .pd-open-line{margin-top:22px}
-  .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
+  .pd-selection{margin-top:5vh;font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);line-height:2}
+  .pd-selection b{font-weight:400;color:var(--accent)}
+  .pd-actions{display:flex;gap:34px;margin-top:22px;flex-wrap:wrap}
   .pd-terms{margin-top:5vh;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
   .pd-open-line{margin-top:14px;font-family:var(--serif);font-style:italic;color:var(--text-dim);line-height:1.8;max-width:34em;font-size:1rem}
 
@@ -396,9 +411,12 @@
 
   .hero-nav{
     position:absolute;bottom:calc(11vh + 108px);left:0;right:0;z-index:4;
-    display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;
+    display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;
     padding:0 24px;
   }
+  .hero-nav-side{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .hero-nav-left{justify-content:flex-end}
+  .hero-nav-right{justify-content:flex-start}
   .hero-nav a{
     color:var(--accent);text-decoration:none;
     font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;
@@ -417,8 +435,11 @@
   }
   .prints-nudge a:hover{color:var(--text);border-color:var(--mist-dim)}
   @media (max-width:640px){
-    .hero-nav{flex-direction:column;gap:18px}
+    .hero-nav{display:flex;flex-direction:column;gap:18px}
     .hero-nav span{display:none}
+  }
+  @media (max-width:480px){
+    .eyebrow{font-size:10px;letter-spacing:.3em;padding-left:.3em}
   }
 
   .about{padding:16vh 32px 20vh}
@@ -447,7 +468,7 @@
     .about-photo{max-width:420px;margin-bottom:40px}
   }
 
-  footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
+  footer{min-height:92vh;min-height:92svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
   footer a.cta{
@@ -455,7 +476,7 @@
     border:1px solid var(--accent);padding:var(--cta-pad);transition:background .6s ease,color .6s ease,border-color .6s ease;
   }
   footer a.cta:hover{background:var(--mist);color:var(--forest);border-color:var(--mist)}
-  footer .fin{margin-top:11vh;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(232,228,216,.3)}
+  footer .fin{margin-top:11vh;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--mist-dim)}
 
   a:focus-visible{outline:1px solid var(--moss);outline-offset:4px}
   img,.plate,.hero-img{
@@ -479,9 +500,9 @@
     .ch-head{padding:0 20px}
     .scene-frame{height:64vh}
     .scene-story{padding:6vh 20px 0}
-    .scene:nth-child(odd) .scene-story,
-    .scene:nth-child(even) .scene-story{margin-left:0;margin-right:0}
-    .scene-text p{font-size:1.15rem;line-height:1.85}
+    .scene:nth-of-type(odd) .scene-story,
+    .scene:nth-of-type(even) .scene-story{margin-left:0;margin-right:0}
+    .scene-text p{font-size:1.15rem;line-height:1.7}
     .scene-frame.empty{margin:0 20px}
     .triptych{padding:0 20px}
     .trip-grid{grid-template-columns:1fr;gap:36px}
@@ -525,11 +546,15 @@
     <h1>The Mystical Wild</h1>
   </div>
   <nav class="hero-nav" aria-label="Sections">
-    <a href="#ch1">Stories of the Wild</a>
-    <span aria-hidden="true">&middot;</span>
+    <div class="hero-nav-side hero-nav-left">
+      <a href="#ch1">Stories of the Wild</a>
+      <span aria-hidden="true">&middot;</span>
+    </div>
     <a class="nav-prints" href="#prints">Recommended Prints</a>
-    <span aria-hidden="true">&middot;</span>
-    <a href="#about">About Krishna</a>
+    <div class="hero-nav-side hero-nav-right">
+      <span aria-hidden="true">&middot;</span>
+      <a href="#about">About Krishna</a>
+    </div>
   </nav>
   <a class="enter" href="#ch1">Enter</a>
 </header>
@@ -537,10 +562,10 @@
 <main id="chapters"></main>
 
 <section class="prints" id="prints">
-  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.webp" alt=""></div>
+  <div class="prints-hero" aria-hidden="true"><img src="images/print-the-warning.webp" alt=""></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
-    <h2 class="prints-title reveal">The ones I would hang first.</h2>
+    <h2 class="prints-title reveal" tabindex="-1">The ones I would hang first.</h2>
     <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
   <div class="prints-grid"></div>
@@ -557,9 +582,9 @@
 <section class="about" id="about">
   <div class="about-inner">
     <div class="ch-num reveal">About Krishna</div>
-    <h2 class="about-title reveal">Made in the forests of southern India.</h2>
+    <h2 class="about-title reveal" tabindex="-1">Made in the forests of southern India.</h2>
     <div class="about-grid">
-      <div class="about-photo reveal"><img src="about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
+      <div class="about-photo reveal"><img src="images/about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
       <div class="about-body">
         <p class="about-line reveal">I create dreamlike images.</p>
         <div class="about-text reveal">
@@ -615,19 +640,19 @@ const OPEN_EDITION = null;  // open framed print retired Jul 2026 — signed edi
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
-  { pos: '40% 52%', img: 'print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
-  { pos: '42% 55%', img: 'print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
-  { img: 'print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
-  { pos: '38% 46%', img: 'print-the-flame.webp',
+  { pos: '40% 52%', img: 'images/print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
+  { pos: '42% 55%', img: 'images/print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
+  { img: 'images/print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
+  { pos: '38% 46%', img: 'images/print-the-flame.webp',
     title: 'The Flame', noLarge: true, note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
     subject: 'Hawk-eagle', remaining: 10 },
-  { img: 'print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
-  { pos: '58% 45%', img: 'print-the-riverbed.webp', title: 'The Riverbed', noLarge: true, note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
-  { pos: '46% 62%', img: 'print-the-blue-hour.webp',
+  { img: 'images/print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
+  { pos: '58% 45%', img: 'images/print-the-riverbed.webp', title: 'The Riverbed', noLarge: true, note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { pos: '46% 62%', img: 'images/print-the-blue-hour.webp',
     title: 'The Blue Hour', ar: 4/3, note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
     subject: 'Gaur', remaining: 10 },
-  { img: 'print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
-  { img: 'print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
+  { img: 'images/print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
+  { img: 'images/print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -641,7 +666,7 @@ const CHAPTERS = [
     whisperAfter: "The monsoon doesn't take sides. <em>It only takes.</em>",
     scenes: [
       {
-        img: 'the-dominant-v3.webp',
+        img: 'images/the-dominant-v3.webp',
         title: 'The Dominant',
         meta: 'The male · Monsoon 2025',
         story: `He walks like the rain belongs to him. In these woods, it mostly does — every trail marked, every challenger remembered.
@@ -649,7 +674,7 @@ const CHAPTERS = [
 The monsoon hides many things. A cub that isn't his is one of them. He knows it's out here. He hasn't found it yet.`
       },
       {
-        img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/9553b50b-5ce8-4223-bfa8-d8e8e1ddbdf0_rw_1920.JPG?h=ae1d4315b89a3e6526a94bdae1fe41dc',
+        img: 'images/the-watchful.webp',
         portrait: true,
         title: 'The Watchful',
         meta: 'The mother · Monsoon 2025',
@@ -662,20 +687,20 @@ A mother in these woods doesn't fight the odds. She rearranges them.`
         intro: 'The rest of the forest takes sides.',
         items: [
           {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/5aab7424-d5ab-431c-bb65-2426aec95e13_rw_1920.jpg?h=370f14b3c4ecf31c378ef9b8f9ffd99a',
+            img: 'images/the-cautious.webp',
             pos: '36% 62%',
             title: 'The Cautious',
             line: 'It shows the forest only its eyes. It has crossed the male\'s path once — never twice.'
           },
           {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/7e572bf9-9ed1-4ab6-9109-c84e9c2179d3_rw_1920.jpg?h=53a67999438845fd4b39e7acc09e4fde',
+            img: 'images/the-sentinel.webp',
             title: 'The Sentinel',
             line: 'One alarm call from the old watcher, and everything that hides knows to hide deeper.'
           }
         ]
       },
       {
-        img: 'the-question-v3.webp',
+        img: 'images/the-question-v3.webp',
         title: 'The Question',
         meta: 'Mother and cub · Monsoon 2025',
         story: `The rains will end. The male will keep searching. She will keep moving him — four seconds at a time.
@@ -693,7 +718,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     whisperAfter: 'A kingdom is not held by force alone. <em>It is held by presence.</em>',
     scenes: [
       {
-        img: 'first-light.webp',
+        img: 'images/first-light.webp',
         title: 'First Light',
         meta: 'Dawn · Winter 2025',
         story: `The day begins the way every reign begins — with a claim. Spine bowed, claws in the driftwood, the river mist erasing everything that is not him.
@@ -701,7 +726,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
 The forest can wait. It will anyway.`
       },
       {
-        img: 'the-fog.webp',
+        img: 'images/the-fog.webp',
         title: 'The Fog',
         meta: 'Morning · Winter 2025',
         story: `The mist takes the forest every morning, and every morning he walks straight through it — the only thing in the whiteness that moves like it knows where it is going.`
@@ -711,13 +736,13 @@ The forest can wait. It will anyway.`
         intro: 'The court keeps its distance.',
         items: [
           {
-            img: 'pretender.webp',
+            img: 'images/pretender.webp',
             pos: '42% 40%',
             title: 'The Pretender',
             line: 'Second to the throne, and it knows it. It keeps to the high branches and lets the moonlight do the hiding.'
           },
           {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/14a17bdf-ffb7-491c-b717-613e32df480f_rw_1920.JPG?h=f2406557d686544be378b57c789bed44',
+            img: 'images/the-quiet-rival.webp',
             pos: '55% 70%',
             title: 'The Quiet Rival',
             line: 'It waits for dark to move. Even then, it checks twice.'
@@ -725,21 +750,21 @@ The forest can wait. It will anyway.`
         ]
       },
       {
-        img: 'the-ambush-v3.webp',
+        img: 'images/the-ambush-v3.webp',
         portrait: true,
         title: 'The Ambush',
         meta: 'The king · Winter 2025',
         story: `One eye above the grass. That is all the warning the forest ever gets.`
       },
       {
-        img: 'the-claim.webp',
+        img: 'images/the-claim.webp',
         portrait: true,
         title: 'The Claim',
         meta: 'The king · Winter 2025',
         story: `The chase is the story everyone tells. This is the part nobody stays for. She ate without hurry &mdash; and even at her own table, she watched.`
       },
       {
-        img: 'king-at-night.webp',
+        img: 'images/king-at-night.webp',
         portrait: true,
         title: 'The King at Night',
         meta: 'After dark · Winter 2025',
@@ -760,7 +785,7 @@ Long may he walk.`
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
     scenes: [
       {
-        img: 'the-procession.webp',
+        img: 'images/the-procession.webp',
         portrait: true,
         title: 'The Procession',
         meta: 'The tusker · Monsoon 2025',
@@ -769,7 +794,7 @@ Long may he walk.`
 An arrangement older than either of them.`
       },
       {
-        img: 'memory.webp',
+        img: 'images/memory.webp',
         portrait: true,
         title: 'Memory',
         meta: 'Up close · Winter 2025',
@@ -778,14 +803,14 @@ An arrangement older than either of them.`
 They say an elephant forgets nothing. Standing here, you believe it.`
       },
       {
-        img: 'the-dust-bath.webp',
+        img: 'images/the-dust-bath.webp',
         portrait: true,
         title: 'The Dust Bath',
         meta: 'The ritual · Summer 2025',
         story: `Trunk to the sky, the earth thrown over his own back like a blessing. The dust is armour, sunscreen, ceremony — the forest dressing its largest resident in itself.`
       },
       {
-        img: 'the-gathering.webp',
+        img: 'images/the-gathering.webp',
         portrait: true,
         title: 'The Gathering',
         meta: 'The herd · Monsoon 2025',
@@ -804,7 +829,9 @@ const ICON_WA = '<svg viewBox="0 0 24 24" width="17" height="17" fill="currentCo
 const ICON_IG = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>';
 const collectIcons = (t) => `<a class="collect-icon" href="${waSceneHref(t)}" target="_blank" rel="noopener" aria-label="Enquire about ${t} on WhatsApp">${ICON_WA}</a><a class="collect-icon" href="${IG_URL}" target="_blank" rel="noopener" aria-label="Krishna on Instagram">${ICON_IG}</a>`;
 const collectHref = (chTitle, n, t) => `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${chTitle} · Scene ${pad(n)} · ${t}`)}`;
-const paragraphs = s => s.trim().split(/\n\s*\n/).map(p => `<p>${p.trim()}</p>`).join('');
+const nw = s => s.split(/ (?:&middot;|·) /).map(x => `<span class="nw">${x}</span>`).join(' &middot; ');
+const glue = s => s.replace(/ (—|&mdash;)/g, ' $1');
+const paragraphs = s => s.trim().split(/\n\s*\n/).map(p => `<p>${glue(p.trim())}</p>`).join('');
 
 const main = document.getElementById('chapters');
 let html = `<div class="prologue"><p class="reveal">${PROLOGUE}</p></div>`;
@@ -835,7 +862,7 @@ CHAPTERS.forEach(ch => {
       return;
     }
     sceneNo++;
-    const storyInner = `<div class="scene-mark reveal">Scene ${pad(sceneNo)} · ${sc.meta}</div><h3 class="scene-title reveal">${sc.title}</h3><div class="scene-text reveal">${paragraphs(sc.story)}</div>${sc.img ? `<div class="collect-row reveal"><a class="collect" href="${collectHref(ch.title, sceneNo, sc.title)}">Collect this frame</a>${collectIcons(sc.title)}</div>` : ''}`;
+    const storyInner = `<div class="scene-mark reveal">${nw(`Scene ${pad(sceneNo)} · ${sc.meta}`)}</div><h3 class="scene-title reveal">${sc.title}</h3><div class="scene-text reveal">${paragraphs(sc.story)}</div>${sc.img ? `<div class="collect-row reveal"><a class="collect" href="${collectHref(ch.title, sceneNo, sc.title)}">Collect this frame</a>${collectIcons(sc.title)}</div>` : ''}`;
     if (sc.img && sc.portrait) {
       html += `<article class="scene scene-split"><div class="split-frame frame-reveal"><img class="plate-img" src="${sc.img}" alt="${sc.title}"></div><div class="split-story">${storyInner}</div></article>`;
       return;
@@ -854,13 +881,13 @@ const inr = n => '\u20b9' + n.toLocaleString('en-IN');
 document.querySelector('.prints-grid').innerHTML = PRINTS.map(p => {
   const startPrice = PRICING.matte.sizes[0][1];
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
-  const id = p.img.replace(/\.(jpg|webp)$/, '');
+  const id = p.img.replace(/^.*\//, '').replace(/\.(jpg|webp)$/, '');
   return `
   <div class="print-card reveal">
     <a class="pc-link" href="#${id}">
       <div class="pc-frame"><img src="${p.img}" alt="${p.title} — ${p.subject}" loading="lazy" draggable="false"${p.pos ? ` style="object-position:${p.pos}"` : ''}></div>
       <div class="pc-title">${p.title}</div>
-      <div class="pc-ed">${p.subject} &middot; ${scarcity}</div>
+      <div class="pc-ed">${nw(`${p.subject} &middot; ${scarcity}`)}</div>
       <div class="pc-price">From ${inr(startPrice)}</div>
       <span class="pc-view">View print</span>
     </a>
@@ -877,7 +904,10 @@ document.querySelectorAll('.js-mailto').forEach(a => a.href = 'mailto:' + EMAIL)
 
 // Deterrent: no right-click-save / drag on imagery (screen res only; originals never leave the archive)
 document.addEventListener('contextmenu', e => {
-  if (e.target.closest('img, .plate, .pc-frame, .split-frame, .trip-frame, .hero-img')) e.preventDefault();
+  if (e.target.closest('img, .plate, .pc-frame, .split-frame, .trip-frame, .hero-img, .prints-hero')) e.preventDefault();
+});
+document.addEventListener('dragstart', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
 });
 document.querySelectorAll('img').forEach(i => i.setAttribute('draggable', 'false'));
 
@@ -898,7 +928,7 @@ function renderPrintDetail(p) {
   const dims = L => `${Math.round(L / ar * 2) / 2} &times; ${L} in`;
   const sizeRows = (mat, m) => m.sizes
     .filter(([L]) => !(p.noLarge && L === 36))
-    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}"${mat==='matte'&&i===0?' checked':''}><span>${dims(L)}<em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
+    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}"${mat==='matte'&&i===0?' checked':''}><span><span class="nw">${dims(L)}</span><em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
   const scarcity = p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
   const el = document.getElementById('print-detail');
   el.innerHTML = `
@@ -907,8 +937,8 @@ function renderPrintDetail(p) {
       <div class="pd-frame"><img src="${p.img}" alt="${p.title}" draggable="false"></div>
       <div class="pd-body">
         <div class="scene-mark">${p.subject} &middot; ${scarcity}</div>
-        <h2 class="pd-title">${p.title}</h2>
-        <p class="pd-note">${p.note || ''}</p>
+        <h2 class="pd-title" tabindex="-1">${p.title}</h2>
+        <p class="pd-note">${glue(p.note || '')}</p>
         ${OPEN_EDITION ? `
         <div class="pd-tabs" role="tablist" aria-label="Print options">
           <button class="pd-tab" role="tab" id="pd-tab-signed" aria-controls="pd-panel-signed" aria-selected="true" tabindex="0">Signed edition</button>
@@ -918,12 +948,12 @@ function renderPrintDetail(p) {
           <div class="pd-sizes"${OPEN_EDITION ? '' : ' style="margin-top:5vh;border-top:1px solid var(--hair)"'}>
             <div class="pd-mat">
               <div class="pd-mat-label">${PRICING.matte.label}</div>
-              <p class="pd-mat-desc">${PRICING.matte.desc}</p>
+              <p class="pd-mat-desc">${glue(PRICING.matte.desc)}</p>
               ${sizeRows('matte', PRICING.matte)}
             </div>
             <div class="pd-mat">
               <div class="pd-mat-label">${PRICING.canvas.label}</div>
-              <p class="pd-mat-desc">${PRICING.canvas.desc}</p>
+              <p class="pd-mat-desc">${glue(PRICING.canvas.desc)}</p>
               ${sizeRows('canvas', PRICING.canvas)}
               <div class="pd-mat-note">${PRICING.canvas.note}</div>
             </div>
@@ -935,6 +965,7 @@ function renderPrintDetail(p) {
           <p class="pd-open-line">The same frame without the signature or the number &mdash; ${OPEN_EDITION.spec}, ${inr(OPEN_EDITION.price)}. Unlimited, and made for walls that simply want the wild.</p>
           <div class="pd-terms">Framed &middot; Matte finish &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>` : ''}
+        <div class="pd-selection" id="pd-selection"></div>
         <div class="pd-actions">
           <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="collect" id="pd-mail">Enquire by email</a>
@@ -945,16 +976,20 @@ function renderPrintDetail(p) {
   const tabs = Array.from(el.querySelectorAll('.pd-tab'));
   const activeTab = () => el.querySelector('.pd-tab[aria-selected="true"]')?.id === 'pd-tab-open' ? 'open' : 'signed';
   const update = () => {
-    let msg, subject;
+    let msg, subject, selHTML;
     if (activeTab() === 'open' && OPEN_EDITION) {
+      selHTML = `Selected &mdash; <b>Open print &middot; ${OPEN_EDITION.spec} &middot; ${inr(OPEN_EDITION.price)}</b>`;
       msg = `Hi Krishna — I'd like to enquire about the open framed print of "${p.title}".`;
       subject = `Open print enquiry — ${p.title}`;
     } else {
-      tmp.innerHTML = el.querySelector('input[name="pd-size"]:checked').value;
+      const checked = el.querySelector('input[name="pd-size"]:checked');
+      tmp.innerHTML = checked.value;
       const size = tmp.value;
+      selHTML = `Selected &mdash; <b>${checked.value}</b>`;
       msg = `Hi Krishna — I'd like to enquire about the print "${p.title}", ${size}.`;
       subject = `Print enquiry — ${p.title} (${size})`;
     }
+    el.querySelector('#pd-selection').innerHTML = selHTML;
     const wa = el.querySelector('#pd-wa');
     if (WHATSAPP) wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
     else wa.style.display = 'none';
@@ -983,9 +1018,10 @@ function renderPrintDetail(p) {
   update();
 }
 
+let lastRouteHash = null;
 function applyRoute() {
   const h = location.hash;
-  const pd = h.startsWith('#print-the-') ? PRINTS.find(p => p.img.replace(/\.(jpg|webp)$/, '') === h.slice(1)) : null;
+  const pd = h.startsWith('#print-the-') ? PRINTS.find(p => p.img.replace(/^.*\//, '').replace(/\.(jpg|webp)$/, '') === h.slice(1)) : null;
   if (pd) renderPrintDetail(pd);
   const view = pd ? 'print' : h === '#prints' ? 'prints' : h === '#about' ? 'about' : 'stories';
   const changed = document.body.dataset.view !== view;
@@ -997,6 +1033,13 @@ function applyRoute() {
   } else {
     window.scrollTo(0, 0);
   }
+  if (view !== 'stories' && h !== lastRouteHash) {
+    const heading = view === 'prints' ? document.querySelector('.prints-title')
+      : view === 'about' ? document.querySelector('.about-title')
+      : document.querySelector('.pd-title');
+    if (heading) requestAnimationFrame(() => heading.focus());
+  }
+  lastRouteHash = h;
 }
 document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
   a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
@@ -1039,8 +1082,6 @@ if (!reduced && plates.length) {
   }, { passive: true });
   parallax();
 }
-document.addEventListener('contextmenu',e=>{if(e.target.closest('img,.plate,.prints-hero'))e.preventDefault()});
-document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
 </script>
 </body>
 </html>
