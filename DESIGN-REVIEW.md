@@ -82,7 +82,7 @@ The chapters and prints grid exist only as JS objects injected into an empty `<m
 
 ### 6. Smaller code and design nits
 
-- **Duplicate deterrent code:** the contextmenu/drag blockers are registered twice (`index.html:879–882` and `1042–1043`). One block should go.
+- **Duplicate deterrent code:** the contextmenu/drag blockers are registered twice (`index.html:879–882` and `1042–1043`). One block should go. ✅ *Fixed 2026-07-08.* Merged into the single block near the top (`index.html:887-892`), keeping the `.prints-hero` selector and `dragstart` handler that only existed in the duplicate. Verified in headless Chrome (`puppeteer-core` against system Chrome): dispatching `contextmenu`/`dragstart` on the live page now triggers exactly one `preventDefault()` call per event type, with no console errors.
 - **Authoring text can leak to visitors:** the empty-scene placeholder renders "Add the image URL in the CHAPTERS config — the scene is ready for it." (`index.html:845`). All scenes currently have images so it never shows, but the hint should be dev-facing only.
 - **`.scene:nth-child(odd/even)` is fragile** (`index.html:203–207`): it counts *all* siblings inside the chapter, so the `.ch-head`, triptychs, and whispers shift the parity. The left/right story alternation isn't deterministic per scene — it happens to look fine now but will surprise you when scenes are reordered. Alternate with a class or `:nth-of-type` on articles instead.
 - **Contrast:** the faintest text tier (`--text-faint`, 0.32 alpha) at 9–10px letterspaced caps (the `Fin` line, some terms text) is below WCAG AA. The 0.55 "dim" tier is fine; keep the faint tier decorative-only.
@@ -123,5 +123,5 @@ Notes:
 2. Localize the four portfolio-CDN images.
 3. Add a favicon, `width`/`height` on images, hero preload, and `100svh` for the hero.
 4. ~~Fix the real-device mobile findings: scene-mark orphan wrapping, mobile line-height, and the size-picker affordance/double-hairline on the print page.~~ **Done 2026-07-08** (see mobile findings §6–7).
-5. Fold in the small code fixes: duplicate listeners, `nth-child` alternation, faint-text contrast, focus on view switch.
+5. Fold in the small code fixes: ~~duplicate listeners~~ (done 2026-07-08), `nth-child` alternation, faint-text contrast, focus on view switch.
 6. (Later, if worth it) `srcset` for mobile, pre-rendered HTML, JSON-LD for prints.
