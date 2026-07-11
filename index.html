@@ -518,6 +518,11 @@
   .about-text p{font-family:var(--serif);font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.9;color:var(--text-dim)}
   .about-text p + p{margin-top:1.5em}
   .about-links{display:flex;gap:38px;flex-wrap:wrap;align-items:center;margin-top:6vh}
+  .field{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:7vh}
+  .field figure{margin:0}
+  .field img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:saturate(.96)}
+  .field figcaption{margin-top:11px;font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-dim);line-height:1.9}
+  @media (max-width:760px){.field{grid-template-columns:repeat(2,1fr);gap:16px}}
   .about-links a{
     display:inline-block;color:var(--accent);text-decoration:none;
     font-family:var(--sans);font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;
@@ -675,6 +680,15 @@
         <div class="about-links reveal">
           <a class="cta js-mailto" href="#">Write to me</a>
           <a class="cta about-ig" href="https://www.instagram.com/krishnakarthikeyan" target="_blank" rel="noopener">Instagram &middot; @krishnakarthikeyan</a>
+        </div>
+        <div class="ch-num reveal" style="margin-top:11vh">From the field</div>
+        <div class="field reveal">
+          <figure><img src="images/field-first-safari.webp" alt="Krishna as a boy on his first safari, with his mother" loading="lazy"><figcaption>The first safari &middot; with Amma</figcaption></figure>
+          <figure><img src="images/field-amma.webp" alt="Krishna and his mother on safari, years later" loading="lazy"><figcaption>Years later &middot; same seat, same Amma</figcaption></figure>
+          <figure><img src="images/field-corbett.webp" alt="Krishna with his driver and guide at Jim Corbett" loading="lazy"><figcaption>The men who find the tigers &middot; Corbett</figcaption></figure>
+          <figure><img src="images/field-tour.webp" alt="Krishna with the group on a photo tour he led" loading="lazy"><figcaption>A tour I led &middot; the whole jeep</figcaption></figure>
+          <figure><img src="images/field-jungle-lodges.webp" alt="Krishna gifting a framed print of The Warning to the Jungle Lodges team, Bandipur" loading="lazy"><figcaption>The Warning, gifted &middot; Jungle Lodges, Bandipur</figcaption></figure>
+          <figure><img src="images/field-rfo.webp" alt="Krishna presenting The Warning to the Range Forest Officer, Bandipur" loading="lazy"><figcaption>With the RFO &middot; Bandipur</figcaption></figure>
         </div>
       </div>
     </div>
