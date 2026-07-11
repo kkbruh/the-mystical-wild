@@ -118,7 +118,7 @@
   .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .hero-img{
     position:absolute;inset:0;
-    background:url('the-question-v3.webp') center 35%/cover no-repeat;
+    background:url('images/the-question-v3.webp') center 35%/cover no-repeat;
     opacity:0;filter:saturate(.75) brightness(.62) contrast(1.05);
     animation:heroIn 3.5s ease .9s forwards, creep 38s linear .9s infinite alternate;
   }
@@ -339,8 +339,9 @@
   body[data-view="stories"] .print-detail,
   body[data-view="prints"] .print-detail,
   body[data-view="about"] .print-detail{display:none}
-  body[data-view="stories"] main,
-  body[data-view="stories"] footer{display:none}
+  body[data-view="stories"] footer,
+  body[data-view="stories"] #ch2,
+  body[data-view="stories"] #ch3{display:none}
   body[data-view="chapter"] .hero,
   body[data-view="chapter"] .prints,
   body[data-view="chapter"] .about,
@@ -562,7 +563,7 @@
 <main id="chapters"></main>
 
 <section class="prints" id="prints" data-ptab="rec">
-  <div class="prints-hero" aria-hidden="true"><img src="print-the-warning.webp" alt=""></div>
+  <div class="prints-hero" aria-hidden="true"><img src="images/print-the-warning.webp" alt=""></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
@@ -590,7 +591,7 @@
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
-      <div class="about-photo reveal"><img src="about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
+      <div class="about-photo reveal"><img src="images/about-krishna.webp" alt="Krishna Karthikeyan in the field"></div>
       <div class="about-body">
         <p class="about-line reveal">I create dreamlike images.</p>
         <div class="about-text reveal">
@@ -643,40 +644,40 @@ const PRICING = {  // signed edition — sizes are [long edge in inches, ₹]; a
   canvas: { label: 'Hahnem&uuml;hle Daguerre canvas', desc: 'Hahnem&uuml;hle has made fine-art paper in Germany since 1584 &mdash; the archival standard in galleries worldwide. Daguerre is their heavyweight canvas: painterly depth, no glass between you and the animal. Stretched, it hangs like a gallery piece &mdash; made for the wall the room is built around.', note: 'Gallery wrap not included &mdash; available at extra cost', sizes: [[18, 8500], [24, 13500], [36, 26500]] },
 };
 const MORE_PRINTS = [  // frames from the chapters, available on enquiry — { id, img, title, subject, enquire: true, pos? }
-  { id: 'print-the-dominant',      img: 'the-dominant-v3.webp',  title: 'The Dominant',      subject: 'The male &middot; Monsoon 2025',      enquire: true },
-  { id: 'print-the-watchful',      img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/9553b50b-5ce8-4223-bfa8-d8e8e1ddbdf0_rw_1920.JPG?h=ae1d4315b89a3e6526a94bdae1fe41dc', title: 'The Watchful', subject: 'The mother &middot; Monsoon 2025', enquire: true },
-  { id: 'print-the-cautious',      img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/5aab7424-d5ab-431c-bb65-2426aec95e13_rw_1920.jpg?h=370f14b3c4ecf31c378ef9b8f9ffd99a', title: 'The Cautious', subject: 'From Survival &middot; Monsoon 2025', pos: '36% 62%', enquire: true },
-  { id: 'print-the-sentinel',      img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/7e572bf9-9ed1-4ab6-9109-c84e9c2179d3_rw_1920.jpg?h=53a67999438845fd4b39e7acc09e4fde', title: 'The Sentinel', subject: 'From Survival &middot; Monsoon 2025', enquire: true },
-  { id: 'print-the-question',      img: 'the-question-v3.webp',  title: 'The Question',      subject: 'Mother and cub &middot; Monsoon 2025', enquire: true },
-  { id: 'print-first-light',       img: 'first-light.webp',      title: 'First Light',       subject: 'Dawn &middot; Winter 2025',           enquire: true },
-  { id: 'print-the-fog',           img: 'the-fog.webp',          title: 'The Fog',           subject: 'Morning &middot; Winter 2025',        enquire: true },
-  { id: 'print-the-pretender',     img: 'pretender.webp',        title: 'The Pretender',     subject: 'From The Reign &middot; Winter 2025', pos: '42% 40%', enquire: true },
-  { id: 'print-the-quiet-rival',   img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/14a17bdf-ffb7-491c-b717-613e32df480f_rw_1920.JPG?h=f2406557d686544be378b57c789bed44', title: 'The Quiet Rival', subject: 'From The Reign &middot; Winter 2025', pos: '55% 70%', enquire: true },
-  { id: 'print-the-ambush',        img: 'the-ambush-v3.webp',    title: 'The Ambush',        subject: 'The king &middot; Winter 2025',       enquire: true },
-  { id: 'print-the-claim',         img: 'the-claim.webp',        title: 'The Claim',         subject: 'The king &middot; Winter 2025',       enquire: true },
-  { id: 'print-the-king-at-night', img: 'king-at-night.webp',    title: 'The King at Night', subject: 'After dark &middot; Winter 2025',     enquire: true },
-  { id: 'print-the-procession',    img: 'the-procession.webp',   title: 'The Procession',    subject: 'The tusker &middot; Monsoon 2025',    enquire: true },
-  { id: 'print-memory',            img: 'memory.webp',           title: 'Memory',            subject: 'Up close &middot; Winter 2025',       enquire: true },
-  { id: 'print-the-dust-bath',     img: 'the-dust-bath.webp',    title: 'The Dust Bath',     subject: 'The ritual &middot; Summer 2025',     enquire: true },
-  { id: 'print-the-gathering',     img: 'the-gathering.webp',    title: 'The Gathering',     subject: 'The herd &middot; Monsoon 2025',      enquire: true },
+  { id: 'print-the-dominant',      img: 'images/the-dominant-v3.webp',  title: 'The Dominant',      subject: 'The male &middot; Monsoon 2025',      enquire: true },
+  { id: 'print-the-watchful',      img: 'images/the-watchful.webp', title: 'The Watchful', subject: 'The mother &middot; Monsoon 2025', enquire: true },
+  { id: 'print-the-cautious',      img: 'images/the-cautious.webp', title: 'The Cautious', subject: 'From Survival &middot; Monsoon 2025', pos: '36% 62%', enquire: true },
+  { id: 'print-the-sentinel',      img: 'images/the-sentinel.webp', title: 'The Sentinel', subject: 'From Survival &middot; Monsoon 2025', enquire: true },
+  { id: 'print-the-question',      img: 'images/the-question-v3.webp',  title: 'The Question',      subject: 'Mother and cub &middot; Monsoon 2025', enquire: true },
+  { id: 'print-first-light',       img: 'images/first-light.webp',      title: 'First Light',       subject: 'Dawn &middot; Winter 2025',           enquire: true },
+  { id: 'print-the-fog',           img: 'images/the-fog.webp',          title: 'The Fog',           subject: 'Morning &middot; Winter 2025',        enquire: true },
+  { id: 'print-the-pretender',     img: 'images/pretender.webp',        title: 'The Pretender',     subject: 'From The Reign &middot; Winter 2025', pos: '42% 40%', enquire: true },
+  { id: 'print-the-quiet-rival',   img: 'images/the-quiet-rival.webp', title: 'The Quiet Rival', subject: 'From The Reign &middot; Winter 2025', pos: '55% 70%', enquire: true },
+  { id: 'print-the-ambush',        img: 'images/the-ambush-v3.webp',    title: 'The Ambush',        subject: 'The king &middot; Winter 2025',       enquire: true },
+  { id: 'print-the-claim',         img: 'images/the-claim.webp',        title: 'The Claim',         subject: 'The king &middot; Winter 2025',       enquire: true },
+  { id: 'print-the-king-at-night', img: 'images/king-at-night.webp',    title: 'The King at Night', subject: 'After dark &middot; Winter 2025',     enquire: true },
+  { id: 'print-the-procession',    img: 'images/the-procession.webp',   title: 'The Procession',    subject: 'The tusker &middot; Monsoon 2025',    enquire: true },
+  { id: 'print-memory',            img: 'images/memory.webp',           title: 'Memory',            subject: 'Up close &middot; Winter 2025',       enquire: true },
+  { id: 'print-the-dust-bath',     img: 'images/the-dust-bath.webp',    title: 'The Dust Bath',     subject: 'The ritual &middot; Summer 2025',     enquire: true },
+  { id: 'print-the-gathering',     img: 'images/the-gathering.webp',    title: 'The Gathering',     subject: 'The herd &middot; Monsoon 2025',      enquire: true },
 ];
 const OPEN_EDITION = null;  // open framed print retired Jul 2026 — signed editions only. To bring back: { price: 2999, spec: 'A4 &middot; framed &middot; matte' }
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
-  { pos: '40% 52%', img: 'print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
-  { pos: '42% 55%', img: 'print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
-  { img: 'print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
-  { pos: '38% 46%', img: 'print-the-flame.webp',
+  { pos: '40% 52%', img: 'images/print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
+  { pos: '42% 55%', img: 'images/print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
+  { img: 'images/print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
+  { pos: '38% 46%', img: 'images/print-the-flame.webp',
     title: 'The Flame', noLarge: true, note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
     subject: 'Hawk-eagle', remaining: 10 },
-  { img: 'print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
-  { pos: '58% 45%', img: 'print-the-riverbed.webp', title: 'The Riverbed', noLarge: true, note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
-  { pos: '46% 62%', img: 'print-the-blue-hour.webp',
+  { img: 'images/print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
+  { pos: '58% 45%', img: 'images/print-the-riverbed.webp', title: 'The Riverbed', noLarge: true, note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { pos: '46% 62%', img: 'images/print-the-blue-hour.webp',
     title: 'The Blue Hour', ar: 4/3, note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
     subject: 'Gaur', remaining: 10 },
-  { img: 'print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
-  { img: 'print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
+  { img: 'images/print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
+  { img: 'images/print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -690,7 +691,7 @@ const CHAPTERS = [
     whisperAfter: "The monsoon doesn't take sides. <em>It only takes.</em>",
     scenes: [
       {
-        img: 'the-dominant-v3.webp',
+        img: 'images/the-dominant-v3.webp',
         title: 'The Dominant',
         meta: 'The male · Monsoon 2025',
         story: `He walks like the rain belongs to him. In these woods, it mostly does — every trail marked, every challenger remembered.
@@ -698,7 +699,7 @@ const CHAPTERS = [
 The monsoon hides many things. A cub that isn't his is one of them. He knows it's out here. He hasn't found it yet.`
       },
       {
-        img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/9553b50b-5ce8-4223-bfa8-d8e8e1ddbdf0_rw_1920.JPG?h=ae1d4315b89a3e6526a94bdae1fe41dc',
+        img: 'images/the-watchful.webp',
         portrait: true,
         title: 'The Watchful',
         meta: 'The mother · Monsoon 2025',
@@ -711,20 +712,20 @@ A mother in these woods doesn't fight the odds. She rearranges them.`
         intro: 'The rest of the forest takes sides.',
         items: [
           {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/5aab7424-d5ab-431c-bb65-2426aec95e13_rw_1920.jpg?h=370f14b3c4ecf31c378ef9b8f9ffd99a',
+            img: 'images/the-cautious.webp',
             pos: '36% 62%',
             title: 'The Cautious',
             line: 'It shows the forest only its eyes. It has crossed the male\'s path once — never twice.'
           },
           {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/7e572bf9-9ed1-4ab6-9109-c84e9c2179d3_rw_1920.jpg?h=53a67999438845fd4b39e7acc09e4fde',
+            img: 'images/the-sentinel.webp',
             title: 'The Sentinel',
             line: 'One alarm call from the old watcher, and everything that hides knows to hide deeper.'
           }
         ]
       },
       {
-        img: 'the-question-v3.webp',
+        img: 'images/the-question-v3.webp',
         title: 'The Question',
         meta: 'Mother and cub · Monsoon 2025',
         story: `The rains will end. The male will keep searching. She will keep moving him — four seconds at a time.
@@ -742,7 +743,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
     whisperAfter: 'A kingdom is not held by force alone. <em>It is held by presence.</em>',
     scenes: [
       {
-        img: 'first-light.webp',
+        img: 'images/first-light.webp',
         title: 'First Light',
         meta: 'Dawn · Winter 2025',
         story: `The day begins the way every reign begins — with a claim. Spine bowed, claws in the driftwood, the river mist erasing everything that is not him.
@@ -750,7 +751,7 @@ Two faces at the edge of the dark, asking the only question the monsoon ever ask
 The forest can wait. It will anyway.`
       },
       {
-        img: 'the-fog.webp',
+        img: 'images/the-fog.webp',
         title: 'The Fog',
         meta: 'Morning · Winter 2025',
         story: `The mist takes the forest every morning, and every morning he walks straight through it — the only thing in the whiteness that moves like it knows where it is going.`
@@ -760,13 +761,13 @@ The forest can wait. It will anyway.`
         intro: 'The court keeps its distance.',
         items: [
           {
-            img: 'pretender.webp',
+            img: 'images/pretender.webp',
             pos: '42% 40%',
             title: 'The Pretender',
             line: 'Second to the throne, and it knows it. It keeps to the high branches and lets the moonlight do the hiding.'
           },
           {
-            img: 'https://cdn.myportfolio.com/5b9c7959-9c22-48da-ad33-5f57b5ba323e/14a17bdf-ffb7-491c-b717-613e32df480f_rw_1920.JPG?h=f2406557d686544be378b57c789bed44',
+            img: 'images/the-quiet-rival.webp',
             pos: '55% 70%',
             title: 'The Quiet Rival',
             line: 'It waits for dark to move. Even then, it checks twice.'
@@ -774,21 +775,21 @@ The forest can wait. It will anyway.`
         ]
       },
       {
-        img: 'the-ambush-v3.webp',
+        img: 'images/the-ambush-v3.webp',
         portrait: true,
         title: 'The Ambush',
         meta: 'The king · Winter 2025',
         story: `One eye above the grass. That is all the warning the forest ever gets.`
       },
       {
-        img: 'the-claim.webp',
+        img: 'images/the-claim.webp',
         portrait: true,
         title: 'The Claim',
         meta: 'The king · Winter 2025',
         story: `The chase is the story everyone tells. This is the part nobody stays for. She ate without hurry &mdash; and even at her own table, she watched.`
       },
       {
-        img: 'king-at-night.webp',
+        img: 'images/king-at-night.webp',
         portrait: true,
         title: 'The King at Night',
         meta: 'After dark · Winter 2025',
@@ -809,7 +810,7 @@ Long may he walk.`
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
     scenes: [
       {
-        img: 'the-procession.webp',
+        img: 'images/the-procession.webp',
         portrait: true,
         title: 'The Procession',
         meta: 'The tusker · Monsoon 2025',
@@ -818,7 +819,7 @@ Long may he walk.`
 An arrangement older than either of them.`
       },
       {
-        img: 'memory.webp',
+        img: 'images/memory.webp',
         portrait: true,
         title: 'Memory',
         meta: 'Up close · Winter 2025',
@@ -827,14 +828,14 @@ An arrangement older than either of them.`
 They say an elephant forgets nothing. Standing here, you believe it.`
       },
       {
-        img: 'the-dust-bath.webp',
+        img: 'images/the-dust-bath.webp',
         portrait: true,
         title: 'The Dust Bath',
         meta: 'The ritual · Summer 2025',
         story: `Trunk to the sky, the earth thrown over his own back like a blessing. The dust is armour, sunscreen, ceremony — the forest dressing its largest resident in itself.`
       },
       {
-        img: 'the-gathering.webp',
+        img: 'images/the-gathering.webp',
         portrait: true,
         title: 'The Gathering',
         meta: 'The herd · Monsoon 2025',
@@ -901,7 +902,7 @@ CHAPTERS.forEach((ch, ci) => {
 });
 main.innerHTML = html;
 const inr = n => '\u20b9' + n.toLocaleString('en-IN');
-const printId = p => p.id || p.img.replace(/\.(jpg|webp)$/, '');
+const printId = p => p.id || p.img.split('/').pop().replace(/\.(jpg|webp)$/, '');
 const printCard = p => {
   const startPrice = PRICING.matte.sizes[0][1];
   const scarcity = p.enquire ? '' : p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
@@ -1054,12 +1055,14 @@ function applyRoute() {
   const h = location.hash;
   const pd = h.startsWith('#print-') ? PRINTS.concat(MORE_PRINTS).find(p => printId(p) === h.slice(1)) : null;
   if (pd) renderPrintDetail(pd);
-  const isCh = /^#ch[123]$/.test(h);
+  const isCh = /^#ch[23]$/.test(h);
   const view = pd ? 'print' : h === '#prints' ? 'prints' : h === '#about' ? 'about' : isCh ? 'chapter' : 'stories';
   const changed = document.body.dataset.view !== view || (isCh && document.body.dataset.chapter !== h.slice(1));
   document.body.dataset.view = view;
   if (isCh) document.body.dataset.chapter = h.slice(1);
-  if (changed) window.scrollTo(0, 0);
+  if (view === 'stories' && h === '#ch1') {
+    requestAnimationFrame(() => document.getElementById('ch1').scrollIntoView({ behavior: changed ? 'auto' : 'smooth' }));
+  } else if (changed) window.scrollTo(0, 0);
 }
 document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
   a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
