@@ -435,6 +435,7 @@
   .enq-total{display:flex;justify-content:space-between;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);padding:15px 0 4px}
   .enq-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
   .enq-actions .collect{margin-top:10px;font-size:9.5px;padding:11px 16px}
+  .enq-note{margin:14px 0 2px;font-family:var(--serif);font-style:italic;font-size:.92rem;line-height:1.75;color:var(--text-dim)}
   .enq-clear{background:none;border:none;cursor:pointer;margin-top:16px;font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-dim);padding:0}
   .enq-clear:hover{color:var(--text)}
   .enq-empty{font-family:var(--serif);font-style:italic;color:var(--text-dim);padding:16px 0;font-size:.98rem}
@@ -643,16 +644,17 @@
   </div>
 </section>
 
-<button class="enq-pill" id="enq-pill" hidden aria-label="Open enquiry list">Enquiry <em id="enq-n">0</em></button>
+<button class="enq-pill" id="enq-pill" hidden aria-label="Open cart">Cart <em id="enq-n">0</em></button>
 <div class="enq-panel" id="enq-panel" hidden>
-  <div class="enq-head">Your enquiry</div>
+  <div class="enq-head">Your cart</div>
   <div id="enq-items"></div>
+  <p class="enq-note">Send your order and I&rsquo;ll confirm availability and shipping within a day &mdash; then send a secure payment link to complete it.</p>
   <div class="enq-total" id="enq-total"></div>
   <div class="enq-actions">
-    <a class="collect" id="enq-wa" target="_blank" rel="noopener">Send on WhatsApp</a>
-    <a class="collect" id="enq-mail">Send by email</a>
+    <a class="collect" id="enq-wa" target="_blank" rel="noopener">Order on WhatsApp</a>
+    <a class="collect" id="enq-mail">Order by email</a>
   </div>
-  <button class="enq-clear" id="enq-clear">Clear list</button>
+  <button class="enq-clear" id="enq-clear">Clear cart</button>
 </div>
 
 <footer>
@@ -1044,7 +1046,7 @@ function renderPrintDetail(p) {
           <div class="pd-terms">Framed &middot; Matte finish &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>` : ''}
         <div class="pd-actions">
-          ${p.enquire ? '' : '<button class="collect" id="pd-add">Add to enquiry</button>'}
+          ${p.enquire ? '' : '<button class="collect" id="pd-add">Add to cart</button>'}
           <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="collect" id="pd-mail">Enquire by email</a>
         </div>
@@ -1097,8 +1099,8 @@ function renderPrintDetail(p) {
     const r = el.querySelector('input[name="pd-size"]:checked');
     if (!r) return;
     const fresh = addToCart({ id: printId(p), title: p.title, mat: r.dataset.mat, dims: r.dataset.dims, price: +r.dataset.price });
-    addBtn.textContent = fresh ? 'Added \u2713' : 'In your enquiry \u2713';
-    setTimeout(() => { addBtn.textContent = 'Add to enquiry'; }, 1800);
+    addBtn.textContent = fresh ? 'Added \u2713' : 'In your cart \u2713';
+    setTimeout(() => { addBtn.textContent = 'Add to cart'; }, 1800);
   });
   update();
 }
@@ -1118,10 +1120,10 @@ function renderCart() {
   const total = CART.reduce((s, it) => s + it.price, 0);
   document.getElementById('enq-total').innerHTML = CART.length ? `<span>Total</span><span>${inr(total)}</span>` : '';
   const lines = CART.map((it, i) => `${i + 1}. ${it.title} — ${it.mat} · ${it.dims} — ₹${it.price.toLocaleString('en-IN')}`).join('\n');
-  const msg = `Hi Krishna — I'd like to enquire about the following prints:\n${lines}\nTotal: ₹${total.toLocaleString('en-IN')}`;
+  const msg = `Hi Krishna — I'd like to order the following prints:\n${lines}\nTotal: ₹${total.toLocaleString('en-IN')}`;
   const wa = document.getElementById('enq-wa');
   if (WHATSAPP) wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`; else wa.style.display = 'none';
-  document.getElementById('enq-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${CART.length} print${CART.length > 1 ? 's' : ''}`)}&body=${encodeURIComponent(msg)}`;
+  document.getElementById('enq-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Print order — ${CART.length} print${CART.length > 1 ? 's' : ''}`)}&body=${encodeURIComponent(msg)}`;
 }
 function addToCart(item) {
   const dup = CART.some(it => it.id === item.id && it.mat === item.mat && it.dims === item.dims);
