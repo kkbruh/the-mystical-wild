@@ -1192,8 +1192,13 @@ function applyRoute() {
     requestAnimationFrame(() => document.getElementById('ch1').scrollIntoView({ behavior: changed ? 'auto' : 'smooth' }));
   } else if (changed || h === '#top') window.scrollTo(0, 0);
 }
-document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
-  a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
+document.querySelectorAll('.hero-nav a, .enter').forEach(a =>
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = a.getAttribute('href');
+    if (location.hash === t) applyRoute();
+    else location.hash = t;
+  }));
 document.addEventListener('keydown', e => {
   if (document.body.dataset.view !== 'print') return;
   if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
