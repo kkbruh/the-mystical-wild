@@ -409,6 +409,35 @@
   .pd-mat-note{font-family:var(--sans);font-size:11px;color:var(--text-dim);margin-top:12px;letter-spacing:.02em}
   .pd-panel .pd-open-line{margin-top:22px}
   .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
+  .pd-actions .collect{margin-top:0}
+  .enq-pill{
+    position:fixed;right:22px;bottom:22px;z-index:60;cursor:pointer;
+    background:var(--accent);color:var(--forest);border:1px solid var(--accent);
+    font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:var(--cta-track);text-transform:uppercase;
+    padding:13px 20px;transition:transform .3s ease,opacity .4s ease;
+  }
+  .enq-pill:hover{transform:translateY(-2px)}
+  .enq-pill[hidden]{display:none}
+  .enq-pill em{font-style:normal;margin-left:8px;opacity:.75}
+  .enq-panel{
+    position:fixed;right:22px;bottom:74px;z-index:61;width:min(380px,calc(100vw - 44px));
+    background:var(--forest,#0b120d);border:1px solid var(--hair);padding:26px 26px 22px;
+    box-shadow:0 24px 60px rgba(0,0,0,.5);
+  }
+  .enq-panel[hidden]{display:none}
+  .enq-head{font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--text-dim);padding-bottom:14px;border-bottom:1px solid var(--hair)}
+  .enq-item{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--hair)}
+  .enq-item .t{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--text)}
+  .enq-item .s{flex:1;font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);line-height:1.8}
+  .enq-item .p{font-family:var(--sans);font-size:11px;color:var(--text)}
+  .enq-x{background:none;border:none;cursor:pointer;color:var(--text-dim);font-size:14px;padding:0 2px;transition:color .3s ease}
+  .enq-x:hover{color:var(--accent)}
+  .enq-total{display:flex;justify-content:space-between;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);padding:15px 0 4px}
+  .enq-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+  .enq-actions .collect{margin-top:10px;font-size:9.5px;padding:11px 16px}
+  .enq-clear{background:none;border:none;cursor:pointer;margin-top:16px;font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-dim);padding:0}
+  .enq-clear:hover{color:var(--text)}
+  .enq-empty{font-family:var(--serif);font-style:italic;color:var(--text-dim);padding:16px 0;font-size:.98rem}
   .pd-terms{margin-top:5vh;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--mist-dim);line-height:2.4}
   .pd-open-line{margin-top:14px;font-family:var(--serif);font-style:italic;color:var(--text-dim);line-height:1.8;max-width:34em;font-size:1rem}
 
@@ -614,6 +643,18 @@
   </div>
 </section>
 
+<button class="enq-pill" id="enq-pill" hidden aria-label="Open enquiry list">Enquiry <em id="enq-n">0</em></button>
+<div class="enq-panel" id="enq-panel" hidden>
+  <div class="enq-head">Your enquiry</div>
+  <div id="enq-items"></div>
+  <div class="enq-total" id="enq-total"></div>
+  <div class="enq-actions">
+    <a class="collect" id="enq-wa" target="_blank" rel="noopener">Send on WhatsApp</a>
+    <a class="collect" id="enq-mail">Send by email</a>
+  </div>
+  <button class="enq-clear" id="enq-clear">Clear list</button>
+</div>
+
 <footer>
   <div class="end-mark reveal">Epilogue</div>
   <h2 class="reveal">Most days, the forest gives you nothing.<br>These are the other days.</h2>
@@ -633,6 +674,7 @@
     </a>
   </div>
   <a class="cta reveal" id="contact-cta" href="#">Write to me</a>
+  <div class="chnav-links"><a href="#top">Back to the cover</a></div>
   <div class="fin">Fin · © Krishna Karthikeyan</div>
 </footer>
 
@@ -898,7 +940,7 @@ CHAPTERS.forEach((ch, ci) => {
   });
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
   const next = CHAPTERS[ci + 1];
-  if (next) html += `<div class="chnav reveal"><a class="fnav-card" href="#${next.id}"><span class="fnav-eyebrow">${next.num}</span><span class="fnav-title">${next.title}</span><span class="fnav-sub">${next.line}</span><span class="fnav-arrow">&rarr;</span></a></div><div class="chnav-links reveal"><a href="#prints">Recommended prints</a><span aria-hidden="true">&middot;</span><a href="#about">About Krishna</a></div>`;
+  if (next) html += `<div class="chnav reveal"><a class="fnav-card" href="#${next.id}"><span class="fnav-eyebrow">${next.num}</span><span class="fnav-title">${next.title}</span><span class="fnav-sub">${next.line}</span><span class="fnav-arrow">&rarr;</span></a></div><div class="chnav-links reveal"><a href="#top">Home</a><span aria-hidden="true">&middot;</span><a href="#prints">Recommended prints</a><span aria-hidden="true">&middot;</span><a href="#about">About Krishna</a></div>`;
   html += `</section>`;
 });
 main.innerHTML = html;
@@ -959,7 +1001,7 @@ function renderPrintDetail(p) {
   const dims = L => `${Math.round(L / ar * 2) / 2} &times; ${L} in`;
   const sizeRows = (mat, m) => m.sizes
     .filter(([L]) => !(p.noLarge && L === 36))
-    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}"${mat==='matte'&&i===0?' checked':''}><span>${dims(L)}<em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
+    .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}" data-mat="${m.label}" data-dims="${dims(L)}" data-price="${pr}"${mat==='matte'&&i===0?' checked':''}><span>${dims(L)}<em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
   const scarcity = p.enquire ? 'From the chapters' : p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
   const el = document.getElementById('print-detail');
   el.innerHTML = `
@@ -1002,6 +1044,7 @@ function renderPrintDetail(p) {
           <div class="pd-terms">Framed &middot; Matte finish &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>` : ''}
         <div class="pd-actions">
+          ${p.enquire ? '' : '<button class="collect" id="pd-add">Add to enquiry</button>'}
           <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="collect" id="pd-mail">Enquire by email</a>
         </div>
@@ -1049,8 +1092,50 @@ function renderPrintDetail(p) {
     });
   });
   el.querySelectorAll('input[name="pd-size"]').forEach(r => r.addEventListener('change', update));
+  const addBtn = el.querySelector('#pd-add');
+  if (addBtn) addBtn.addEventListener('click', () => {
+    const r = el.querySelector('input[name="pd-size"]:checked');
+    if (!r) return;
+    const fresh = addToCart({ id: printId(p), title: p.title, mat: r.dataset.mat, dims: r.dataset.dims, price: +r.dataset.price });
+    addBtn.textContent = fresh ? 'Added \u2713' : 'In your enquiry \u2713';
+    setTimeout(() => { addBtn.textContent = 'Add to enquiry'; }, 1800);
+  });
   update();
 }
+
+const CART_KEY = 'tmw-enquiry';
+let CART = [];
+try { CART = JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch (e) { CART = []; }
+const saveCart = () => { try { localStorage.setItem(CART_KEY, JSON.stringify(CART)); } catch (e) {} };
+const enqPill = document.getElementById('enq-pill'), enqPanel = document.getElementById('enq-panel');
+function renderCart() {
+  document.getElementById('enq-n').textContent = CART.length;
+  enqPill.hidden = CART.length === 0;
+  if (CART.length === 0) enqPanel.hidden = true;
+  document.getElementById('enq-items').innerHTML = CART.length
+    ? CART.map((it, i) => `<div class="enq-item"><div style="flex:1"><div class="t">${it.title}</div><div class="s">${it.mat} &middot; ${it.dims}</div></div><div class="p">${inr(it.price)}</div><button class="enq-x" data-i="${i}" aria-label="Remove ${it.title}">&times;</button></div>`).join('')
+    : '<div class="enq-empty">Nothing here yet.</div>';
+  const total = CART.reduce((s, it) => s + it.price, 0);
+  document.getElementById('enq-total').innerHTML = CART.length ? `<span>Total</span><span>${inr(total)}</span>` : '';
+  const lines = CART.map((it, i) => `${i + 1}. ${it.title} — ${it.mat} · ${it.dims} — ₹${it.price.toLocaleString('en-IN')}`).join('\n');
+  const msg = `Hi Krishna — I'd like to enquire about the following prints:\n${lines}\nTotal: ₹${total.toLocaleString('en-IN')}`;
+  const wa = document.getElementById('enq-wa');
+  if (WHATSAPP) wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`; else wa.style.display = 'none';
+  document.getElementById('enq-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${CART.length} print${CART.length > 1 ? 's' : ''}`)}&body=${encodeURIComponent(msg)}`;
+}
+function addToCart(item) {
+  const dup = CART.some(it => it.id === item.id && it.mat === item.mat && it.dims === item.dims);
+  if (!dup) { CART.push(item); saveCart(); }
+  renderCart();
+  return !dup;
+}
+enqPill.addEventListener('click', () => { enqPanel.hidden = !enqPanel.hidden; });
+document.getElementById('enq-clear').addEventListener('click', () => { CART = []; saveCart(); renderCart(); });
+document.getElementById('enq-items').addEventListener('click', e => {
+  const b = e.target.closest('.enq-x');
+  if (b) { CART.splice(+b.dataset.i, 1); saveCart(); renderCart(); }
+});
+renderCart();
 
 function applyRoute() {
   const h = location.hash;
@@ -1063,7 +1148,7 @@ function applyRoute() {
   if (isCh) document.body.dataset.chapter = h.slice(1);
   if (view === 'stories' && h === '#ch1') {
     requestAnimationFrame(() => document.getElementById('ch1').scrollIntoView({ behavior: changed ? 'auto' : 'smooth' }));
-  } else if (changed) window.scrollTo(0, 0);
+  } else if (changed || h === '#top') window.scrollTo(0, 0);
 }
 document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
   a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
