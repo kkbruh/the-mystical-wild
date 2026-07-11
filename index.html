@@ -410,6 +410,27 @@
   .pd-panel .pd-open-line{margin-top:22px}
   .pd-actions{display:flex;gap:34px;margin-top:5vh;flex-wrap:wrap}
   .pd-actions .collect{margin-top:0}
+  .print-detail{position:relative}
+  .pd-nav{
+    position:absolute;top:50vh;z-index:12;display:flex;align-items:center;gap:12px;
+    color:var(--text-dim);text-decoration:none;transition:color .4s ease;
+  }
+  .pd-nav:hover{color:var(--accent)}
+  .pd-prev{left:14px}
+  .pd-next{right:14px;flex-direction:row-reverse}
+  .pd-nav-arrow{font-family:var(--serif);font-size:2rem;line-height:1}
+  .pd-nav-label{
+    font-family:var(--sans);font-size:9px;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap;
+    opacity:0;transform:translateX(-6px);transition:opacity .4s ease,transform .4s ease;
+  }
+  .pd-next .pd-nav-label{transform:translateX(6px)}
+  .pd-nav:hover .pd-nav-label{opacity:1;transform:none}
+  @media (max-width:900px){
+    .pd-nav{top:auto;bottom:18px}
+    .pd-prev{left:18px}.pd-next{right:auto;left:64px}
+    .pd-nav-label{display:none}
+    .pd-nav-arrow{font-size:1.6rem}
+  }
   .enq-pill{
     position:fixed;right:22px;bottom:22px;z-index:60;cursor:pointer;
     background:var(--accent);color:var(--forest);border:1px solid var(--accent);
@@ -1006,8 +1027,13 @@ function renderPrintDetail(p) {
     .map(([L, pr], i) => `<label class="pd-size"><input type="radio" name="pd-size" value="${m.label} &middot; ${dims(L)} &mdash; ${inr(pr)}" data-mat="${m.label}" data-dims="${dims(L)}" data-price="${pr}"${mat==='matte'&&i===0?' checked':''}><span>${dims(L)}<em>${inr(pr)} ${fx(pr)}</em></span></label>`).join('');
   const scarcity = p.enquire ? 'From the chapters' : p.remaining < 10 ? `${p.remaining} of 10 remaining` : 'Edition of 10';
   const el = document.getElementById('print-detail');
+  const coll = p.enquire ? MORE_PRINTS : PRINTS;
+  const ci = coll.findIndex(x => printId(x) === printId(p));
+  const prev = coll[(ci - 1 + coll.length) % coll.length], next = coll[(ci + 1) % coll.length];
   el.innerHTML = `
     <a class="pd-back" href="#prints">&larr; All prints</a>
+    <a class="pd-nav pd-prev" href="#${printId(prev)}" aria-label="Previous print: ${prev.title}"><span class="pd-nav-arrow">&lsaquo;</span><span class="pd-nav-label">${prev.title}</span></a>
+    <a class="pd-nav pd-next" href="#${printId(next)}" aria-label="Next print: ${next.title}"><span class="pd-nav-arrow">&rsaquo;</span><span class="pd-nav-label">${next.title}</span></a>
     <div class="pd-grid">
       <div class="pd-frame"><img src="${p.img}" alt="${p.title}" draggable="false"></div>
       <div class="pd-body">
@@ -1168,6 +1194,12 @@ function applyRoute() {
 }
 document.querySelectorAll('.hero-nav a, .prints-nudge a').forEach(a =>
   a.addEventListener('click', e => { e.preventDefault(); location.hash = a.getAttribute('href'); }));
+document.addEventListener('keydown', e => {
+  if (document.body.dataset.view !== 'print') return;
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  const a = document.querySelector(e.key === 'ArrowLeft' ? '.pd-prev' : '.pd-next');
+  if (a) location.hash = a.getAttribute('href');
+});
 window.addEventListener('hashchange', applyRoute);
 applyRoute();
 
