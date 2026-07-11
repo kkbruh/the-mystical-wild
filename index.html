@@ -1046,7 +1046,7 @@ function renderPrintDetail(p) {
           <div class="pd-terms">Framed &middot; Matte finish &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>` : ''}
         <div class="pd-actions">
-          ${p.enquire ? '' : '<button class="collect" id="pd-add">Add to cart</button>'}
+          <button class="collect" id="pd-add">Add to cart</button>
           <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="collect" id="pd-mail">Enquire by email</a>
         </div>
@@ -1096,9 +1096,14 @@ function renderPrintDetail(p) {
   el.querySelectorAll('input[name="pd-size"]').forEach(r => r.addEventListener('change', update));
   const addBtn = el.querySelector('#pd-add');
   if (addBtn) addBtn.addEventListener('click', () => {
-    const r = el.querySelector('input[name="pd-size"]:checked');
-    if (!r) return;
-    const fresh = addToCart({ id: printId(p), title: p.title, mat: r.dataset.mat, dims: r.dataset.dims, price: +r.dataset.price });
+    let fresh;
+    if (p.enquire) {
+      fresh = addToCart({ id: printId(p), title: p.title, quote: true });
+    } else {
+      const r = el.querySelector('input[name="pd-size"]:checked');
+      if (!r) return;
+      fresh = addToCart({ id: printId(p), title: p.title, mat: r.dataset.mat, dims: r.dataset.dims, price: +r.dataset.price });
+    }
     addBtn.textContent = fresh ? 'Added \u2713' : 'In your cart \u2713';
     setTimeout(() => { addBtn.textContent = 'Add to cart'; }, 1800);
   });
@@ -1115,18 +1120,27 @@ function renderCart() {
   enqPill.hidden = CART.length === 0;
   if (CART.length === 0) enqPanel.hidden = true;
   document.getElementById('enq-items').innerHTML = CART.length
-    ? CART.map((it, i) => `<div class="enq-item"><div style="flex:1"><div class="t">${it.title}</div><div class="s">${it.mat} &middot; ${it.dims}</div></div><div class="p">${inr(it.price)}</div><button class="enq-x" data-i="${i}" aria-label="Remove ${it.title}">&times;</button></div>`).join('')
+    ? CART.map((it, i) => `<div class="enq-item"><div style="flex:1"><div class="t">${it.title}</div><div class="s">${it.quote ? 'Size &amp; price on request' : `${it.mat} &middot; ${it.dims}`}</div></div>${it.quote ? '' : `<div class="p">${inr(it.price)}</div>`}<button class="enq-x" data-i="${i}" aria-label="Remove ${it.title}">&times;</button></div>`).join('')
     : '<div class="enq-empty">Nothing here yet.</div>';
-  const total = CART.reduce((s, it) => s + it.price, 0);
-  document.getElementById('enq-total').innerHTML = CART.length ? `<span>Total</span><span>${inr(total)}</span>` : '';
-  const lines = CART.map((it, i) => `${i + 1}. ${it.title} — ${it.mat} · ${it.dims} — ₹${it.price.toLocaleString('en-IN')}`).join('\n');
-  const msg = `Hi Krishna — I'd like to order the following prints:\n${lines}\nTotal: ₹${total.toLocaleString('en-IN')}`;
+  const priced = CART.filter(it => !it.quote), quoted = CART.filter(it => it.quote);
+  const total = priced.reduce((s, it) => s + it.price, 0);
+  const totalLabel = priced.length
+    ? `${inr(total)}${quoted.length ? ` <span style="opacity:.55">+ ${quoted.length} on quote</span>` : ''}`
+    : (quoted.length ? 'On quote' : '');
+  document.getElementById('enq-total').innerHTML = CART.length ? `<span>Total</span><span>${totalLabel}</span>` : '';
+  const lines = CART.map((it, i) => it.quote
+    ? `${i + 1}. ${it.title} — size & price on request`
+    : `${i + 1}. ${it.title} — ${it.mat} · ${it.dims} — ₹${it.price.toLocaleString('en-IN')}`).join('\n');
+  const totalLine = priced.length
+    ? `Total: ₹${total.toLocaleString('en-IN')}${quoted.length ? ` + ${quoted.length} print${quoted.length > 1 ? 's' : ''} on quote` : ''}`
+    : 'Total: on quote';
+  const msg = `Hi Krishna — I'd like to order the following prints:\n${lines}\n${totalLine}`;
   const wa = document.getElementById('enq-wa');
   if (WHATSAPP) wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`; else wa.style.display = 'none';
   document.getElementById('enq-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Print order — ${CART.length} print${CART.length > 1 ? 's' : ''}`)}&body=${encodeURIComponent(msg)}`;
 }
 function addToCart(item) {
-  const dup = CART.some(it => it.id === item.id && it.mat === item.mat && it.dims === item.dims);
+  const dup = item.quote ? CART.some(it => it.id === item.id && it.quote) : CART.some(it => it.id === item.id && it.mat === item.mat && it.dims === item.dims);
   if (!dup) { CART.push(item); saveCart(); }
   renderCart();
   return !dup;
