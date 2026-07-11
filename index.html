@@ -359,7 +359,11 @@
   .chnav-links a{color:var(--text-dim);text-decoration:none;transition:color .4s ease}
   .chnav-links a:hover{color:var(--text)}
   .chnav-links span{color:var(--text-dim);opacity:.5;margin:0 10px}
-  .prints-tabs{display:flex;gap:32px;max-width:1080px;margin:7vh auto 0;padding:0 24px;border-bottom:1px solid var(--hair)}
+  .prints-tabs{display:flex;justify-content:center;gap:52px;max-width:520px;margin:8vh auto 0;padding:0 24px;border-bottom:1px solid var(--hair)}
+  .prints-tabs .pd-tab{font-size:11px;letter-spacing:.24em;padding:2px 4px 17px;color:var(--text-dim);opacity:.5;transition:color .4s ease,opacity .4s ease}
+  .prints-tabs .pd-tab:hover{opacity:.85;color:var(--text)}
+  .prints-tabs .pd-tab[aria-selected="true"]{color:var(--text);opacity:1}
+  .prints-tabs .pd-tab[aria-selected="true"]::after{height:2px;background:var(--accent)}
   .prints[data-ptab="rec"] .prints-grid-more,
   .prints[data-ptab="rec"] .prints-more-empty{display:none}
   .prints[data-ptab="more"] .prints-grid-rec{display:none}
@@ -804,7 +808,7 @@ Long may he walk.`
     num: 'Chapter III',
     title: 'The Herd',
     line: 'The cats rule alone. The herd survives together.',
-    epigraph: '&ldquo;Bow your head. Show them respect. The elephants created this jungle. Where they&rsquo;ve made furrows with their tusks, the rivers ran. Where they blew with their trunks, the leaves fell. They made all that belongs. The mountains. The trees. The birds in the tree. But they did not make you. That is why you must go.&rdquo;',
+    epigraph: '&ldquo;Bow your head. Show them respect. The elephants created this jungle. Where they&rsquo;ve made furrows with their tusks, the rivers ran. Where they blew with their trunks, the leaves fell. They made all that belongs. The mountains. The trees. The birds in the tree.&rdquo;',
     epigraphCite: '&mdash; Bagheera · The Jungle Book',
     gallery: '',
     whisperAfter: 'Strength here is not a solitary thing. <em>It moves in numbers.</em>',
