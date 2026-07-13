@@ -1257,6 +1257,7 @@ function applyRoute() {
   if (view === 'stories' && h === '#ch1') {
     requestAnimationFrame(() => document.getElementById('ch1').scrollIntoView({ behavior: changed ? 'auto' : 'smooth' }));
   } else if (changed || h === '#top' || view === 'print') window.scrollTo(0, 0);
+  if (view === 'prints') requestAnimationFrame(() => document.querySelectorAll('.proof video').forEach(v => { if (v.paused) v.play().catch(() => {}); }));
 }
 document.querySelectorAll('.hero-nav a, .enter').forEach(a =>
   a.addEventListener('click', e => {
@@ -1271,6 +1272,13 @@ document.addEventListener('keydown', e => {
   const a = document.querySelector(e.key === 'ArrowLeft' ? '.pd-prev' : '.pd-next');
   if (a) location.hash = a.getAttribute('href');
 });
+const proofVids = () => document.querySelectorAll('.proof video');
+const vidIO = new IntersectionObserver(es => es.forEach(e => {
+  const v = e.target;
+  if (e.isIntersecting) { if (v.paused) v.play().catch(() => {}); }
+  else if (!v.paused) v.pause();
+}), { threshold: 0.15 });
+proofVids().forEach(v => vidIO.observe(v));
 window.addEventListener('hashchange', applyRoute);
 applyRoute();
 
