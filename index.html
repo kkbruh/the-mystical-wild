@@ -1256,7 +1256,7 @@ function applyRoute() {
   if (isCh) document.body.dataset.chapter = h.slice(1);
   if (view === 'stories' && h === '#ch1') {
     requestAnimationFrame(() => document.getElementById('ch1').scrollIntoView({ behavior: changed ? 'auto' : 'smooth' }));
-  } else if (changed || h === '#top') window.scrollTo(0, 0);
+  } else if (changed || h === '#top' || view === 'print') window.scrollTo(0, 0);
 }
 document.querySelectorAll('.hero-nav a, .enter').forEach(a =>
   a.addEventListener('click', e => {
