@@ -426,10 +426,15 @@
   .pd-next .pd-nav-label{transform:translateX(6px)}
   .pd-nav:hover .pd-nav-label{opacity:1;transform:none}
   @media (max-width:900px){
-    .pd-nav{top:auto;bottom:18px}
-    .pd-prev{left:18px}.pd-next{right:auto;left:64px}
-    .pd-nav-label{display:none}
-    .pd-nav-arrow{font-size:1.6rem}
+    .pd-nav{display:none}
+  }
+  .pd-pager{display:none}
+  @media (max-width:900px){
+    .pd-pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6vh;padding-top:26px;border-top:1px solid var(--hair)}
+    .pd-pager a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-dim);font-family:var(--sans);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;line-height:1.7;min-height:44px}
+    .pd-pager a.nx{justify-content:flex-end;text-align:right}
+    .pd-pager em{font-family:var(--serif);font-style:normal;font-size:1.5rem;color:var(--accent);line-height:1}
+    .pd-pager span{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   }
   .enq-pill{
     position:fixed;right:22px;bottom:22px;z-index:60;cursor:pointer;
@@ -788,9 +793,9 @@ const OPEN_EDITION = null;  // open framed print retired Jul 2026 — signed edi
 
 // Recommended prints — the curated sales wall. Edit freely: reorder, retitle, add, remove.
 const PRINTS = [
+  { img: 'images/print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
   { pos: '40% 52%', img: 'images/print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
   { pos: '42% 55%', img: 'images/print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
-  { img: 'images/print-the-warning.webp',  title: 'The Warning', note: 'One snarl. The whole forest heard it.',  subject: 'Tigress', remaining: 10 },
   { pos: '38% 46%', img: 'images/print-the-flame.webp',
     title: 'The Flame', noLarge: true, note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
     subject: 'Hawk-eagle', remaining: 10 },
@@ -1132,6 +1137,10 @@ function renderPrintDetail(p) {
           <button class="collect" id="pd-add">Add to cart</button>
           <a class="collect" id="pd-wa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
           <a class="collect" id="pd-mail">Enquire by email</a>
+        </div>
+        <div class="pd-pager">
+          <a href="#${printId(prev)}" aria-label="Previous print: ${prev.title}"><em>&lsaquo;</em><span>${prev.title}</span></a>
+          <a class="nx" href="#${printId(next)}" aria-label="Next print: ${next.title}"><span>${next.title}</span><em>&rsaquo;</em></a>
         </div>
       </div>
     </div>`;
