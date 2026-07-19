@@ -363,7 +363,8 @@
 
   /* --- hash views: stories / prints / about are separate places --- */
   body[data-view="stories"] .prints,
-  body[data-view="stories"] .about{display:none;overflow:hidden;background:#141815}
+  body[data-view="stories"] .about{display:none;overflow:hidden;background:#f5f2e8;
+    --text:#141a15; --text-dim:rgba(20,26,21,.68); --text-faint:rgba(20,26,21,.4); --accent:#55654c}
   body[data-view="prints"] .hero,
   body[data-view="prints"] main,
   body[data-view="prints"] .about{display:none}
@@ -734,7 +735,7 @@
 
 <section class="about" id="about">
   <div class="about-inner">
-    <img class="about-bg-mark" src="images/mark-emboss.svg" alt="" aria-hidden="true">
+    <img class="about-bg-mark" src="images/mark-emboss-ink.svg" alt="" aria-hidden="true">
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
