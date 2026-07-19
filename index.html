@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://krishnaswild.com/print-the-promise.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://krishnaswild.com/print-the-promise.webp">
-<link rel="icon" type="image/svg+xml" href="images/mark.svg">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -590,11 +590,16 @@
 
   footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
-  .tmw-mark{background:var(--accent);-webkit-mask:url('images/mark.svg') center/contain no-repeat;mask:url('images/mark.svg') center/contain no-repeat}
-  .hero-mark{width:104px;height:49px;margin:0 0 26px;opacity:.95}
-  .fin-mark{width:76px;height:36px;margin:0 auto 22px;opacity:.9}
-  .tb-mark{display:inline-block;width:34px;height:16px;margin-right:12px;vertical-align:-2px;background:var(--accent)}
-  .sec-mark{width:64px;height:30px;margin:0 0 22px}
+  .tmw-chip{display:inline-flex;align-items:center;justify-content:center;background:var(--text);border-radius:5px}
+  .tmw-mark{background:#0a0f0c;-webkit-mask:url('images/mark.svg') center/contain no-repeat;mask:url('images/mark.svg') center/contain no-repeat}
+  .hero-chip{padding:13px 16px;margin:0 auto 28px}
+  .hero-chip .tmw-mark{width:110px;height:52px}
+  .fin-chip{padding:9px 11px;margin:0 auto 24px}
+  .fin-chip .tmw-mark{width:66px;height:31px}
+  .tb-chip{padding:4px 6px;margin-right:12px;vertical-align:-6px;border-radius:3px}
+  .tb-chip .tmw-mark{width:26px;height:12px}
+  .sec-chip{padding:10px 12px;margin:0 0 24px}
+  .sec-chip .tmw-mark{width:84px;height:39px}
   .f-ig{display:inline-block;margin-top:26px;font-family:var(--sans);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:color .3s,border-color .3s}
   .f-ig:hover{color:var(--text);border-color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
@@ -653,7 +658,7 @@
 <div class="bar bottom" aria-hidden="true"></div>
 
 <header class="topbar">
-  <a class="tb-brand" href="#top"><span class="tmw-mark tb-mark"></span>Krishna Karthikeyan</a>
+  <a class="tb-brand" href="#top"><span class="tmw-chip tb-chip"><span class="tmw-mark"></span></span>Krishna Karthikeyan</a>
   <nav class="tb-nav" aria-label="Site">
     <a href="#ch1">Stories of the Wild</a>
     <a class="nav-prints" href="#prints">Recommended Prints</a>
@@ -672,7 +677,7 @@
 <header class="hero" id="top">
   <div class="hero-img" aria-hidden="true"></div>
   <div class="hero-copy">
-    <div class="tmw-mark hero-mark"></div>
+    <div class="tmw-chip hero-chip"><div class="tmw-mark"></div></div>
     <div class="eyebrow">A portfolio in three chapters</div>
     <h1>The<span class="h1-sp"> </span><br class="h1-br">Mystical<span class="h1-sp"> </span><br class="h1-br"><span class="h1-l3">Wild</span></h1>
   </div>
@@ -692,7 +697,7 @@
   <div class="prints-hero" aria-hidden="true"><img src="images/the-fog.webp" alt="" style="object-position:50% 45%"></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
-    <div class="tmw-mark sec-mark reveal"></div>
+    <div class="tmw-chip sec-chip reveal"><div class="tmw-mark"></div></div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
     <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
@@ -726,7 +731,7 @@
 
 <section class="about" id="about">
   <div class="about-inner">
-    <div class="tmw-mark sec-mark reveal" style="margin-left:0"></div>
+    <div class="tmw-chip sec-chip reveal"><div class="tmw-mark"></div></div>
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
@@ -791,7 +796,7 @@
   </div>
   <a class="cta reveal" id="contact-cta" href="#">Write to me</a>
   <div class="chnav-links"><a href="#top">Back to the cover</a></div>
-  <div class="tmw-mark fin-mark"></div>
+  <div class="tmw-chip fin-chip"><div class="tmw-mark"></div></div>
   <a class="f-ig" href="https://www.instagram.com/krishnakarthikeyan" target="_blank" rel="noopener">Instagram &middot; @krishnakarthikeyan</a>
   <div class="fin">Fin · © Krishna Karthikeyan</div>
 </footer>
