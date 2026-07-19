@@ -591,11 +591,17 @@
   footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
   .tmw-mark{display:inline-block}
-  .hero-glow{width:240px;margin:0 auto 32px;display:block}
   .fin-glow{width:210px;margin:0 auto 26px;display:block}
   .tb-glow{width:15px;margin-right:12px;vertical-align:-5px}
-  .sec-glow{width:280px;margin:0 0 28px;display:block}
-  @media (max-width:640px){.hero-glow{width:180px}.sec-glow{width:200px}}
+  #splash{position:fixed;inset:0;z-index:300;background:#070a08;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .9s ease}
+  #splash img{width:min(300px,58vw);animation:splashIn 1.1s ease both}
+  @keyframes splashIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+  #splash.gone{opacity:0;pointer-events:none}
+  .prints-head{position:relative}
+  .about-inner{position:relative}
+  .sec-wm{position:absolute;right:0;top:-2vh;width:min(360px,32vw);pointer-events:none}
+  .chnav-mark{display:block;width:150px;margin:0 auto 5vh;opacity:.9}
+  @media (max-width:760px){.sec-wm{display:none}}
   .f-ig{display:inline-block;margin-top:26px;font-family:var(--sans);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:color .3s,border-color .3s}
   .f-ig:hover{color:var(--text);border-color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
@@ -653,6 +659,7 @@
 <div class="bar top" aria-hidden="true"></div>
 <div class="bar bottom" aria-hidden="true"></div>
 
+<div id="splash" aria-hidden="true"><img src="images/mark-2.svg" alt=""></div>
 <header class="topbar">
   <a class="tb-brand" href="#top"><img class="tmw-mark tb-glow" src="images/mark-eye-2.svg" alt="">Krishna Karthikeyan</a>
   <nav class="tb-nav" aria-label="Site">
@@ -673,7 +680,6 @@
 <header class="hero" id="top">
   <div class="hero-img" aria-hidden="true"></div>
   <div class="hero-copy">
-    <img class="tmw-mark hero-glow" src="images/mark-2.svg" alt="">
     <div class="eyebrow">A portfolio in three chapters</div>
     <h1>The<span class="h1-sp"> </span><br class="h1-br">Mystical<span class="h1-sp"> </span><br class="h1-br"><span class="h1-l3">Wild</span></h1>
   </div>
@@ -692,8 +698,8 @@
 <section class="prints" id="prints" data-ptab="rec">
   <div class="prints-hero" aria-hidden="true"><img src="images/the-fog.webp" alt="" style="object-position:50% 45%"></div>
   <div class="prints-head">
+    <img class="sec-wm" src="images/mark-emboss.svg" alt="" aria-hidden="true">
     <div class="ch-num reveal">Recommended prints</div>
-    <img class="tmw-mark sec-glow reveal" src="images/mark-emboss.svg" alt="">
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
     <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
@@ -727,7 +733,7 @@
 
 <section class="about" id="about">
   <div class="about-inner">
-    <img class="tmw-mark sec-glow reveal" src="images/mark-emboss.svg" alt="">
+    <img class="sec-wm" src="images/mark-emboss.svg" alt="" aria-hidden="true">
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
@@ -1094,7 +1100,7 @@ CHAPTERS.forEach((ch, ci) => {
   });
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
   const next = CHAPTERS[ci + 1];
-  if (next) html += `<div class="chnav reveal"><a class="fnav-card" href="#${next.id}"><span class="fnav-eyebrow">${next.num}</span><span class="fnav-title">${next.title}</span><span class="fnav-sub">${next.line}</span><span class="fnav-arrow">&rarr;</span></a></div><div class="chnav-links reveal"><a href="#top">Home</a><span aria-hidden="true">&middot;</span><a href="#prints">Recommended prints</a><span aria-hidden="true">&middot;</span><a href="#about">About Krishna</a></div>`;
+  if (next) html += `<img class="chnav-mark reveal" src="images/mark-emboss.svg" alt=""><div class="chnav reveal"><a class="fnav-card" href="#${next.id}"><span class="fnav-eyebrow">${next.num}</span><span class="fnav-title">${next.title}</span><span class="fnav-sub">${next.line}</span><span class="fnav-arrow">&rarr;</span></a></div><div class="chnav-links reveal"><a href="#top">Home</a><span aria-hidden="true">&middot;</span><a href="#prints">Recommended prints</a><span aria-hidden="true">&middot;</span><a href="#about">About Krishna</a></div>`;
   html += `</section>`;
 });
 main.innerHTML = html;
@@ -1353,6 +1359,14 @@ const vidIO = new IntersectionObserver(es => es.forEach(e => {
   else if (!v.paused) v.pause();
 }), { threshold: 0.15 });
 proofVids().forEach(v => vidIO.observe(v));
+const splash = document.getElementById('splash');
+if (splash) {
+  if (sessionStorage.getItem('tmw-splash')) splash.remove();
+  else {
+    sessionStorage.setItem('tmw-splash', '1');
+    setTimeout(() => { splash.classList.add('gone'); setTimeout(() => splash.remove(), 1000); }, 1500);
+  }
+}
 window.addEventListener('hashchange', applyRoute);
 applyRoute();
 
