@@ -85,9 +85,9 @@
     height:58px;padding:0 32px;
     background:rgba(4,7,5,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid var(--hair);
-    transition:transform .7s cubic-bezier(.77,0,.18,1);
+    transition:transform .6s cubic-bezier(.22,.61,.36,1),opacity .45s ease;
   }
-  body.navhide .topbar{transform:translateY(-100%)}
+  body.navhide .topbar{transform:translateY(-100%);opacity:0}
   .tb-brand{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:.34em;text-transform:uppercase}
   .tb-nav{display:flex;gap:36px}
   .tb-nav a{color:var(--mist-dim);text-decoration:none;font-size:10px;letter-spacing:var(--cta-track);text-transform:uppercase;transition:color .5s ease}
@@ -611,6 +611,7 @@
   #splash img{width:min(340px,62vw);animation:splashIn 1.2s ease both}
   @keyframes splashIn{from{opacity:0;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
   #splash.gone{opacity:0;pointer-events:none}
+  body.presplash .hero *,body.presplash .hero::before,body.presplash .hero-img{animation-play-state:paused!important}
   .f-ig{display:inline-block;margin-top:26px;font-family:var(--sans);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:color .3s,border-color .3s}
   .f-ig:hover{color:var(--text);border-color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
@@ -1156,8 +1157,8 @@ document.querySelectorAll('img').forEach(i => i.setAttribute('draggable', 'false
 let lastY = 0;
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
-  if (y > 140 && y > lastY + 2) document.body.classList.add('navhide');
-  else if (y < lastY - 2 || y < 80) document.body.classList.remove('navhide');
+  if (y > 200 && y > lastY + 14) document.body.classList.add('navhide');
+  else if (y < lastY - 14 || y < 80) document.body.classList.remove('navhide');
   document.body.classList.toggle('scrolled', y > window.innerHeight * 0.25);
   lastY = y;
 }, { passive: true });
@@ -1371,7 +1372,12 @@ if (splash) {
   if (sessionStorage.getItem('tmw-splash')) splash.remove();
   else {
     sessionStorage.setItem('tmw-splash', '1');
-    setTimeout(() => { splash.classList.add('gone'); setTimeout(() => splash.remove(), 1200); }, 1600);
+    document.body.classList.add('presplash');
+    setTimeout(() => {
+      splash.classList.add('gone');
+      document.body.classList.remove('presplash');
+      setTimeout(() => splash.remove(), 1200);
+    }, 1600);
   }
 }
 window.addEventListener('hashchange', applyRoute);
