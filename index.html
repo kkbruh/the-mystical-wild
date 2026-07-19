@@ -593,8 +593,8 @@
   .tmw-mark{display:inline-block}
   .tb-glow{width:15px;margin-right:12px;vertical-align:-5px}
   .fin-glow{width:210px;margin:0 auto 26px;display:block}
-  .chnav-mark{display:block;width:190px;margin:9vh auto -4vh}
-  .about-bg-mark{position:absolute;top:-4vh;right:-14vw;width:58vw;max-width:900px;opacity:.55;pointer-events:none;z-index:0}
+  .chnav-mark{display:block;width:190px;margin:-6vh auto 10vh}
+  .about-bg-mark{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100vw;max-width:none;opacity:.5;pointer-events:none;z-index:0}
   .about-inner{position:relative}
   .about-inner > *:not(.about-bg-mark){position:relative;z-index:1}
   @media (max-width:900px){.about-bg-mark{display:none}}
@@ -1101,7 +1101,7 @@ CHAPTERS.forEach((ch, ci) => {
   });
   if (ch.whisperAfter) html += `<div class="whisper"><p class="reveal">${ch.whisperAfter}</p></div>`;
   const next = CHAPTERS[ci + 1];
-  if (next) html += `<img class="chnav-mark reveal" src="images/mark-emboss.svg" alt=""><div class="chnav reveal"><a class="fnav-card" href="#${next.id}"><span class="fnav-eyebrow">${next.num}</span><span class="fnav-title">${next.title}</span><span class="fnav-sub">${next.line}</span><span class="fnav-arrow">&rarr;</span></a></div><div class="chnav-links reveal"><a href="#top">Home</a><span aria-hidden="true">&middot;</span><a href="#prints">Recommended prints</a><span aria-hidden="true">&middot;</span><a href="#about">About Krishna</a></div>`;
+  if (next) html += `<div class="chnav reveal"><a class="fnav-card" href="#${next.id}"><span class="fnav-eyebrow">${next.num}</span><span class="fnav-title">${next.title}</span><span class="fnav-sub">${next.line}</span><span class="fnav-arrow">&rarr;</span></a></div><div class="chnav-links reveal"><a href="#top">Home</a><span aria-hidden="true">&middot;</span><a href="#prints">Recommended prints</a><span aria-hidden="true">&middot;</span><a href="#about">About Krishna</a></div><img class="chnav-mark reveal" src="images/mark-emboss.svg" alt="">`;
   html += `</section>`;
 });
 main.innerHTML = html;
