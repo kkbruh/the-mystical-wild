@@ -12,6 +12,7 @@
 <meta property="og:image" content="https://krishnaswild.com/print-the-promise.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://krishnaswild.com/print-the-promise.webp">
+<link rel="icon" type="image/svg+xml" href="images/mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -470,6 +471,8 @@
   @media (max-width:900px){
     .pd-nav{display:none}
   }
+  .pd-room{display:inline-block;margin-top:34px;font-family:var(--sans);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:4px;transition:color .3s,border-color .3s}
+  .pd-room:hover{color:var(--text);border-color:var(--accent)}
   .pd-pager{display:none}
   @media (max-width:900px){
     .pd-pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6vh;padding-top:26px;border-top:1px solid var(--hair)}
@@ -587,6 +590,13 @@
 
   footer{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10vh 24px 36px;position:relative}
   footer .end-mark{font-size:10px;letter-spacing:.6em;text-transform:uppercase;color:var(--accent)}
+  .tmw-mark{background:var(--accent);-webkit-mask:url('images/mark.svg') center/contain no-repeat;mask:url('images/mark.svg') center/contain no-repeat}
+  .hero-mark{width:104px;height:49px;margin:0 0 26px;opacity:.95}
+  .fin-mark{width:76px;height:36px;margin:0 auto 22px;opacity:.9}
+  .tb-mark{display:inline-block;width:34px;height:16px;margin-right:12px;vertical-align:-2px;background:var(--accent)}
+  .sec-mark{width:64px;height:30px;margin:0 0 22px}
+  .f-ig{display:inline-block;margin-top:26px;font-family:var(--sans);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:color .3s,border-color .3s}
+  .f-ig:hover{color:var(--text);border-color:var(--accent)}
   footer h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.4rem,6vw,5rem);margin:30px 0 44px;letter-spacing:.04em}
   footer a.cta{
     display:inline-block;color:var(--mist);text-decoration:none;font-family:var(--sans);font-size:var(--cta-size);font-weight:600;letter-spacing:var(--cta-track);text-transform:uppercase;
@@ -643,7 +653,7 @@
 <div class="bar bottom" aria-hidden="true"></div>
 
 <header class="topbar">
-  <a class="tb-brand" href="#top">Krishna Karthikeyan</a>
+  <a class="tb-brand" href="#top"><span class="tmw-mark tb-mark"></span>Krishna Karthikeyan</a>
   <nav class="tb-nav" aria-label="Site">
     <a href="#ch1">Stories of the Wild</a>
     <a class="nav-prints" href="#prints">Recommended Prints</a>
@@ -662,6 +672,7 @@
 <header class="hero" id="top">
   <div class="hero-img" aria-hidden="true"></div>
   <div class="hero-copy">
+    <div class="tmw-mark hero-mark"></div>
     <div class="eyebrow">A portfolio in three chapters</div>
     <h1>The<span class="h1-sp"> </span><br class="h1-br">Mystical<span class="h1-sp"> </span><br class="h1-br"><span class="h1-l3">Wild</span></h1>
   </div>
@@ -681,6 +692,7 @@
   <div class="prints-hero" aria-hidden="true"><img src="images/the-fog.webp" alt="" style="object-position:50% 45%"></div>
   <div class="prints-head">
     <div class="ch-num reveal">Recommended prints</div>
+    <div class="tmw-mark sec-mark reveal"></div>
     <h2 class="prints-title reveal">The ones I would hang first.</h2>
     <p class="prints-line reveal">Every frame in this portfolio exists as a signed print &mdash; edition of ten, numbered, never repeated. Prices rise as each edition sells: the earliest collectors get the best of it. These are the frames I reach for myself.</p>
   </div>
@@ -697,7 +709,7 @@
     <div><h3>The edition</h3><p>Ten prints per frame, ever. Each is hand-signed and numbered. When an edition closes, it never reopens.</p></div>
     <div><h3>The delivery</h3><p>Shipped rolled in an archival tube, ready for framing. Free within India; worldwide at cost.</p></div>
   </div>
-  <div class="ch-num reveal" style="margin-top:11vh;text-align:center">In the room</div>
+  <div class="ch-num reveal" id="prints-room" style="margin-top:11vh;text-align:center;scroll-margin-top:90px">In the room</div>
   <div class="proof reveal">
     <figure>
       <img src="images/canvas-in-room.webp" alt="The Warning &mdash; 24 &times; 36 in Hahnem&uuml;hle Daguerre canvas, gallery-wrapped, hanging on a wall" loading="lazy">
@@ -714,6 +726,7 @@
 
 <section class="about" id="about">
   <div class="about-inner">
+    <div class="tmw-mark sec-mark reveal" style="margin-left:0"></div>
     <div class="ch-num reveal">About Krishna</div>
     <h2 class="about-title reveal">Made in the forests of southern India.</h2>
     <div class="about-grid">
@@ -766,7 +779,7 @@
     <a class="fnav-card fnav-prints" href="#prints">
       <span class="fnav-eyebrow">Next</span>
       <span class="fnav-title">Recommended Prints</span>
-      <span class="fnav-sub">Signed editions of ten &middot; from &#8377;4,500</span>
+      <span class="fnav-sub">Signed editions of ten &middot; from &#8377;3,500</span>
       <span class="fnav-arrow">&rarr;</span>
     </a>
     <a class="fnav-card fnav-about" href="#about">
@@ -778,6 +791,8 @@
   </div>
   <a class="cta reveal" id="contact-cta" href="#">Write to me</a>
   <div class="chnav-links"><a href="#top">Back to the cover</a></div>
+  <div class="tmw-mark fin-mark"></div>
+  <a class="f-ig" href="https://www.instagram.com/krishnakarthikeyan" target="_blank" rel="noopener">Instagram &middot; @krishnakarthikeyan</a>
   <div class="fin">Fin · © Krishna Karthikeyan</div>
 </footer>
 
@@ -802,12 +817,10 @@ const MORE_PRINTS = [  // frames from the chapters, available on enquiry — { i
   { id: 'print-the-ambush',        img: 'images/the-ambush-v3.webp',    title: 'The Ambush',        subject: 'The king &middot; Winter 2025',       enquire: true },
   { id: 'print-the-claim',         img: 'images/the-claim.webp',        title: 'The Claim',         subject: 'The king &middot; Winter 2025',       enquire: true },
   { id: 'print-the-king-at-night', img: 'images/king-at-night.webp',    title: 'The King at Night', subject: 'After dark &middot; Winter 2025',     enquire: true },
-  { id: 'print-the-procession',    img: 'images/the-procession.webp',   title: 'The Procession',    subject: 'The tusker &middot; Monsoon 2025',    enquire: true },
   { id: 'print-the-dust-bath',     img: 'images/the-dust-bath.webp',    title: 'The Dust Bath',     subject: 'The ritual &middot; Summer 2025',     enquire: true },
   { id: 'print-the-gathering',     img: 'images/the-gathering.webp',    title: 'The Gathering',     subject: 'The herd &middot; Monsoon 2025',      enquire: true },
   { id: 'print-the-repose', img: 'images/the-repose.webp', title: 'The Repose', subject: 'Tiger in the teak fall', enquire: true },
   { id: 'print-the-poise', img: 'images/the-poise.webp', title: 'The Poise', subject: 'Tiger &middot; a quiet moment', enquire: true },
-  { id: 'print-the-ember', img: 'images/the-ember.webp', title: 'The Ember', subject: 'Tiger &middot; golden hour', enquire: true },
   { id: 'print-the-prowl', img: 'images/the-prowl.webp', title: 'The Prowl', subject: 'Tiger at dusk', enquire: true },
   { id: 'print-the-signature', img: 'images/the-signature.webp', title: 'The Signature', subject: 'Tiger, marking his tree', enquire: true },
   { id: 'print-the-boundary', img: 'images/the-boundary.webp', title: 'The Boundary', subject: 'Tiger at the fence line', enquire: true },
@@ -817,7 +830,6 @@ const MORE_PRINTS = [  // frames from the chapters, available on enquiry — { i
   { id: 'print-the-whiskers', img: 'images/the-whiskers.webp', title: 'The Whiskers', subject: 'Tiger &middot; study in monochrome', enquire: true },
   { id: 'print-the-hammock', img: 'images/the-hammock.webp', title: 'The Hammock', subject: 'Leopard &middot; deep green', enquire: true },
   { id: 'print-the-slumber', img: 'images/the-slumber.webp', title: 'The Slumber', subject: 'Leopard on the rocks', enquire: true },
-  { id: 'print-the-stretch', img: 'images/the-stretch.webp', title: 'The Stretch', subject: 'Leopard &middot; the morning ritual', enquire: true },
   { id: 'print-the-lookout', img: 'images/the-lookout.webp', title: 'The Lookout', subject: 'Leopard in the fig', enquire: true },
   { id: 'print-the-den', img: 'images/the-den.webp', title: 'The Den', subject: 'Leopard in the boulders', enquire: true },
   { id: 'print-the-neighbour', img: 'images/the-neighbour.webp', title: 'The Neighbour', subject: 'Leopard at the village edge', enquire: true },
@@ -842,15 +854,18 @@ const PRINTS = [
   { pos: '40% 52%', img: 'images/print-the-promise.webp',  title: 'The Promise', note: 'A tigress and her cub in the ferns after rain &mdash; cheek to cheek for one breath, and then the green closed over them.',  subject: 'Tigress and cub', remaining: 10 },
   { pos: '42% 55%', img: 'images/print-the-vantage.webp',  title: 'The Vantage', note: 'A leopard in the fork of an old tree, watching the fog decide what the morning would be.',  subject: 'Leopard, blue hour', remaining: 10 },
   { pos: '38% 46%', img: 'images/print-the-flame.webp',
-    title: 'The Flame', noLarge: true, note: 'A crested hawk-eagle in the flame-of-the-forest, waiting for spring to finish burning.',
-    subject: 'Hawk-eagle', remaining: 10 },
+    title: 'The Flame', noLarge: true, note: 'An oriental honey buzzard in the flame-of-the-forest, waiting for spring to finish burning.',
+    subject: 'Honey buzzard, spring', remaining: 10 },
   { img: 'images/print-the-perch.webp',    title: 'The Perch', note: 'Draped into the split of the trunk, as patient as the tree itself.',    subject: 'Leopard', remaining: 10 },
   { pos: '58% 45%', img: 'images/print-the-riverbed.webp', title: 'The Riverbed', noLarge: true, note: 'First light on a dry riverbed, and a tiger stretching like the day itself.', subject: 'Tiger, first light', remaining: 10 },
+  { id: 'print-the-ember', img: 'images/the-ember.webp', title: 'The Ember', note: 'Three tigers around one jeep. She was the one everyone watched.', subject: 'Tigress, winter morning', remaining: 10 },
+  { id: 'print-the-stretch', img: 'images/the-stretch.webp', title: 'The Stretch', noLarge: true, note: 'Six o&rsquo;clock, and the evening&rsquo;s first stretch.', subject: 'Leopard, dusk', remaining: 10 },
+  { id: 'print-the-procession', img: 'images/the-procession.webp', title: 'The Procession', noLarge: true, note: 'A tusker owns the road. Everyone else borrows it.', subject: 'Tusker, monsoon', remaining: 10 },
   { pos: '46% 62%', img: 'images/print-the-blue-hour.webp',
-    title: 'The Blue Hour', ar: 4/3, note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
+    title: 'The Blue Hour', noLarge: true, ar: 4/3, note: 'A gaur in the flowering meadows before sunrise &mdash; he stood among the blooms and let the fog have the hills.',
     subject: 'Gaur', remaining: 10 },
-  { img: 'images/print-the-curious.webp',  title: 'The Curious', note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
-  { img: 'images/print-the-elder.webp',    title: 'The Elder', note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
+  { img: 'images/print-the-curious.webp',  title: 'The Curious', noLarge: true, note: 'Half a face around the bark. It studied me exactly as long as I studied it.',  subject: 'Leopard', remaining: 10 },
+  { img: 'images/print-the-elder.webp',    title: 'The Elder', noLarge: true, note: 'An elephant&rsquo;s eye, close enough to count the years.',    subject: 'Elephant, study in black', remaining: 10 }
 ];
 const PROLOGUE = 'One story from the monsoon. Six witnesses.';
 
@@ -1026,7 +1041,15 @@ const waSceneHref = (t) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
 const ICON_WA = '<svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.1-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.4c.1-.2.2-.3.2-.5.1-.2 0-.3 0-.5 0-.1-.5-1.3-.7-1.8-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>';
 const ICON_IG = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>';
 const collectIcons = (t) => `<a class="collect-icon" href="${waSceneHref(t)}" target="_blank" rel="noopener" aria-label="Enquire about ${t} on WhatsApp">${ICON_WA}</a><a class="collect-icon" href="${IG_URL}" target="_blank" rel="noopener" aria-label="Krishna on Instagram">${ICON_IG}</a>`;
-const collectHref = (chTitle, n, t) => `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${chTitle} · Scene ${pad(n)} · ${t}`)}`;
+const SCENE_PRINT = {
+  'The Dominant': '#print-the-dominant', 'The Watchful': '#print-the-watchful',
+  'The Fog': '#print-the-fog', 'The Ambush': '#print-the-ambush',
+  'The Claim': '#print-the-claim', 'The King at Night': '#print-the-king-at-night',
+  'The Procession': '#print-the-procession', 'The Dust Bath': '#print-the-dust-bath',
+  'The Gathering': '#print-the-gathering',
+  'The Question': '#print-the-promise', 'First Light': '#print-the-riverbed', 'Memory': '#print-the-elder',
+};
+const collectHref = (chTitle, n, t) => SCENE_PRINT[t] || `mailto:${EMAIL}?subject=${encodeURIComponent(`Print enquiry — ${chTitle} · Scene ${pad(n)} · ${t}`)}`;
 const paragraphs = s => s.trim().split(/\n\s*\n/).map(p => `<p>${p.trim()}</p>`).join('');
 
 const main = document.getElementById('chapters');
@@ -1189,6 +1212,7 @@ function renderPrintDetail(p) {
           <a href="#${printId(prev)}" aria-label="Previous print: ${prev.title}"><em>&lsaquo;</em><span>${prev.title}</span></a>
           <a class="nx" href="#${printId(next)}" aria-label="Next print: ${next.title}"><span>${next.title}</span><em>&rsaquo;</em></a>
         </div>
+        <a class="pd-room" href="#prints-room">The canvas, in a room &rarr;</a>
       </div>
     </div>`;
   const tmp = document.createElement('textarea');
@@ -1297,12 +1321,14 @@ function applyRoute() {
   const pd = h.startsWith('#print-') ? PRINTS.concat(MORE_PRINTS).find(p => printId(p) === h.slice(1)) : null;
   if (pd) renderPrintDetail(pd);
   const isCh = /^#ch[23]$/.test(h);
-  const view = pd ? 'print' : h === '#prints' ? 'prints' : h === '#about' ? 'about' : isCh ? 'chapter' : 'stories';
+  const view = pd ? 'print' : (h === '#prints' || h === '#prints-room') ? 'prints' : h === '#about' ? 'about' : isCh ? 'chapter' : 'stories';
   const changed = document.body.dataset.view !== view || (isCh && document.body.dataset.chapter !== h.slice(1));
   document.body.dataset.view = view;
   if (isCh) document.body.dataset.chapter = h.slice(1);
   if (view === 'stories' && h === '#ch1') {
     requestAnimationFrame(() => document.getElementById('ch1').scrollIntoView({ behavior: changed ? 'auto' : 'smooth' }));
+  } else if (h === '#prints-room') {
+    requestAnimationFrame(() => document.getElementById('prints-room').scrollIntoView({ behavior: 'auto' }));
   } else if (changed || h === '#top' || view === 'print') window.scrollTo(0, 0);
   if (view === 'prints') requestAnimationFrame(() => document.querySelectorAll('.proof video').forEach(v => { if (v.paused) v.play().catch(() => {}); }));
 }
