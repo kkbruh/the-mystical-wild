@@ -719,7 +719,7 @@
   <div class="prints-grid prints-grid-rec"></div>
   <div class="prints-grid prints-grid-more"></div>
   <div class="prints-more-empty reveal"></div>
-  <div class="print-terms reveal">Hand-signed &amp; numbered<span class="pt-sep">&nbsp;&middot;&nbsp;</span><br class="chl-br"> Free shipping within India<span class="pt-sep">&nbsp;&middot;&nbsp;</span><br class="chl-br"> Worldwide at cost</div>
+  <div class="print-terms reveal">Hand-signed &amp; numbered<span class="pt-sep">&nbsp;&middot;&nbsp;</span><br class="chl-br"> Certificate of authenticity with the frame&rsquo;s story<span class="pt-sep">&nbsp;&middot;&nbsp;</span><br class="chl-br"> Free shipping within India<span class="pt-sep">&nbsp;&middot;&nbsp;</span><br class="chl-br"> Worldwide at cost</div>
   <div class="craft reveal">
     <div><h3>The materials</h3><p>Printed on archival matte paper with deep, quiet blacks, or Hahnem&uuml;hle Daguerre canvas for a gallery presence. A lifespan measured in generations, not years.</p></div>
     <div><h3>The edition</h3><p>Ten prints per frame, ever. Each is hand-signed and numbered. When an edition closes, it never reopens.</p></div>
@@ -1195,7 +1195,7 @@ function renderPrintDetail(p) {
         ${p.enquire ? `
         <div class="pd-panel" role="group" id="pd-panel-signed">
           <p class="pd-open-line" style="margin-top:5vh;padding-top:5vh;border-top:1px solid var(--hair)">A frame from the chapters &mdash; printed on archival matte paper or Hahnem&uuml;hle Daguerre canvas, sized to your wall. Write to me with the frame and the room, and I&rsquo;ll quote sizes and prices.</p>
-          <div class="pd-terms">Free shipping within India &middot; Worldwide at cost</div>
+          <div class="pd-terms">Hand-signed &middot; Certificate with the frame&rsquo;s story &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>` : `
         <div class="pd-panel" role="${OPEN_EDITION ? 'tabpanel' : 'group'}" id="pd-panel-signed" ${OPEN_EDITION ? 'aria-labelledby="pd-tab-signed"' : ''}>
           <div class="pd-sizes"${OPEN_EDITION ? '' : ' style="margin-top:5vh;border-top:1px solid var(--hair)"'}>
@@ -1211,12 +1211,12 @@ function renderPrintDetail(p) {
               <div class="pd-mat-note">${PRICING.canvas.note}</div>
             </div>
           </div>
-          <div class="pd-terms">Hand-signed &amp; numbered &middot; Free shipping within India &middot; Worldwide at cost</div>
+          <div class="pd-terms">Hand-signed &amp; numbered &middot; Certificate with the frame&rsquo;s story &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>`}
         ${OPEN_EDITION ? `
         <div class="pd-panel" role="tabpanel" id="pd-panel-open" aria-labelledby="pd-tab-open" hidden>
           <p class="pd-open-line">The same frame without the signature or the number &mdash; ${OPEN_EDITION.spec}, ${inr(OPEN_EDITION.price)}. Unlimited, and made for walls that simply want the wild.</p>
-          <div class="pd-terms">Framed &middot; Matte finish &middot; Free shipping within India &middot; Worldwide at cost</div>
+          <div class="pd-terms">Framed &middot; Matte finish &middot; Certificate with the frame&rsquo;s story &middot; Free shipping within India &middot; Worldwide at cost</div>
         </div>` : ''}
         <div class="pd-actions">
           <button class="collect" id="pd-add">Add to cart</button>
@@ -1377,7 +1377,7 @@ if (splash) {
       splash.classList.add('gone');
       document.body.classList.remove('presplash');
       setTimeout(() => splash.remove(), 1200);
-    }, 1900);
+    }, 2400);
   }
 }
 window.addEventListener('hashchange', applyRoute);
